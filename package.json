@@ -1,12 +1,29 @@
 {
   "name": "pipedator",
-  "version": "0.0.0",
+  "version": "0.0.0-canary.1",
   "description": "Piped validators",
-  "main": "index.js",
+  "main": "build/index.js",
   "author": "dmytro.lymarenko",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/dmytro-lymarenko/pipedator.git"
+  },
+  "scripts": {
+    "dev": "ts-node --project tsconfig.json src/core.ts",
+    "build": "tsc",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@types/jest": "^23.3.9",
+    "jest": "^23.6.0",
+    "prettier": "^1.15.2",
+    "ts-jest": "^23.10.4",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.11.0",
+    "tslint-config-airbnb": "^5.11.1",
+    "tslint-config-prettier": "^1.16.0",
+    "tslint-plugin-prettier": "^2.0.1",
+    "typescript": "^3.1.6"
   }
 }
