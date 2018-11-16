@@ -4,5 +4,9 @@
   "description": "Piped validators",
   "main": "index.js",
   "author": "dmytro.lymarenko",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dmytro-lymarenko/pipedator.git"
+  }
 }
