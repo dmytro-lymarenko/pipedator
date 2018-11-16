@@ -17,46 +17,38 @@ export interface Validator {
 	pipe: (...validators: Validator[]) => Validator;
 }
 
+export function pipe(...validators: Validator[]) {
+	return createValidator({
+		validate: (value, ctx) => {
+			// find the first error in pipe
+			let i: number = 0;
+			let error: ValidationError | null = null;
+
+			while (i < validators.length && error === null) {
+				error = validators[i].validate(value, ctx);
+				i = i + 1;
+			}
+
+			return error;
+		},
+	});
+}
+
 /**
  * Don't use ${value} inside message when value is invalid
  * @param options
  */
 export function createValidator(options: CreateValidatorOptions): Validator {
 	function validate(value: any, ctx?: ValidationContext) {
-		// Should we catch errors?
-		// try {
-		// 	return options.validate(value);
-		// } catch (e) {
-		// 	return `Error happend while validating: ${e}`;
-		// }
 		return options.validate(value, ctx || { value, path: [] });
-	}
-
-	function pipe(...validators: Validator[]) {
-		return createValidator({
-			validate: (value, ctx) => {
-				const ownCheck = validate(value, ctx);
-
-				if (ownCheck !== null) {
-					return ownCheck;
-				}
-
-				// find the first error in pipe
-				let i: number = 0;
-				let message: ValidationError | null = null;
-
-				while (i < validators.length && message === null) {
-					message = validators[i].validate(value, ctx);
-					i = i + 1;
-				}
-
-				return message;
-			},
-		});
 	}
 
 	return {
 		validate,
-		pipe,
+		pipe: (...validators) =>
+			pipe(
+				createValidator({ validate }),
+				...validators
+			),
 	};
 }
