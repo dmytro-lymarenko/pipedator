@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`alternative() should support custom message 1`] = `
+Object {
+  "message": "Custom message",
+  "path": Array [],
+  "value": 1,
+}
+`;
+
+exports[`createValidator() should return what validate function returns 1`] = `
+Object {
+  "message": "Test",
+  "path": Array [],
+  "value": 1,
+}
+`;
+
+exports[`not() should opposite validation 1`] = `
+Object {
+  "message": "Value should not follow the rule: Always succeed",
+  "path": Array [],
+  "value": 1,
+}
+`;
+
+exports[`not() should support custom message 1`] = `
+Object {
+  "message": "Always fails",
+  "path": Array [],
+  "value": 1,
+}
+`;
+
+exports[`pipe() should support custom message 1`] = `
+Object {
+  "message": "Custom message",
+}
+`;
