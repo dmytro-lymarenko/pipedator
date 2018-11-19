@@ -28,13 +28,13 @@ function findFirstError(
 	getValidator: (index: number) => Validator,
 	getValue: (index: number) => any,
 	length: number,
-	ctx: ValidationContext
+	getContext: (index: number) => ValidationContext
 ): ValidationError | null {
 	let i: number = 0;
 	let error: ValidationError | null = null;
 
 	while (i < length && error === null) {
-		error = getValidator(i).validate(getValue(i), ctx);
+		error = getValidator(i).validate(getValue(i), getContext(i));
 		i = i + 1;
 	}
 
@@ -45,13 +45,13 @@ function findFirstSuccess(
 	getValidator: (index: number) => Validator,
 	getValue: (index: number) => any,
 	length: number,
-	ctx: ValidationContext
+	getContext: (index: number) => ValidationContext
 ): ValidationError | null {
 	let i: number = 0;
 	let error: ValidationError | null = null;
 
 	do {
-		error = getValidator(i).validate(getValue(i), ctx);
+		error = getValidator(i).validate(getValue(i), getContext(i));
 		i = i + 1;
 	} while (i < length && error !== null);
 
@@ -74,7 +74,7 @@ export function pipe(validators: Validator[], message?: string) {
 		message: message || `Each validator should succeed: [${validators.map(validator => validator.message).join(', ')}]`,
 		validate: (value, ctx) => {
 			// find the first error in pipe
-			const error = findFirstError(i => validators[i], () => value, validators.length, ctx);
+			const error = findFirstError(i => validators[i], () => value, validators.length, () => ctx);
 
 			return addMessage(error, message);
 		},
@@ -104,7 +104,7 @@ export function alternative(validators: Validator[], message?: string) {
 				return null;
 			}
 			// find the first success validator
-			const error = findFirstSuccess(i => validators[i], () => value, validators.length, ctx);
+			const error = findFirstSuccess(i => validators[i], () => value, validators.length, () => ctx);
 
 			return addMessage(error, message);
 		},
@@ -145,7 +145,7 @@ export function every(validator: Validator, message?: string) {
 		// here value should be an array
 		validate: (value, ctx) => {
 			// find the first error among values
-			const error = findFirstError(() => validator, i => value[i], value.length, ctx);
+			const error = findFirstError(() => validator, i => value[i], value.length, () => ctx);
 
 			return addMessage(error, message);
 		},
@@ -164,7 +164,7 @@ export function some(validator: Validator, message?: string) {
 				return null;
 			}
 			// find the first success validator
-			const error = findFirstSuccess(() => validator, i => value[i], value.length, ctx);
+			const error = findFirstSuccess(() => validator, i => value[i], value.length, () => ctx);
 
 			return addMessage(error, message);
 		},
@@ -217,20 +217,69 @@ export function shape(shape: { [key: string]: Validator }, options?: { onlyFirst
 		message: message || `Value should follow the shape: { ${keys.map(key => `${key}: '${shape[key].message}'`).join('; ')} }`,
 		validate: (value, ctx) => {
 			if (options && options.onlyFirstError) {
-				const error = findFirstError(i => shape[keys[i]], i => value[keys[i]], keys.length, ctx);
+				const error = findFirstError(i => shape[keys[i]], i => value[keys[i]], keys.length, i => ({
+					...ctx,
+					path: [...ctx.path, keys[i]],
+				}));
 
 				return addMessage(error, message);
 			}
 
 			const errors = keys
-				.map(key => shape[key].validate(value[key], ctx))
+				.map(key =>
+					shape[key].validate(value[key], {
+						...ctx,
+						path: [...ctx.path, key],
+					})
+				)
 				.filter(isValidationError)
 				.reduce((res, err) => [...res, ...err.errors], []);
 
-			return {
-				errors,
-				rootValue: ctx.rootValue,
-			};
+			if (errors.length > 0) {
+				return {
+					errors,
+					rootValue: ctx.rootValue,
+				};
+			}
+			return null;
 		},
+	});
+}
+
+export function ternary(condition: Validator, success: Validator, failure: Validator) {
+	return createValidator({
+		message: 'asdf',
+		validate: (value, ctx) => {
+			const error = condition.validate(value, ctx);
+
+			if (error) {
+				return failure.validate(value, ctx);
+			}
+
+			return success.validate(value, ctx);
+		},
+	});
+}
+
+export function success() {
+	return createValidator({
+		message: 'Should always success',
+		validate: () => null,
+	});
+}
+
+export function failure() {
+	return createValidator({
+		message: 'Should always fail',
+		validate: (value, ctx) => ({
+			rootValue: ctx.rootValue,
+			errors: [
+				{
+					value,
+					message: ctx.message,
+					path: ctx.path,
+				},
+			],
+		}),
 	});
 }

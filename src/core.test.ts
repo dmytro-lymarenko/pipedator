@@ -1,4 +1,4 @@
-import { createValidator, pipe, alternative, not, every, valuesByKeys } from './core';
+import { createValidator, pipe, alternative, not, some, valuesByKeys, shape, ternary, success } from './core';
 
 describe('createValidator()', () => {
 	it('should create validator', () => {
@@ -225,7 +225,7 @@ describe('not()', () => {
 	});
 });
 
-describe('Complex validator', () => {
+describe.only('Complex validator', () => {
 	it('should validate', () => {
 		const required = createValidator({
 			message: 'Value is required',
@@ -235,14 +235,38 @@ describe('Complex validator', () => {
 					: null,
 		});
 
-		const validator = valuesByKeys(['a', 'b'], every(required), 'Each value should be required');
+		const validator = pipe([
+			required,
+			ternary(
+				valuesByKeys(['a', 'b', 'c'], some(required)),
+				success(),
+				shape({
+					a: createValidator({
+						message: 'Value should be a number',
+						validate: (value, ctx) =>
+							typeof value === 'number'
+								? null
+								: {
+										rootValue: ctx.rootValue,
+										errors: [
+											{
+												value,
+												message: ctx.message,
+												path: ctx.path,
+											},
+										],
+								  },
+					}),
+				})
+			),
+		]);
 
-		console.log(
+		expect(
 			validator.validate({
-				a: 3,
+				a: null,
 				b: null,
 				c: undefined,
 			})
-		);
+		).toMatchSnapshot();
 	});
 });

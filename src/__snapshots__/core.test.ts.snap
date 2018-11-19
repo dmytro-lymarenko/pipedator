@@ -1,5 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Complex validator should validate 1`] = `
+Object {
+  "errors": Array [
+    Object {
+      "message": "Each validator should succeed: [Value is required, ]",
+      "path": Array [
+        "a",
+      ],
+      "value": null,
+    },
+  ],
+  "rootValue": Object {
+    "a": null,
+    "b": null,
+    "c": undefined,
+  },
+}
+`;
+
 exports[`alternative() should support custom message 1`] = `
 Object {
   "errors": Array [
