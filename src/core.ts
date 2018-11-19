@@ -1,9 +1,11 @@
+export interface ValidationErrorDetail {
+	message: string;
+	path: string[]; // ['a', '0', 'test'] which is equivalent to 'a[0].test' of the value
+	value: any; // the value at current path
+}
+
 export interface ValidationError {
-	errors: {
-		message: string;
-		path: string[]; // ['a', '0', 'test'] which is equivalent to 'a[0].test' of the value
-		value: any; // the value at current path
-	}[];
+	errors: ValidationErrorDetail[];
 	rootValue: any; // the root value
 }
 
@@ -12,6 +14,7 @@ export interface ValidationContext {
 	path: string[];
 	message: string;
 	rootValue: any;
+	generateError: (error: ValidationErrorDetail) => ValidationError;
 }
 
 export interface CreateValidatorOptions {
@@ -87,7 +90,18 @@ export function pipe(validators: Validator[], message?: string) {
  */
 export function createValidator(options: CreateValidatorOptions): Validator {
 	function validate(value: any, ctx?: ValidationContext) {
-		return options.validate(value, ctx || { value, path: [], message: options.message, rootValue: value });
+		const context = ctx || {
+			value,
+			path: [],
+			message: options.message,
+			rootValue: value,
+			generateError: error => ({
+				errors: [error],
+				rootValue: value,
+			}),
+		};
+
+		return options.validate(value, context);
 	}
 
 	return {
@@ -126,7 +140,6 @@ export function not(validator: Validator, message?: string) {
 							path: ctx.path,
 						},
 					],
-					rootValue: ctx.rootValue,
 				};
 			}
 
