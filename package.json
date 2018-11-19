@@ -1,6 +1,6 @@
 {
   "name": "pipedator",
-  "version": "0.0.0-canary.2",
+  "version": "0.0.1-canary.3",
   "description": "Piped validators",
   "main": "build/index.js",
   "author": "dmytro.lymarenko",
