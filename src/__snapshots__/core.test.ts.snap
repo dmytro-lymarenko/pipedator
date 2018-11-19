@@ -1,30 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Complex validator should validate 1`] = `
-Object {
-  "errors": Array [
-    Object {
-      "message": "Value should be a number",
-      "path": Array [
-        "a",
-      ],
-      "value": null,
-    },
-    Object {
-      "message": "Value should be a number",
-      "path": Array [
-        "b",
-      ],
-      "value": null,
-    },
-  ],
-  "rootValue": Object {
-    "a": null,
-    "b": null,
-    "c": undefined,
-  },
-}
-`;
+exports[`Complex validator should validate 1`] = `null`;
 
 exports[`alternative() should support custom message 1`] = `
 Object {

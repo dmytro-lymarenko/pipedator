@@ -1,4 +1,4 @@
-import { ValidationContext, createValidator, pipe, alternative, some, valuesByKeys, shape, ternary, success } from './core';
+import { ValidationContext, createValidator, pipe, alternative, shape, valid, when, greater, ref } from './core';
 
 describe('createValidator()', () => {
 	it('should create validator', () => {
@@ -191,21 +191,20 @@ describe('Complex validator', () => {
 
 		const validator = pipe([
 			required,
-			ternary(
-				valuesByKeys(['a', 'b', 'c'], some(required)),
-				success(),
-				shape({
-					a: number,
-					b: number,
-				})
-			),
+			shape({
+				min: alternative([valid(null), number]),
+				max: when(['min'], {
+					is: number,
+					then: pipe([number, greater(ref(['min']))]),
+					otherwise: alternative([valid(null), number]),
+				}),
+			}),
 		]);
 
 		expect(
 			validator.validate({
-				a: null,
-				b: null,
-				c: undefined,
+				min: 5,
+				max: 6,
 			})
 		).toMatchSnapshot();
 	});

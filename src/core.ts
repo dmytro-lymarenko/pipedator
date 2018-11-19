@@ -247,6 +247,15 @@ export function isValidationError(error: ValidationError | null): error is Valid
 export function shape(shape: { [key: string]: Validator }, options?: { onlyFirstError?: boolean }, message?: string) {
 	const keys = Object.keys(shape);
 
+	return shapeByKeys(keys, shape, options, message);
+}
+
+export function shapeByKeys(
+	keys: string[],
+	shape: { [key: string]: Validator },
+	options?: { onlyFirstError?: boolean },
+	message?: string
+) {
 	return createValidator({
 		validate: (value, ctx) => {
 			if (options && options.onlyFirstError) {
@@ -321,5 +330,62 @@ export function failure() {
 				message: 'Should always fail',
 				path: ctx.path,
 			}),
+	});
+}
+
+// export function tuple(tuple: Validator[], options?: { onlyFirstError?: boolean }, message?: string) {
+// 	const keys = tuple.map((_, i) => i.toString());
+
+// 	return shapeByKeys(keys, tuple, options, message);
+// }
+
+export function when(path: string[], options: { is: Validator; then: Validator; otherwise?: Validator }) {
+	return createValidator({
+		validate: (value, ctx) => {
+			const subValue = ref(path)(ctx);
+
+			const error = options.is.validate(subValue, ctx);
+
+			if (error === null) {
+				return options.then.validate(value, ctx);
+			}
+
+			const otherwise = options.otherwise || success();
+
+			return otherwise.validate(value, ctx);
+		},
+	});
+}
+
+export function ref(path: string[]) {
+	return (ctx: ValidationContext) => path.reduce((v, key) => v && v[key], ctx.rootValue);
+}
+
+export function valid(validValue: any) {
+	return createValidator({
+		validate: (value, ctx) =>
+			value === validValue
+				? null
+				: ctx.generateError({
+						value,
+						message: `Value should equal to ${validValue}`,
+						path: ctx.path,
+				  }),
+	});
+}
+
+export function greater(min: number | ((ctx: ValidationContext) => any)) {
+	return createValidator({
+		validate: (value, ctx) => {
+			const v = typeof min === 'number' ? min : min(ctx);
+
+			return value > v
+				? null
+				: ctx.generateError({
+						value,
+						message: `Value should be greater than ${v}`,
+						path: ctx.path,
+				  });
+		},
 	});
 }
