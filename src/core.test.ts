@@ -9,7 +9,6 @@ describe('createValidator()', () => {
 
 		expect(validator).toBeDefined();
 		expect(typeof validator.validate).toBe('function');
-		expect(typeof validator.pipe).toBe('function');
 	});
 
 	it('should call validate function', () => {
@@ -33,9 +32,14 @@ describe('createValidator()', () => {
 		expect(
 			createValidator({
 				validate: (value, ctx) => ({
-					value,
-					message: ctx.message,
-					path: ctx.path,
+					rootValue: ctx.rootValue,
+					errors: [
+						{
+							value,
+							message: ctx.message,
+							path: ctx.path,
+						},
+					],
 				}),
 				message: 'Test',
 			}).validate(1)
@@ -70,7 +74,10 @@ describe('pipe()', () => {
 	it('should return the first met error in pipe chain of validators', () => {
 		const callbacks = [
 			jest.fn(() => null),
-			jest.fn((value, ctx) => ({ value, message: ctx.message, path: ctx.path })),
+			jest.fn(() => (value: any, ctx: any) => ({
+				rootValue: ctx.value,
+				errors: [{ value, message: ctx.message, path: ctx.path }],
+			})),
 			jest.fn(() => null),
 		];
 
@@ -86,7 +93,10 @@ describe('pipe()', () => {
 	it('should support custom message', () => {
 		const callbacks = [
 			jest.fn(() => null),
-			jest.fn(() => (value: any, ctx: any) => ({ value, message: ctx.message, path: ctx.path })),
+			jest.fn((value: any, ctx: any) => ({
+				rootValue: ctx.rootValue,
+				errors: [{ value, message: ctx.message, path: ctx.path }],
+			})),
 		];
 
 		expect(
@@ -114,9 +124,14 @@ describe('alternative()', () => {
 
 	it('should invoke all validators when they all fail', () => {
 		const mockCallback = (value: any, ctx: any) => ({
-			value,
-			message: ctx.message,
-			path: ctx.path,
+			rootValue: value,
+			errors: [
+				{
+					value,
+					message: ctx.message,
+					path: ctx.path,
+				},
+			],
 		});
 
 		const callbacks = [jest.fn(mockCallback), jest.fn(mockCallback), jest.fn(mockCallback)];
@@ -132,9 +147,14 @@ describe('alternative()', () => {
 
 	it('should succeed when at least one validator succeed', () => {
 		const mockCallback = (value: any, ctx: any) => ({
-			value,
-			message: ctx.message,
-			path: ctx.path,
+			rootValue: value,
+			errors: [
+				{
+					value,
+					message: ctx.message,
+					path: ctx.path,
+				},
+			],
 		});
 
 		const callbacks = [jest.fn(mockCallback), jest.fn(() => null), jest.fn(mockCallback)];
@@ -150,9 +170,14 @@ describe('alternative()', () => {
 
 	it('should support custom message', () => {
 		const mockCallback = (value: any, ctx: any) => ({
-			value,
-			message: ctx.message,
-			path: ctx.path,
+			rootValue: ctx.rootValue,
+			errors: [
+				{
+					value,
+					message: ctx.message,
+					path: ctx.path,
+				},
+			],
 		});
 
 		const callbacks = [jest.fn(mockCallback), jest.fn(mockCallback)];
@@ -172,7 +197,7 @@ describe('not()', () => {
 			not(
 				createValidator({
 					message: 'Always fails',
-					validate: (value, ctx) => ({ value, message: ctx.message, path: ctx.path }),
+					validate: (value, ctx) => ({ rootValue: value, errors: [{ value, message: ctx.message, path: ctx.path }] }),
 				})
 			).validate(1)
 		).toBeNull();
@@ -205,7 +230,9 @@ describe('Complex validator', () => {
 		const required = createValidator({
 			message: 'Value is required',
 			validate: (value, ctx) =>
-				value === undefined || value === null ? { value, message: ctx.message, path: ctx.path } : null,
+				value === undefined || value === null
+					? { rootValue: value, errors: [{ value, message: ctx.message, path: ctx.path }] }
+					: null,
 		});
 
 		const validator = valuesByKeys(['a', 'b'], every(required), 'Each value should be required');

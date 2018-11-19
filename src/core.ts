@@ -1,13 +1,17 @@
 export interface ValidationError {
-	message: string;
-	path: string[]; // ['a', '0', 'test'] which is equivalent to 'a[0].test' of the value
-	value: any; // the value at current path
+	errors: {
+		message: string;
+		path: string[]; // ['a', '0', 'test'] which is equivalent to 'a[0].test' of the value
+		value: any; // the value at current path
+	}[];
+	rootValue: any; // the root value
 }
 
 export interface ValidationContext {
 	value: any;
 	path: string[];
 	message: string;
+	rootValue: any;
 }
 
 export interface CreateValidatorOptions {
@@ -17,12 +21,7 @@ export interface CreateValidatorOptions {
 
 export interface Validator {
 	validate: (value: any, ctx?: ValidationContext) => null | ValidationError;
-	pipe: (validators: Validator[], message?: string) => Validator;
 	message: string;
-}
-
-function isValidationError(error: ValidationError | null): error is ValidationError {
-	return error !== null;
 }
 
 function findFirstError(
@@ -66,7 +65,7 @@ function addMessage(error: ValidationError | null, message?: string): Validation
 
 	return {
 		...error,
-		message,
+		errors: error.errors.map(err => ({ ...err, message })),
 	};
 }
 
@@ -88,16 +87,11 @@ export function pipe(validators: Validator[], message?: string) {
  */
 export function createValidator(options: CreateValidatorOptions): Validator {
 	function validate(value: any, ctx?: ValidationContext) {
-		return options.validate(value, ctx || { value, path: [], message: options.message });
+		return options.validate(value, ctx || { value, path: [], message: options.message, rootValue: value });
 	}
 
 	return {
 		validate,
-		pipe: (validators, message) =>
-			pipe(
-				[createValidator({ validate, message: options.message }), ...validators],
-				message
-			),
 		message: options.message,
 	};
 }
@@ -125,9 +119,14 @@ export function not(validator: Validator, message?: string) {
 
 			if (error === null) {
 				return {
-					value,
-					message: ctx.message,
-					path: ctx.path,
+					errors: [
+						{
+							value,
+							message: ctx.message,
+							path: ctx.path,
+						},
+					],
+					rootValue: ctx.rootValue,
 				};
 			}
 
@@ -207,6 +206,10 @@ export function valuesByKeys(keys: string[], validator: Validator, message?: str
 	});
 }
 
+export function isValidationError(error: ValidationError | null): error is ValidationError {
+	return error !== null;
+}
+
 export function shape(shape: { [key: string]: Validator }, options?: { onlyFirstError?: boolean }, message?: string) {
 	const keys = Object.keys(shape);
 
@@ -219,7 +222,15 @@ export function shape(shape: { [key: string]: Validator }, options?: { onlyFirst
 				return addMessage(error, message);
 			}
 
-			const res = keys.map(key => shape[key].validate(value[key], ctx)).filter(isValidationError);
+			const errors = keys
+				.map(key => shape[key].validate(value[key], ctx))
+				.filter(isValidationError)
+				.reduce((res, err) => [...res, ...err.errors], []);
+
+			return {
+				errors,
+				rootValue: ctx.rootValue,
+			};
 		},
 	});
 }
