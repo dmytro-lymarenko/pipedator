@@ -4,9 +4,16 @@ exports[`Complex validator should validate 1`] = `
 Object {
   "errors": Array [
     Object {
-      "message": "Each validator should succeed: [Value is required, ]",
+      "message": "Value should be a number",
       "path": Array [
         "a",
+      ],
+      "value": null,
+    },
+    Object {
+      "message": "Value should be a number",
+      "path": Array [
+        "b",
       ],
       "value": null,
     },
@@ -45,24 +52,11 @@ Object {
 }
 `;
 
-exports[`not() should opposite validation 1`] = `
+exports[`pipe() should return the first met error in pipe chain of validators 1`] = `
 Object {
   "errors": Array [
     Object {
-      "message": "Value should not follow the rule: Always succeed",
-      "path": Array [],
-      "value": 1,
-    },
-  ],
-  "rootValue": 1,
-}
-`;
-
-exports[`not() should support custom message 1`] = `
-Object {
-  "errors": Array [
-    Object {
-      "message": "Always fails",
+      "message": "Test",
       "path": Array [],
       "value": 1,
     },

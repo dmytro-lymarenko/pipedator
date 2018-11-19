@@ -12,19 +12,17 @@ export interface ValidationError {
 export interface ValidationContext {
 	value: any;
 	path: string[];
-	message: string;
 	rootValue: any;
 	generateError: (error: ValidationErrorDetail) => ValidationError;
+	generateErrors: (errors: ValidationErrorDetail[]) => ValidationError;
 }
 
 export interface CreateValidatorOptions {
-	message: string;
 	validate: (value: any, ctx: ValidationContext) => null | ValidationError;
 }
 
 export interface Validator {
 	validate: (value: any, ctx?: ValidationContext) => null | ValidationError;
-	message: string;
 }
 
 function findFirstError(
@@ -32,7 +30,7 @@ function findFirstError(
 	getValue: (index: number) => any,
 	length: number,
 	getContext: (index: number) => ValidationContext
-): ValidationError | null {
+): { error: ValidationError | null; index: number } {
 	let i: number = 0;
 	let error: ValidationError | null = null;
 
@@ -41,45 +39,49 @@ function findFirstError(
 		i = i + 1;
 	}
 
-	return error;
+	return { error, index: i - 1 };
 }
 
-function findFirstSuccess(
+function getFirstErrors(
 	getValidator: (index: number) => Validator,
 	getValue: (index: number) => any,
 	length: number,
 	getContext: (index: number) => ValidationContext
-): ValidationError | null {
+): ValidationError[] {
+	const errors: ValidationError[] = [];
 	let i: number = 0;
 	let error: ValidationError | null = null;
 
 	do {
 		error = getValidator(i).validate(getValue(i), getContext(i));
+		if (error) {
+			errors.push(error);
+		}
 		i = i + 1;
 	} while (i < length && error !== null);
 
-	return error;
+	return errors;
 }
 
-function addMessage(error: ValidationError | null, message?: string): ValidationError | null {
-	if (error === null || !message) {
-		return error;
-	}
-
-	return {
-		...error,
-		errors: error.errors.map(err => ({ ...err, message })),
-	};
+function validationErrorToString(error: ValidationError): string {
+	return `[${error.errors.map(err => err.message).join(', ')}]`;
 }
 
 export function pipe(validators: Validator[], message?: string) {
 	return createValidator({
-		message: message || `Each validator should succeed: [${validators.map(validator => validator.message).join(', ')}]`,
 		validate: (value, ctx) => {
 			// find the first error in pipe
-			const error = findFirstError(i => validators[i], () => value, validators.length, () => ctx);
+			const { error } = findFirstError(i => validators[i], () => value, validators.length, () => ctx);
 
-			return addMessage(error, message);
+			if (error && message) {
+				return ctx.generateError({
+					value,
+					message,
+					path: ctx.path,
+				});
+			}
+
+			return error;
 		},
 	});
 }
@@ -93,10 +95,13 @@ export function createValidator(options: CreateValidatorOptions): Validator {
 		const context = ctx || {
 			value,
 			path: [],
-			message: options.message,
 			rootValue: value,
 			generateError: error => ({
 				errors: [error],
+				rootValue: value,
+			}),
+			generateErrors: errors => ({
+				errors,
 				rootValue: value,
 			}),
 		};
@@ -106,41 +111,27 @@ export function createValidator(options: CreateValidatorOptions): Validator {
 
 	return {
 		validate,
-		message: options.message,
 	};
 }
 
 export function alternative(validators: Validator[], message?: string) {
 	return createValidator({
-		message: message || `At least one validator should succeed: [${validators.map(validator => validator.message).join(', ')}]`,
 		validate: (value, ctx) => {
 			if (validators.length === 0) {
 				return null;
 			}
 			// find the first success validator
-			const error = findFirstSuccess(i => validators[i], () => value, validators.length, () => ctx);
+			const errors = getFirstErrors(i => validators[i], () => value, validators.length, () => ctx);
 
-			return addMessage(error, message);
-		},
-	});
-}
-
-export function not(validator: Validator, message?: string) {
-	return createValidator({
-		message: message || `Value should not follow the rule: ${validator.message}`,
-		validate: (value, ctx) => {
-			const error = validator.validate(value, ctx);
-
-			if (error === null) {
-				return {
-					errors: [
-						{
-							value,
-							message: ctx.message,
-							path: ctx.path,
-						},
-					],
-				};
+			if (errors.length === validators.length) {
+				// here all validators returned an error
+				return ctx.generateError({
+					value,
+					message:
+						message ||
+						`At least one validator should succeed: [${errors.map(error => validationErrorToString(error)).join(' OR ')}]`,
+					path: ctx.path,
+				});
 			}
 
 			return null;
@@ -154,13 +145,20 @@ export function not(validator: Validator, message?: string) {
  */
 export function every(validator: Validator, message?: string) {
 	return createValidator({
-		message: message || `Every value should follow the rule: ${validator.message}`,
 		// here value should be an array
 		validate: (value, ctx) => {
 			// find the first error among values
-			const error = findFirstError(() => validator, i => value[i], value.length, () => ctx);
+			const { error } = findFirstError(() => validator, i => value[i], value.length, () => ctx);
 
-			return addMessage(error, message);
+			if (error) {
+				return ctx.generateError({
+					value,
+					message: message || `Every value should follow the rule: ${validationErrorToString(error)}`,
+					path: ctx.path,
+				});
+			}
+
+			return null;
 		},
 	});
 }
@@ -171,42 +169,57 @@ export function every(validator: Validator, message?: string) {
  */
 export function some(validator: Validator, message?: string) {
 	return createValidator({
-		message: message || `At least one value should follow the rule: ${validator.message}`,
 		validate: (value, ctx) => {
 			if (value.length === 0) {
 				return null;
 			}
 			// find the first success validator
-			const error = findFirstSuccess(() => validator, i => value[i], value.length, () => ctx);
+			const errors = getFirstErrors(() => validator, i => value[i], value.length, () => ctx);
 
-			return addMessage(error, message);
+			if (errors.length === value.length) {
+				// here all values failed
+				return ctx.generateError({
+					value,
+					message:
+						message ||
+						`At least one value should follow the rule: [${errors.map(error => validationErrorToString(error)).join(' OR ')}]`,
+					path: ctx.path,
+				});
+			}
+
+			return null;
 		},
 	});
 }
 
 export function keys(validator: Validator, message?: string) {
 	return createValidator({
-		message: message || `Keys should follow the rule: ${validator.message}`,
 		validate: (value, ctx) => {
 			const error = validator.validate(Object.keys(value), ctx);
 
-			return addMessage(error, message);
+			if (error) {
+				return ctx.generateError({
+					value,
+					message: message || `Keys should follow the rule: ${validationErrorToString(error)}`,
+					path: ctx.path,
+				});
+			}
+
+			return null;
 		},
 	});
 }
 
 export function values(validator: Validator, message?: string) {
 	return createValidator({
-		message: message || `Values should follow the rule: ${validator.message}`,
 		validate: (value, ctx) => {
-			return valuesByKeys(Object.keys(value), validator).validate(value, ctx);
+			return valuesByKeys(Object.keys(value), validator, message).validate(value, ctx);
 		},
 	});
 }
 
 export function valuesByKeys(keys: string[], validator: Validator, message?: string) {
 	return createValidator({
-		message: message || `Values should follow the rule: ${validator.message}`,
 		validate: (value, ctx) => {
 			if (keys.length === 0) {
 				return null;
@@ -214,7 +227,15 @@ export function valuesByKeys(keys: string[], validator: Validator, message?: str
 
 			const error = validator.validate(keys.map(key => value[key]), ctx);
 
-			return addMessage(error, message);
+			if (error) {
+				return ctx.generateError({
+					value,
+					message: message || `Values should follow the rule: ${validationErrorToString(error)}`,
+					path: ctx.path,
+				});
+			}
+
+			return null;
 		},
 	});
 }
@@ -227,15 +248,22 @@ export function shape(shape: { [key: string]: Validator }, options?: { onlyFirst
 	const keys = Object.keys(shape);
 
 	return createValidator({
-		message: message || `Value should follow the shape: { ${keys.map(key => `${key}: '${shape[key].message}'`).join('; ')} }`,
 		validate: (value, ctx) => {
 			if (options && options.onlyFirstError) {
-				const error = findFirstError(i => shape[keys[i]], i => value[keys[i]], keys.length, i => ({
+				const { error } = findFirstError(i => shape[keys[i]], i => value[keys[i]], keys.length, i => ({
 					...ctx,
 					path: [...ctx.path, keys[i]],
 				}));
 
-				return addMessage(error, message);
+				if (error && message) {
+					return ctx.generateError({
+						value,
+						message,
+						path: ctx.path,
+					});
+				}
+
+				return error;
 			}
 
 			const errors = keys
@@ -249,11 +277,17 @@ export function shape(shape: { [key: string]: Validator }, options?: { onlyFirst
 				.reduce((res, err) => [...res, ...err.errors], []);
 
 			if (errors.length > 0) {
-				return {
-					errors,
-					rootValue: ctx.rootValue,
-				};
+				if (message) {
+					return ctx.generateError({
+						value,
+						message,
+						path: ctx.path,
+					});
+				}
+
+				return ctx.generateErrors(errors);
 			}
+
 			return null;
 		},
 	});
@@ -261,7 +295,6 @@ export function shape(shape: { [key: string]: Validator }, options?: { onlyFirst
 
 export function ternary(condition: Validator, success: Validator, failure: Validator) {
 	return createValidator({
-		message: 'asdf',
 		validate: (value, ctx) => {
 			const error = condition.validate(value, ctx);
 
@@ -276,23 +309,17 @@ export function ternary(condition: Validator, success: Validator, failure: Valid
 
 export function success() {
 	return createValidator({
-		message: 'Should always success',
 		validate: () => null,
 	});
 }
 
 export function failure() {
 	return createValidator({
-		message: 'Should always fail',
-		validate: (value, ctx) => ({
-			rootValue: ctx.rootValue,
-			errors: [
-				{
-					value,
-					message: ctx.message,
-					path: ctx.path,
-				},
-			],
-		}),
+		validate: (value, ctx) =>
+			ctx.generateError({
+				value,
+				message: 'Should always fail',
+				path: ctx.path,
+			}),
 	});
 }
