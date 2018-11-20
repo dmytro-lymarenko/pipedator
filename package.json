@@ -2,7 +2,7 @@
   "name": "pipedator",
   "version": "0.0.1-canary.3",
   "description": "Piped validators",
-  "main": "build/index.js",
+  "main": "lib/index.js",
   "author": "dmytro.lymarenko",
   "license": "MIT",
   "repository": {
@@ -10,9 +10,10 @@
     "url": "https://github.com/dmytro-lymarenko/pipedator.git"
   },
   "scripts": {
-    "dev": "ts-node --project tsconfig.json src/core.ts",
-    "build": "tsc",
-    "test": "jest"
+    "build": "yarn groupValidators && yarn compile",
+    "compile": "tsc",
+    "test": "jest",
+    "groupValidators": "ts-node -T scripts/buildIndex.ts"
   },
   "devDependencies": {
     "@types/jest": "^23.3.9",

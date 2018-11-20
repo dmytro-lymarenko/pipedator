@@ -21,7 +21,7 @@
 			"es7",
 			"esnext"
 		],
-		"outDir": "build",
+		"outDir": "lib",
 		"declaration": true
 	},
 	"exclude": [
