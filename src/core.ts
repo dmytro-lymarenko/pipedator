@@ -21,8 +21,9 @@ export interface CreateValidatorOptions {
 	validate: (value: any, ctx: ValidationContext) => null | ValidationError;
 }
 
-export interface Validator {
+export interface Validator<ValidValue = any> {
 	validate: (value: any, ctx?: ValidationContext) => null | ValidationError;
+	isValid: (value: any) => value is ValidValue;
 }
 
 function findFirstError(
@@ -92,7 +93,7 @@ export const both = pipe;
  * Don't use ${value} inside message when value is invalid
  * @param options
  */
-export function createValidator(options: CreateValidatorOptions): Validator {
+export function createValidator<ValidValue = any>(options: CreateValidatorOptions): Validator<ValidValue> {
 	function validate(value: any, ctx?: ValidationContext) {
 		const context = ctx || {
 			value,
@@ -111,8 +112,13 @@ export function createValidator(options: CreateValidatorOptions): Validator {
 		return options.validate(value, context);
 	}
 
+	function isValid(value: any): value is ValidValue {
+		return validate(value) === null;
+	}
+
 	return {
 		validate,
+		isValid,
 	};
 }
 

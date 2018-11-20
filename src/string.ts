@@ -1,7 +1,7 @@
 import { createValidator } from './core';
 
 export function string() {
-	return createValidator({
+	return createValidator<string>({
 		validate: (value, ctx) =>
 			typeof value === 'string'
 				? null
