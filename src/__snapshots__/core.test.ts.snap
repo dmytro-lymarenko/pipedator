@@ -1,6 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Complex validator should validate 1`] = `null`;
+exports[`Complex validator should validate 1`] = `
+Object {
+  "errors": Array [
+    Object {
+      "message": "At least one validator should succeed: [[Value should equal to null] OR [Value should be a number]]",
+      "path": Array [
+        "min",
+      ],
+      "value": "56",
+    },
+  ],
+  "rootValue": Object {
+    "max": 6,
+    "min": "56",
+  },
+}
+`;
 
 exports[`alternative() should support custom message 1`] = `
 Object {

@@ -86,6 +86,8 @@ export function pipe(validators: Validator[], message?: string) {
 	});
 }
 
+export const both = pipe;
+
 /**
  * Don't use ${value} inside message when value is invalid
  * @param options
@@ -138,6 +140,9 @@ export function alternative(validators: Validator[], message?: string) {
 		},
 	});
 }
+
+export const alt = alternative;
+export const either = alternative;
 
 /**
  * value should be an array
@@ -361,18 +366,23 @@ export function ref(path: string[]) {
 	return (ctx: ValidationContext) => path.reduce((v, key) => v && v[key], ctx.rootValue);
 }
 
-export function valid(validValue: any) {
+export function valid(validValue: any | ((ctx: ValidationContext) => any)) {
 	return createValidator({
-		validate: (value, ctx) =>
-			value === validValue
+		validate: (value, ctx) => {
+			const v = typeof validValue === 'function' ? validValue(ctx) : validValue;
+
+			return value === v
 				? null
 				: ctx.generateError({
 						value,
 						message: `Value should equal to ${validValue}`,
 						path: ctx.path,
-				  }),
+				  });
+		},
 	});
 }
+
+export const equalTo = valid;
 
 export function greater(min: number | ((ctx: ValidationContext) => any)) {
 	return createValidator({

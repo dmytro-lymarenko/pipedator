@@ -1,4 +1,16 @@
-import { ValidationContext, createValidator, pipe, alternative, shape, valid, when, greater, ref } from './core';
+import {
+	ValidationContext,
+	createValidator,
+	pipe,
+	alternative,
+	either,
+	shape,
+	equalTo,
+	when,
+	greater,
+	ref,
+	both,
+} from './core';
 
 describe('createValidator()', () => {
 	it('should create validator', () => {
@@ -189,21 +201,21 @@ describe('Complex validator', () => {
 					  }),
 		});
 
-		const validator = pipe([
+		const validator = both([
 			required,
 			shape({
-				min: alternative([valid(null), number]),
+				min: either([equalTo(null), number]),
 				max: when(['min'], {
 					is: number,
-					then: pipe([number, greater(ref(['min']))]),
-					otherwise: alternative([valid(null), number]),
+					then: both([number, greater(ref(['min']))]),
+					otherwise: either([equalTo(null), number]),
 				}),
 			}),
 		]);
 
 		expect(
 			validator.validate({
-				min: 5,
+				min: '56',
 				max: 6,
 			})
 		).toMatchSnapshot();
