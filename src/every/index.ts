@@ -1,3 +1,7 @@
+/**
+ * @module validators
+ */
+
 import { createValidator, findFirstError, validationErrorToString, Validator } from '../core';
 
 /**

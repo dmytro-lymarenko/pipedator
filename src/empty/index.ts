@@ -1,3 +1,7 @@
+/**
+ * @module validators
+ */
+
 import { createValidator } from '../core';
 
 export function empty() {

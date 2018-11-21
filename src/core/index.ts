@@ -1,3 +1,7 @@
+/**
+ * @module core
+ */
+
 export interface ValidationErrorDetail {
 	message: string;
 	path: string[]; // ['a', '0', 'test'] which is equivalent to 'a[0].test' of the value

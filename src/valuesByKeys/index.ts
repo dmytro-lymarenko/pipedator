@@ -1,3 +1,7 @@
+/**
+ * @module validators
+ */
+
 import { createValidator, validationErrorToString, Validator } from '../core';
 
 export function valuesByKeys(keys: string[], validator: Validator, message?: string) {

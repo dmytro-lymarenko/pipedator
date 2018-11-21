@@ -1,3 +1,7 @@
+/**
+ * @module validators
+ */
+
 import { createValidator, findFirstError, isValidationError, Validator } from '../core';
 
 export function abstractShape<Key>(

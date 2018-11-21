@@ -1,3 +1,7 @@
+/**
+ * @module validators
+ */
+
 import { createValidator, ValidationContext } from '../core';
 
 export function greater(min: number | ((ctx: ValidationContext) => any)) {

@@ -1,3 +1,7 @@
+/**
+ * @module validators
+ */
+
 import { Validator } from '../core';
 import { either } from '../either';
 import { equalTo } from '../equalTo';
