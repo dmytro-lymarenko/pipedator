@@ -2,9 +2,9 @@
  * @module validators
  */
 
-import { createValidator, ValidationContext } from '../core';
+import { createValidator, ValidationRef } from '../core';
 
-export function greater(min: number | ((ctx: ValidationContext) => any)) {
+export function greater(min: number | ValidationRef) {
 	return createValidator({
 		validate: (value, ctx) => {
 			const v = typeof min === 'number' ? min : min(ctx);

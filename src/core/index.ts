@@ -124,6 +124,10 @@ export function isValidationError(error: ValidationError | null): error is Valid
 	return error !== null;
 }
 
-export function ref(path: string[]) {
+export interface ValidationRef {
+	(ctx: ValidationContext): any;
+}
+
+export function ref(path: string[]): ValidationRef {
 	return (ctx: ValidationContext) => path.reduce((v, key) => v && v[key], ctx.rootValue);
 }
