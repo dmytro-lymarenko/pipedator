@@ -1,18 +1,17 @@
 import { createValidator, findFirstError, isValidationError, Validator } from '../core';
-import { failure } from '../failure';
 
-export function shapeByKeys(
-	keys: string[],
-	shape: { [key: string]: Validator | undefined },
+export function abstractShape<Key>(
+	keys: Key[],
+	shape: (key: Key) => Validator,
 	options?: { onlyFirstError?: boolean },
 	message?: string
 ) {
 	return createValidator({
 		validate: (value, ctx) => {
 			if (options && options.onlyFirstError) {
-				const { error } = findFirstError(i => shape[keys[i]] || failure(), i => value[keys[i]], keys.length, i => ({
+				const { error } = findFirstError(i => shape(keys[i]), i => value[keys[i]], keys.length, i => ({
 					...ctx,
-					path: [...ctx.path, keys[i]],
+					path: [...ctx.path, keys[i].toString()],
 				}));
 
 				if (error && message) {
@@ -28,9 +27,9 @@ export function shapeByKeys(
 
 			const errors = keys
 				.map(key =>
-					(shape[key] || failure()).validate(value[key], {
+					shape(key).validate(value[key], {
 						...ctx,
-						path: [...ctx.path, key],
+						path: [...ctx.path, key.toString()],
 					})
 				)
 				.filter(isValidationError)

@@ -120,12 +120,6 @@ export function isValidationError(error: ValidationError | null): error is Valid
 	return error !== null;
 }
 
-// export function tuple(tuple: Validator[], options?: { onlyFirstError?: boolean }, message?: string) {
-// 	const keys = tuple.map((_, i) => i.toString());
-
-// 	return shapeByKeys(keys, tuple, options, message);
-// }
-
 export function ref(path: string[]) {
 	return (ctx: ValidationContext) => path.reduce((v, key) => v && v[key], ctx.rootValue);
 }
