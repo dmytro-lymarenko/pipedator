@@ -101,6 +101,21 @@ export function createValidator<ValidValue = any>(options: CreateValidatorOption
 	};
 }
 
+export function validate(validator: Validator, value: any) {
+	const ctx: ValidationContext = {
+		value,
+		path: [],
+		rootValue: value,
+		generateError: error => ctx.generateErrors([error]),
+		generateErrors: errors => ({
+			errors,
+			rootValue: value,
+		}),
+	};
+
+	return validator.validate(value, ctx);
+}
+
 export function isValidationError(error: ValidationError | null): error is ValidationError {
 	return error !== null;
 }

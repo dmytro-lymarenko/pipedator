@@ -1,4 +1,4 @@
-import { createValidator } from './index';
+import { createValidator, validate } from './index';
 
 describe('createValidator()', () => {
 	it('should create validator', () => {
@@ -11,19 +11,19 @@ describe('createValidator()', () => {
 	});
 
 	it('should call validate function', () => {
-		const validate = jest.fn(() => null);
+		const validateCb = jest.fn(() => null);
 
 		const validator = createValidator({
-			validate,
+			validate: validateCb,
 		});
 
 		const value = 1;
 
-		const result = validator.validate(value);
+		const result = validate(validator, value);
 
 		expect(result).toBeNull();
-		expect(validate.mock.calls.length).toBe(1);
-		expect(validate.mock.calls[0][0]).toBe(value);
+		expect(validateCb.mock.calls.length).toBe(1);
+		expect(validateCb.mock.calls[0][0]).toBe(value);
 	});
 
 	it('should return what validate function returns', () => {
