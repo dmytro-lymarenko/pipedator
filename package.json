@@ -14,7 +14,7 @@
     "compile": "tsc",
     "test": "jest",
     "groupValidators": "ts-node -T scripts/buildIndex.ts",
-    "generateDocs": "typedoc --exclude \"**/*.test.ts\" --out docs src/"
+    "generateDocs": "typedoc --exclude \"**/*.test.ts\" --out docs --readme none --target ES6 --excludeNotExported --excludePrivate --excludeProtected --excludeExternals src/"
   },
   "devDependencies": {
     "@types/jest": "^23.3.9",
