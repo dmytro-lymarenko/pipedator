@@ -2,4 +2,4 @@
 
 ## (in development)
 
-See [API Docs](https://dmytro-lymarenko.github.io/pipedator/index.html)
+See [API Docs](https://dmytro-lymarenko.github.io/pipedator/)
