@@ -1,9 +1,13 @@
 import { createValidator, findFirstError, isValidationError, Validator } from '../core';
 
+export interface AbstractShapeOptions {
+	onlyFirstError?: boolean;
+}
+
 export function abstractShape<Key>(
 	keys: Key[],
 	shape: (key: Key) => Validator,
-	options?: { onlyFirstError?: boolean },
+	options?: AbstractShapeOptions,
 	message?: string
 ) {
 	return createValidator({
