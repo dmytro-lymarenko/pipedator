@@ -2,17 +2,8 @@
  * @module validators
  */
 
-import { createValidator } from '../core';
+import { test } from '../test';
 
 export function empty(message?: string) {
-	return createValidator({
-		validate: (value, ctx) =>
-			value.length === 0
-				? null
-				: ctx.generateError({
-						value,
-						message: message || 'Value should be empty',
-						path: ctx.path,
-				  }),
-	});
+	return test(value => value.length === 0, message || 'Value should be empty');
 }

@@ -2,20 +2,6 @@
  * @module validators
  */
 
-import { createValidator, ValidationContext } from '../core';
+import { equalTo } from '../equalTo';
 
-export function valid(validValue: any | ((ctx: ValidationContext) => any)) {
-	return createValidator({
-		validate: (value, ctx) => {
-			const v = typeof validValue === 'function' ? validValue(ctx) : validValue;
-
-			return value === v
-				? null
-				: ctx.generateError({
-						value,
-						message: `Value should equal to ${validValue}`,
-						path: ctx.path,
-				  });
-		},
-	});
-}
+export const valid = equalTo;

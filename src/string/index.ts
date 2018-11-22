@@ -2,17 +2,8 @@
  * @module validators
  */
 
-import { createValidator } from '../core';
+import { test } from '../test';
 
-export function string() {
-	return createValidator<string>({
-		validate: (value, ctx) =>
-			typeof value === 'string'
-				? null
-				: ctx.generateError({
-						value,
-						message: 'Value should be a string',
-						path: ctx.path,
-				  }),
-	});
+export function string(message?: string) {
+	return test(value => typeof value === 'string', message || 'Value should be a string');
 }

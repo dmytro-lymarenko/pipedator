@@ -20,6 +20,7 @@ export * from './some';
 export * from './string';
 export * from './success';
 export * from './ternary';
+export * from './test';
 export * from './tuple';
 export * from './valid';
 export * from './values';

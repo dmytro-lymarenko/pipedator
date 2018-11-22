@@ -2,15 +2,8 @@
  * @module validators
  */
 
-import { createValidator } from '../core';
+import { test } from '../test';
 
 export function failure(message?: string) {
-	return createValidator({
-		validate: (value, ctx) =>
-			ctx.generateError({
-				value,
-				message: message || 'Should always fail',
-				path: ctx.path,
-			}),
-	});
+	return test(() => false, message || 'Should always fail');
 }
