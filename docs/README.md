@@ -78,6 +78,7 @@ Creates new validator which succeedes when value is empty.
 *Notes*:
 - Value is empty when `value.length === 0`
 - This validator requires value to be defined:
+
 ```typescript
 const validator = empty();
 
