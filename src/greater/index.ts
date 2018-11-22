@@ -1,7 +1,3 @@
-/**
- * @module validators
- */
-
 import { createValidator, ValidationRef } from '../core';
 
 export function greater(min: number | ValidationRef) {

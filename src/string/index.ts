@@ -1,7 +1,3 @@
-/**
- * @module validators
- */
-
 import { test } from '../test';
 
 export function string(message?: string) {

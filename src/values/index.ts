@@ -1,7 +1,3 @@
-/**
- * @module validators
- */
-
 import { createValidator, Validator } from '../core';
 import { valuesByKeys } from '../valuesByKeys';
 

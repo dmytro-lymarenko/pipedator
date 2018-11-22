@@ -1,7 +1,3 @@
-/**
- * @module validators
- */
-
 import { createValidator, ref, Validator } from '../core';
 import { success } from '../success';
 

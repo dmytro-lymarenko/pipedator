@@ -1,7 +1,3 @@
-/**
- * @module validators
- */
-
 import { createValidator, Validator } from '../core';
 
 export function ternary(condition: Validator, success: Validator, failure: Validator) {

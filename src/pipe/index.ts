@@ -1,7 +1,3 @@
-/**
- * @module validators
- */
-
 import { createValidator, findFirstError, Validator } from '../core';
 
 export function pipe(validators: Validator[], message?: string) {
