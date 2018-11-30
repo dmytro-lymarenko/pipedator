@@ -1,6 +1,6 @@
 import { createValidator, ValidationRef } from '../core';
 
-export function equalTo(validValue: any | ValidationRef) {
+export function equalTo(validValue: any | ValidationRef, message?: string) {
 	return createValidator({
 		validate: (value, ctx) => {
 			const v = typeof validValue === 'function' ? validValue(ctx) : validValue;
@@ -9,7 +9,7 @@ export function equalTo(validValue: any | ValidationRef) {
 				? null
 				: ctx.generateError({
 						value,
-						message: `Value should equal to ${validValue}`,
+						message: message || `Value should equal to ${validValue}`,
 						path: ctx.path,
 				  });
 		},
