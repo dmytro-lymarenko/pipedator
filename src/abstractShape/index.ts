@@ -9,7 +9,7 @@ export function abstractShape<Key>(
 	shape: (key: Key) => Validator,
 	options?: AbstractShapeOptions,
 	message?: string
-) {
+): Validator {
 	return createValidator({
 		validate: (value, ctx) => {
 			if (options && options.onlyFirstError) {
