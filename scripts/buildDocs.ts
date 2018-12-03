@@ -5,7 +5,7 @@ import { listValidators } from './utils';
 function getValidatorsContent() {
 	const validators = listValidators().filter(validator => validator.name !== 'core');
 
-	const tableContext = validators.map(validator => `- [\`${validator.name}\`](#${validator.name})`);
+	const tableContext = validators.map(validator => `- [\`${validator.name}\`](#${validator.name.toLowerCase()})`);
 
 	const validatorsDocs = validators
 		.map(validator => {

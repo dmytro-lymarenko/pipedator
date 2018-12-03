@@ -1,13 +1,13 @@
 <!--- This file is generated automatically by `scripts/buildDocs.ts`. Please, don't change it. --->
 # Validators
 
-- [`abstractShape`](#abstractShape)
+- [`abstractShape`](#abstractshape)
 - [`alt`](#alt)
 - [`alternative`](#alternative)
 - [`both`](#both)
 - [`either`](#either)
 - [`empty`](#empty)
-- [`equalTo`](#equalTo)
+- [`equalTo`](#equalto)
 - [`every`](#every)
 - [`failure`](#failure)
 - [`greater`](#greater)
@@ -24,7 +24,7 @@
 - [`tuple`](#tuple)
 - [`valid`](#valid)
 - [`values`](#values)
-- [`valuesByKeys`](#valuesByKeys)
+- [`valuesByKeys`](#valuesbykeys)
 - [`when`](#when)
 
 ## `abstractShape`
