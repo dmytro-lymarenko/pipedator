@@ -55,11 +55,11 @@ function abstractShape<Key>(
 ```
 - **Parameters**
 
-- `keys` - an array of keys. Usually they are numbers or strings.
-- `shape` - a function which returns a validator at `key` position in the `shape`.
-- `options` - (optional) options:
-  - `.onlyFirstError` - (optional) indicates whether to return all errors or only the first one.
-- `message` - (optional) allows to set custom message when error occurs
+  - `keys` - an array of keys. Usually they are numbers or strings.
+  - `shape` - a function which returns a validator at `key` position in the `shape`.
+  - `options` - (optional) options:
+    - `.onlyFirstError` - (optional) indicates whether to return all errors or only the first one.
+  - `message` - (optional) allows to set custom message when error occurs
 
 - **Interfaces**
 
@@ -266,7 +266,37 @@ Not yet documented
 
 ## `optional`
 
-Not yet documented
+- **Description**
+
+Creates a validator which allows a value to be undefined.
+
+- **How to import**
+
+```typescript
+import { optional } from 'pipedator';
+// or
+import { optional } from 'pipedator/lib/optional';
+
+```
+- **Signature**
+
+```typescript
+function optional(validator: Validator, message?: string): Validator;
+```
+- **Parameters**
+
+  - `validator` - some valildator to validate a value.
+  - `message` - (optional) custom message.
+
+
+- **Usage**
+
+```typescript
+const optionalNumber = optional(number());
+optionalNumber.validate(4); // valid
+optionalNumber.validate(undefined); // valid
+optionalNumber.validate(null); // invalid
+```
 
 
 ## `pipe`

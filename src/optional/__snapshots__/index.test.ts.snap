@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`optional() should fail 1`] = `
+Object {
+  "errors": Array [
+    Object {
+      "message": "At least one validator should succeed: [[Value should equal to undefined] OR [Value should be a string]]",
+      "path": Array [],
+      "value": 1,
+    },
+  ],
+  "rootValue": 1,
+}
+`;
+
+exports[`optional() should support custom message 1`] = `
+Object {
+  "errors": Array [
+    Object {
+      "message": "Custom message",
+      "path": Array [],
+      "value": null,
+    },
+  ],
+  "rootValue": null,
+}
+`;
