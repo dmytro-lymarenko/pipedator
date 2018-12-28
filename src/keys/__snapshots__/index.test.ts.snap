@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`keys() should fail 1`] = `
+Object {
+  "errors": Array [
+    Object {
+      "message": "Keys should follow the rule: [Every value should follow the rule: [Value should match regexp: /^test/]]",
+      "path": Array [],
+      "value": Object {
+        "b": "text",
+        "testA": 5,
+      },
+    },
+  ],
+  "rootValue": Object {
+    "b": "text",
+    "testA": 5,
+  },
+}
+`;
+
+exports[`keys() should support custom message 1`] = `
+Object {
+  "errors": Array [
+    Object {
+      "message": "Custom message",
+      "path": Array [],
+      "value": Object {
+        "b": "text",
+        "testA": 5,
+      },
+    },
+  ],
+  "rootValue": Object {
+    "b": "text",
+    "testA": 5,
+  },
+}
+`;
