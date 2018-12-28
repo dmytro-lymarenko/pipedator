@@ -6,11 +6,15 @@ describe('string()', () => {
 	});
 
 	it('should return an error for non-string values', () => {
-		expect(string().validate(5)).not.toBeNull();
-		expect(string().validate({})).not.toBeNull();
-		expect(string().validate([])).not.toBeNull();
-		expect(string().validate(() => {})).not.toBeNull();
-		expect(string().validate(null)).not.toBeNull();
-		expect(string().validate(undefined)).not.toBeNull();
+		expect(string().validate(5)).toMatchSnapshot();
+		expect(string().validate({})).toMatchSnapshot();
+		expect(string().validate([])).toMatchSnapshot();
+		expect(string().validate(() => {})).toMatchSnapshot();
+		expect(string().validate(null)).toMatchSnapshot();
+		expect(string().validate(undefined)).toMatchSnapshot();
+	});
+
+	it('should support custom message', () => {
+		expect(string('Custom message').validate(5)).toMatchSnapshot();
 	});
 });
