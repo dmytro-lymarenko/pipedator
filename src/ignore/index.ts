@@ -1,3 +1,3 @@
-import { alternative } from '../alternative';
+import { success } from '../success';
 
-export const ignore = alternative;
+export const ignore = success;
