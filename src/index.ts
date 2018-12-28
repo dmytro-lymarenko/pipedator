@@ -13,6 +13,7 @@ export * from './failure';
 export * from './greater';
 export * from './ignore';
 export * from './keys';
+export * from './match';
 export * from './nullable';
 export * from './optional';
 export * from './pipe';

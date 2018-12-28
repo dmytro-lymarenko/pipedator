@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`match() should fail  1`] = `
+Object {
+  "errors": Array [
+    Object {
+      "message": "Value should match regexp: /test/",
+      "path": Array [],
+      "value": "Some text have be read",
+    },
+  ],
+  "rootValue": "Some text have be read",
+}
+`;
+
+exports[`match() should support custom message 1`] = `
+Object {
+  "errors": Array [
+    Object {
+      "message": "Custom message",
+      "path": Array [],
+      "value": "Some text have be read",
+    },
+  ],
+  "rootValue": "Some text have be read",
+}
+`;
