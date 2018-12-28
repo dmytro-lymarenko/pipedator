@@ -1,9 +1,9 @@
 import { createValidator, ValidationRef } from '../core';
 
-export function greater(min: number | ValidationRef, message?: string) {
+export function greater(limit: number | ValidationRef, message?: string) {
 	return createValidator({
 		validate: (value, ctx) => {
-			const v = typeof min === 'number' ? min : min(ctx);
+			const v = typeof limit === 'number' ? limit : limit(ctx);
 
 			return value > v
 				? null
