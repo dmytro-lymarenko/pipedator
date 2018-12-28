@@ -15,6 +15,7 @@
 - [`keys`](#keys)
 - [`match`](#match)
 - [`nullable`](#nullable)
+- [`number`](#number)
 - [`optional`](#optional)
 - [`pipe`](#pipe)
 - [`shape`](#shape)
@@ -387,6 +388,40 @@ const optionalNumber = nullable(number());
 optionalNumber.validate(4); // valid
 optionalNumber.validate(null); // valid
 optionalNumber.validate(undefined); // invalid
+```
+
+
+## `number`
+
+- **Description**
+
+Creates a validator to check if a value is a number or not.
+
+- **How to import**
+
+```typescript
+import { number } from 'pipedator';
+// or
+import { number } from 'pipedator/lib/number';
+
+```
+- **Signature**
+
+```typescript
+function number(message?: string): Validator;
+```
+- **Parameters**
+
+  - `message` - (optional) custom message.
+
+
+- **Usage**
+
+```typescript
+number().validate(5); // valid
+number().validate(NaN); // valid
+number().validate('Some text'); // invalid
+number('Custom message').validate(null); // invalid with 'Custom message'
 ```
 
 

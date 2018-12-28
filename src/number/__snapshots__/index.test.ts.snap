@@ -1,0 +1,92 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`number() should return an error for non-number values 1`] = `
+Object {
+  "errors": Array [
+    Object {
+      "message": "Value should be a number",
+      "path": Array [],
+      "value": "5",
+    },
+  ],
+  "rootValue": "5",
+}
+`;
+
+exports[`number() should return an error for non-number values 2`] = `
+Object {
+  "errors": Array [
+    Object {
+      "message": "Value should be a number",
+      "path": Array [],
+      "value": Object {},
+    },
+  ],
+  "rootValue": Object {},
+}
+`;
+
+exports[`number() should return an error for non-number values 3`] = `
+Object {
+  "errors": Array [
+    Object {
+      "message": "Value should be a number",
+      "path": Array [],
+      "value": Array [],
+    },
+  ],
+  "rootValue": Array [],
+}
+`;
+
+exports[`number() should return an error for non-number values 4`] = `
+Object {
+  "errors": Array [
+    Object {
+      "message": "Value should be a number",
+      "path": Array [],
+      "value": [Function],
+    },
+  ],
+  "rootValue": [Function],
+}
+`;
+
+exports[`number() should return an error for non-number values 5`] = `
+Object {
+  "errors": Array [
+    Object {
+      "message": "Value should be a number",
+      "path": Array [],
+      "value": null,
+    },
+  ],
+  "rootValue": null,
+}
+`;
+
+exports[`number() should return an error for non-number values 6`] = `
+Object {
+  "errors": Array [
+    Object {
+      "message": "Value should be a number",
+      "path": Array [],
+      "value": undefined,
+    },
+  ],
+  "rootValue": undefined,
+}
+`;
+
+exports[`number() should support custom message 1`] = `
+Object {
+  "errors": Array [
+    Object {
+      "message": "Custom message",
+      "path": Array [],
+      "value": "5",
+    },
+  ],
+  "rootValue": "5",
+}
+`;
