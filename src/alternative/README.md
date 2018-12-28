@@ -1,6 +1,7 @@
 - **Description**
 
-Creates a validator which succeedes when at least one validator from `validators` does.
+Creates a validator which succeedes when at least one validator from `validators` does. The order of testing value is from left to right.
+It means when we have provided `a` and `b` validators in `[a, b]` order then validator `a` will be executed first, then `b`.
 
 - **How to import**
 
