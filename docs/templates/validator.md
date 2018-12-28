@@ -19,9 +19,9 @@ function validator_name(
 ```
 - **Parameters**
 
-- `arg1` - arg1.
-- `object` - object:
-  - `.innerObject` - inner object
+  - `arg1` - arg1.
+  - `object` - object:
+    - `.innerObject` - inner object
 
 - **Interfaces**
 
