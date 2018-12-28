@@ -8,6 +8,10 @@ export function every(validator: Validator, message?: string) {
 	return createValidator({
 		// here value should be an array
 		validate: (value, ctx) => {
+			if (!Array.isArray(value)) {
+				throw new Error('Value should be an array');
+			}
+
 			// find the first error among values
 			const { error } = findFirstError(() => validator, i => value[i], value.length, () => ctx);
 
