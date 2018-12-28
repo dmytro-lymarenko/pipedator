@@ -22,6 +22,7 @@ function validator_name(
   - `arg1` - arg1.
   - `object` - object:
     - `.innerObject` - inner object
+  - `message` - (optional) custom message.
 
 - **Interfaces**
 
