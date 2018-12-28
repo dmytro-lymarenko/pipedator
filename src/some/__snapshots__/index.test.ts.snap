@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`empty() should fail when no strings among values 1`] = `
+Object {
+  "errors": Array [
+    Object {
+      "message": "At least one value should follow the rule: [Value should be a string]",
+      "path": Array [],
+      "value": Array [
+        1,
+        null,
+        Object {},
+      ],
+    },
+  ],
+  "rootValue": Array [
+    1,
+    null,
+    Object {},
+  ],
+}
+`;
+
+exports[`empty() should support custom message 1`] = `
+Object {
+  "errors": Array [
+    Object {
+      "message": "Custom message",
+      "path": Array [],
+      "value": Array [
+        1,
+        null,
+        Object {},
+      ],
+    },
+  ],
+  "rootValue": Array [
+    1,
+    null,
+    Object {},
+  ],
+}
+`;

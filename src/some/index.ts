@@ -7,6 +7,10 @@ import { createValidator, getFirstErrors, validationErrorToString, Validator } f
 export function some(validator: Validator, message?: string) {
 	return createValidator({
 		validate: (value, ctx) => {
+			if (!Array.isArray(value)) {
+				throw new Error('Value should be an array');
+			}
+
 			if (value.length === 0) {
 				return null;
 			}
@@ -17,9 +21,7 @@ export function some(validator: Validator, message?: string) {
 				// here all values failed
 				return ctx.generateError({
 					value,
-					message:
-						message ||
-						`At least one value should follow the rule: [${errors.map(error => validationErrorToString(error)).join(' OR ')}]`,
+					message: message || `At least one value should follow the rule: ${validationErrorToString(errors[0])}`,
 					path: ctx.path,
 				});
 			}
