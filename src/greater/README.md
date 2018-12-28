@@ -17,7 +17,7 @@ function greater(limit: number | ValidationRef, message?: string): Validator;
 ```
 - **Parameters**
 
-  - `limit` - any value the tested value should be greater than or the reference to the part of complex value (like object).
+  - `limit` - any number the tested value should be greater than or the reference to the part of complex value (like object).
   - `message` - (optional) custom message
 
 

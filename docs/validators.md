@@ -13,6 +13,7 @@
 - [`greater`](#greater)
 - [`ignore`](#ignore)
 - [`keys`](#keys)
+- [`less`](#less)
 - [`match`](#match)
 - [`nullable`](#nullable)
 - [`number`](#number)
@@ -315,7 +316,7 @@ function greater(limit: number | ValidationRef, message?: string): Validator;
 ```
 - **Parameters**
 
-  - `limit` - any value the tested value should be greater than or the reference to the part of complex value (like object).
+  - `limit` - any number the tested value should be greater than or the reference to the part of complex value (like object).
   - `message` - (optional) custom message
 
 
@@ -356,6 +357,11 @@ tuple([number(), ignore(), string()]);
 
 
 ## `keys`
+
+Not yet documented
+
+
+## `less`
 
 Not yet documented
 
