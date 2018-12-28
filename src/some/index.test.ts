@@ -6,7 +6,7 @@ describe('empty()', () => {
 		expect(some(string()).validate([])).toBeNull();
 	});
 
-	it('should validate an array whlen at least one item is a string', () => {
+	it('should validate an array when at least one item is a string', () => {
 		expect(some(string()).validate(['first', 1, null])).toBeNull();
 		expect(some(string()).validate([1, 'middle', null])).toBeNull();
 		expect(some(string()).validate([1, null, 'last'])).toBeNull();
