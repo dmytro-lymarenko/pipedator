@@ -11,6 +11,7 @@ export * from './equalTo';
 export * from './every';
 export * from './failure';
 export * from './greater';
+export * from './ignore';
 export * from './keys';
 export * from './nullable';
 export * from './optional';
