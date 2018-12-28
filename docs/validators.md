@@ -578,7 +578,13 @@ Not yet documented
 
 ## `valid`
 
-Not yet documented
+```typescript
+import { valid } from 'pipedator';
+// or
+import { valid } from 'pipedator/lib/valid';
+
+```
+An alias for [`equalTo`](#equalTo)
 
 
 ## `values`
