@@ -1,6 +1,6 @@
 - **Description**
 
-Creates a validator which allows a value to be undefined.
+Creates a validator which allows a value to be undefined in addition to the provided validator.
 
 - **How to import**
 
