@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`less() should fail when value is not less than limit 1`] = `
+Object {
+  "errors": Array [
+    Object {
+      "message": "Value should be less than 1",
+      "path": Array [],
+      "value": 5,
+    },
+  ],
+  "rootValue": 5,
+}
+`;
+
+exports[`less() should fail when value is not less than limit 2`] = `
+Object {
+  "errors": Array [
+    Object {
+      "message": "Value should be less than 5",
+      "path": Array [],
+      "value": 5,
+    },
+  ],
+  "rootValue": 5,
+}
+`;
+
+exports[`less() should fail when value is not less than limit which is a reference 1`] = `
+Object {
+  "errors": Array [
+    Object {
+      "message": "Value should be less than 1",
+      "path": Array [
+        "b",
+      ],
+      "value": 5,
+    },
+  ],
+  "rootValue": Object {
+    "a": 1,
+    "b": 5,
+  },
+}
+`;
+
+exports[`less() should support custom message 1`] = `
+Object {
+  "errors": Array [
+    Object {
+      "message": "Custom message",
+      "path": Array [],
+      "value": 5,
+    },
+  ],
+  "rootValue": 5,
+}
+`;
