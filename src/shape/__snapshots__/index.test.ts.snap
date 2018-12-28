@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`shape() should fail 1`] = `
+Object {
+  "errors": Array [
+    Object {
+      "message": "Value should be a number",
+      "path": Array [
+        "a",
+      ],
+      "value": "1",
+    },
+  ],
+  "rootValue": Object {
+    "a": "1",
+    "b": "text",
+  },
+}
+`;
+
+exports[`shape() should fail 2`] = `
+Object {
+  "errors": Array [
+    Object {
+      "message": "Value should be a string",
+      "path": Array [
+        "b",
+      ],
+      "value": undefined,
+    },
+  ],
+  "rootValue": Object {
+    "a": 1,
+  },
+}
+`;
+
+exports[`shape() should fail and return all errors 1`] = `
+Object {
+  "errors": Array [
+    Object {
+      "message": "Value should be a number",
+      "path": Array [
+        "a",
+      ],
+      "value": "1",
+    },
+    Object {
+      "message": "Value should be a string",
+      "path": Array [
+        "b",
+      ],
+      "value": undefined,
+    },
+  ],
+  "rootValue": Object {
+    "a": "1",
+  },
+}
+`;
+
+exports[`shape() should fail and return only the first error 1`] = `
+Object {
+  "errors": Array [
+    Object {
+      "message": "Value should be a number",
+      "path": Array [
+        "a",
+      ],
+      "value": "1",
+    },
+  ],
+  "rootValue": Object {
+    "a": "1",
+  },
+}
+`;
+
+exports[`shape() should support custom message 1`] = `
+Object {
+  "errors": Array [
+    Object {
+      "message": "Custom message",
+      "path": Array [],
+      "value": Object {
+        "a": 1,
+      },
+    },
+  ],
+  "rootValue": Object {
+    "a": 1,
+  },
+}
+`;
