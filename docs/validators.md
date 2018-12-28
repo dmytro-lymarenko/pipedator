@@ -105,16 +105,27 @@ fooBarShapeValidator.validate({ foo: 'foo', bar: '5' }); // invalid
 
 ## `alt`
 
+- **Description**
+
+An alias for [`alternative`](#alternative)
+
+- **How to import**
+
 ```typescript
 import { alt } from 'pipedator';
 // or
 import { alt } from 'pipedator/lib/alt';
-
 ```
-An alias for [`alternative`](#alternative)
+
 
 
 ## `alternative`
+
+- **Description**
+
+Creates a validator which succeedes when at least one validator from `validators` does.
+
+- **How to import**
 
 ```typescript
 import { alternative } from 'pipedator';
@@ -122,9 +133,18 @@ import { alternative } from 'pipedator';
 import { alternative } from 'pipedator/lib/alternative';
 
 ```
-Creates new validator which succeedes when at least one validator from `validators` does.
-- `validators` - an array of [Validator](#validator).
-- `message` - an optional string which can be used to overwrite error message.
+- **Signature**
+
+```typescript
+function alternative(validators: Validator[], message?: string): Validator;
+```
+- **Parameters**
+
+  - `validators` - an array of validators to test a value.
+  - `message` - (optional) custom message.
+
+- **Usage**
+
 ```typescript
 const numberOrString = alternative([string(), number()]);
 // numberOrString will succeed when provided value is either string or number:
@@ -136,27 +156,47 @@ numberOrString.validate({}) // invalid
 
 ## `both`
 
+- **Description**
+
+An alias for [`pipe`](#pipe)
+
+- **How to import**
+
 ```typescript
 import { both } from 'pipedator';
 // or
 import { both } from 'pipedator/lib/both';
-
 ```
-An alias for [`pipe`](#pipe)
+
 
 
 ## `either`
+
+- **Description**
+
+An alias for [`alternative`](#alternative)
+
+- **How to import**
 
 ```typescript
 import { either } from 'pipedator';
 // or
 import { either } from 'pipedator/lib/either';
-
 ```
-An alias for [`alternative`](#alternative)
+
 
 
 ## `empty`
+
+- **Description**
+
+Creates a validator which succeedes when value is empty.
+
+- *Notes*:
+  - Value is empty when `value.length === 0`
+  - This validator requires value to be defined:
+
+- **How to import**
 
 ```typescript
 import { empty } from 'pipedator';
@@ -164,11 +204,16 @@ import { empty } from 'pipedator';
 import { empty } from 'pipedator/lib/empty';
 
 ```
-Creates new validator which succeedes when value is empty.
+- **Signature**
 
-*Notes*:
-- Value is empty when `value.length === 0`
-- This validator requires value to be defined:
+```typescript
+function empty(message?: string): Validator;
+```
+- **Parameters**
+  - `message` - (optional) custom message.
+
+
+- **Usage**
 
 ```typescript
 const validator = empty();
@@ -180,7 +225,6 @@ validator.validate([1]); // invalid
 validator.validate({ length: 0 }); // valid
 validator.validate(null); // throws an error (trying to read property length from null)
 validator.validate(undefined); // throws an error (trying to read property length from undefined)
-
 ```
 
 
@@ -339,13 +383,17 @@ validator.validate({ a: 5, b: 1 }); // invalid because value.b < value.a
 
 ## `ignore`
 
+- **Description**
+
+An alias for [`success`](#success)
+
+- **How to import**
+
 ```typescript
 import { ignore } from 'pipedator';
 // or
 import { ignore } from 'pipedator/lib/ignore';
-
 ```
-An alias for [`success`](#success)
 
 - **Usage**
 
@@ -724,13 +772,18 @@ Not yet documented
 
 ## `valid`
 
+- **Description**
+
+An alias for [`equalTo`](#equalto)
+
+- **How to import**
+
 ```typescript
 import { valid } from 'pipedator';
 // or
 import { valid } from 'pipedator/lib/valid';
-
 ```
-An alias for [`equalTo`](#equalto)
+
 
 
 ## `values`
@@ -754,7 +807,7 @@ function values(validator: Validator, message?: string): Validator;
 ```
 - **Parameters**
 
-  - `validator` - a validator to validate values by provided keys.
+  - `validator` - a validator to validate values.
   - `message` - (optional) custom message.
 
 - **Usage**

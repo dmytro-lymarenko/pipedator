@@ -1,12 +1,27 @@
+- **Description**
+
+Creates a validator which succeedes when at least one validator from `validators` does.
+
+- **How to import**
+
 ```typescript
 import { alternative } from 'pipedator';
 // or
 import { alternative } from 'pipedator/lib/alternative';
 
 ```
-Creates new validator which succeedes when at least one validator from `validators` does.
-- `validators` - an array of [Validator](#validator).
-- `message` - an optional string which can be used to overwrite error message.
+- **Signature**
+
+```typescript
+function alternative(validators: Validator[], message?: string): Validator;
+```
+- **Parameters**
+
+  - `validators` - an array of validators to test a value.
+  - `message` - (optional) custom message.
+
+- **Usage**
+
 ```typescript
 const numberOrString = alternative([string(), number()]);
 // numberOrString will succeed when provided value is either string or number:
