@@ -14,7 +14,8 @@
     "compile": "tsc",
     "test": "jest",
     "groupValidators": "ts-node -T scripts/buildIndex.ts",
-    "generateDocs": "ts-node -T scripts/buildDocs.ts"
+    "generateDocs": "ts-node -T scripts/buildDocs.ts",
+    "run-all": "yarn build && yarn test && yarn generateDocs"
   },
   "devDependencies": {
     "@types/jest": "^23.3.9",
