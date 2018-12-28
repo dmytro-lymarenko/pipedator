@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`equalTo() should fail when value is not equal to validValue 1`] = `
+Object {
+  "errors": Array [
+    Object {
+      "message": "Value should equal to test",
+      "path": Array [],
+      "value": "text",
+    },
+  ],
+  "rootValue": "text",
+}
+`;
+
+exports[`equalTo() should fail when value is not equal to validValue which is a reference 1`] = `
+Object {
+  "errors": Array [
+    Object {
+      "message": "Value should equal to test",
+      "path": Array [
+        "b",
+      ],
+      "value": "text",
+    },
+  ],
+  "rootValue": Object {
+    "a": "test",
+    "b": "text",
+  },
+}
+`;
+
+exports[`equalTo() should support custom message 1`] = `
+Object {
+  "errors": Array [
+    Object {
+      "message": "Custom message",
+      "path": Array [],
+      "value": "test",
+    },
+  ],
+  "rootValue": "test",
+}
+`;

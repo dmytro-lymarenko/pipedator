@@ -9,7 +9,7 @@ export function equalTo(validValue: any | ValidationRef, message?: string) {
 				? null
 				: ctx.generateError({
 						value,
-						message: message || `Value should equal to ${validValue}`,
+						message: message || `Value should equal to ${v}`,
 						path: ctx.path,
 				  });
 		},
