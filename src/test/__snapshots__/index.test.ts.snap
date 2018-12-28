@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test() should fail when provided predicate return false 1`] = `
+Object {
+  "errors": Array [
+    Object {
+      "message": "Test",
+      "path": Array [],
+      "value": 1,
+    },
+  ],
+  "rootValue": 1,
+}
+`;
