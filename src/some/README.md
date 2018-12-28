@@ -1,8 +1,8 @@
 - **Description**
 
 Creates a validator which works like `.some()` method from an array:
-it will fail when all values fail and it will succed when at least
-one value from the array succeds. **This validator requires a value to be an array**.
+it will fail when all values fail and it will succeed when at least
+one value from the array succeeds. **This validator requires a value to be an array**.
 
 - **How to import**
 
