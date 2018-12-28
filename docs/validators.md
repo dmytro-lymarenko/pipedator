@@ -619,7 +619,7 @@ import { valid } from 'pipedator';
 import { valid } from 'pipedator/lib/valid';
 
 ```
-An alias for [`equalTo`](#equalTo)
+An alias for [`equalTo`](#equalto)
 
 
 ## `values`
