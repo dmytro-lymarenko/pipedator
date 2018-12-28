@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`empty() should fail when no strings among values 1`] = `
+exports[`some() should fail when no strings among values 1`] = `
 Object {
   "errors": Array [
     Object {
@@ -21,7 +21,7 @@ Object {
 }
 `;
 
-exports[`empty() should support custom message 1`] = `
+exports[`some() should support custom message 1`] = `
 Object {
   "errors": Array [
     Object {

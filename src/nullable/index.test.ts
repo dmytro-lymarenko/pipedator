@@ -1,7 +1,7 @@
 import { nullable } from './index';
 import { string } from '../string';
 
-describe('optional()', () => {
+describe('nullable()', () => {
 	it('should validate a string', () => {
 		expect(nullable(string()).validate('Some test have passed')).toBeNull();
 	});

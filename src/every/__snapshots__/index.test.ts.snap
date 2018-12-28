@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`empty() should fail when at least one item is not a string 1`] = `
+exports[`every() should fail when at least one item is not a string 1`] = `
 Object {
   "errors": Array [
     Object {
@@ -21,7 +21,7 @@ Object {
 }
 `;
 
-exports[`empty() should support custom message 1`] = `
+exports[`every() should support custom message 1`] = `
 Object {
   "errors": Array [
     Object {

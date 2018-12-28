@@ -1,7 +1,7 @@
 import { some } from './index';
 import { string } from '../string';
 
-describe('empty()', () => {
+describe('some()', () => {
 	it('should validate an empty array', () => {
 		expect(some(string()).validate([])).toBeNull();
 	});

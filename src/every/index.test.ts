@@ -1,7 +1,7 @@
 import { every } from './index';
 import { string } from '../string';
 
-describe('empty()', () => {
+describe('every()', () => {
 	it('should validate an empty array', () => {
 		expect(every(string()).validate([])).toBeNull();
 	});

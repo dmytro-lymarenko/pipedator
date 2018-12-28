@@ -1,6 +1,6 @@
 import { failure } from './index';
 
-describe('optional()', () => {
+describe('failure()', () => {
 	it('should fail', () => {
 		expect(failure().validate(1)).toMatchSnapshot();
 	});

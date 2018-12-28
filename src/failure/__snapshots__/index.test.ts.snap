@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`optional() should fail 1`] = `
+exports[`failure() should fail 1`] = `
 Object {
   "errors": Array [
     Object {
@@ -13,7 +13,7 @@ Object {
 }
 `;
 
-exports[`optional() should support custom message 1`] = `
+exports[`failure() should support custom message 1`] = `
 Object {
   "errors": Array [
     Object {
