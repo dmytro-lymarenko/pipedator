@@ -11,6 +11,7 @@
 - [`every`](#every)
 - [`failure`](#failure)
 - [`greater`](#greater)
+- [`ignore`](#ignore)
 - [`keys`](#keys)
 - [`nullable`](#nullable)
 - [`optional`](#optional)
@@ -198,6 +199,17 @@ Not yet documented
 ## `greater`
 
 Not yet documented
+
+
+## `ignore`
+
+```typescript
+import { ignore } from 'pipedator';
+// or
+import { ignore } from 'pipedator/lib/ignore';
+
+```
+An alias for [`success`](#success)
 
 
 ## `keys`
