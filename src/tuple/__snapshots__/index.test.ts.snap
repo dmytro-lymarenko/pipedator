@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`tuple() should fail 1`] = `
+Object {
+  "errors": Array [
+    Object {
+      "message": "Value should be a number",
+      "path": Array [
+        "0",
+      ],
+      "value": "1",
+    },
+  ],
+  "rootValue": Array [
+    "1",
+    "text",
+  ],
+}
+`;
+
+exports[`tuple() should fail 2`] = `
+Object {
+  "errors": Array [
+    Object {
+      "message": "Value should be a string",
+      "path": Array [
+        "1",
+      ],
+      "value": undefined,
+    },
+  ],
+  "rootValue": Array [
+    1,
+  ],
+}
+`;
+
+exports[`tuple() should fail and return all errors 1`] = `
+Object {
+  "errors": Array [
+    Object {
+      "message": "Value should be a number",
+      "path": Array [
+        "0",
+      ],
+      "value": "1",
+    },
+    Object {
+      "message": "Value should be a string",
+      "path": Array [
+        "1",
+      ],
+      "value": undefined,
+    },
+  ],
+  "rootValue": Array [
+    "1",
+  ],
+}
+`;
+
+exports[`tuple() should fail and return only the first error 1`] = `
+Object {
+  "errors": Array [
+    Object {
+      "message": "Value should be a number",
+      "path": Array [
+        "0",
+      ],
+      "value": "1",
+    },
+  ],
+  "rootValue": Array [
+    "1",
+  ],
+}
+`;
+
+exports[`tuple() should support custom message 1`] = `
+Object {
+  "errors": Array [
+    Object {
+      "message": "Custom message",
+      "path": Array [],
+      "value": Array [
+        1,
+      ],
+    },
+  ],
+  "rootValue": Array [
+    1,
+  ],
+}
+`;
