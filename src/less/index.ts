@@ -1,7 +1,7 @@
 import { createValidator, ValidationRef } from '../core';
 
-export function less(limit: number | ValidationRef, message?: string) {
-	return createValidator({
+export function less<ValidValue = any>(limit: number | ValidationRef, message?: string) {
+	return createValidator<ValidValue>({
 		validate: (value, ctx) => {
 			const v = typeof limit === 'number' ? limit : limit(ctx);
 

@@ -4,8 +4,8 @@ import { createValidator, getFirstErrors, validationErrorToString, Validator } f
  * value should be an array
  * @param validator
  */
-export function some(validator: Validator, message?: string) {
-	return createValidator({
+export function some<ValidValue = any>(validator: Validator, message?: string) {
+	return createValidator<ValidValue>({
 		validate: (value, ctx) => {
 			if (!Array.isArray(value)) {
 				throw new Error('Value should be an array');

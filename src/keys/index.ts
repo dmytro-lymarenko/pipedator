@@ -1,7 +1,7 @@
 import { createValidator, validationErrorToString, Validator } from '../core';
 
-export function keys(validator: Validator, message?: string) {
-	return createValidator({
+export function keys<ValidValue = any>(validator: Validator, message?: string) {
+	return createValidator<ValidValue>({
 		validate: (value, ctx) => {
 			const error = validator.validate(Object.keys(value), ctx);
 

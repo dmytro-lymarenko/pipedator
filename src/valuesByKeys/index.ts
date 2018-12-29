@@ -1,7 +1,7 @@
 import { createValidator, validationErrorToString, Validator } from '../core';
 
-export function valuesByKeys(keys: string[], validator: Validator, message?: string) {
-	return createValidator({
+export function valuesByKeys<ValidValue = any>(keys: string[], validator: Validator, message?: string) {
+	return createValidator<ValidValue>({
 		validate: (value, ctx) => {
 			if (keys.length === 0) {
 				return null;

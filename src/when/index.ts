@@ -1,8 +1,8 @@
 import { createValidator, ref, Validator } from '../core';
 import { success } from '../success';
 
-export function when(path: string[], options: { is: Validator; then: Validator; otherwise?: Validator }) {
-	return createValidator({
+export function when<ValidValue = any>(path: string[], options: { is: Validator; then: Validator; otherwise?: Validator }) {
+	return createValidator<ValidValue>({
 		validate: (value, ctx) => {
 			const subValue = ref(path)(ctx);
 

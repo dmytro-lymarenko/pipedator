@@ -1,5 +1,5 @@
 import { test } from '../test';
 
-export function failure(message?: string) {
-	return test(() => false, message || 'Should always fail');
+export function failure<ValidValue = any>(message?: string) {
+	return test<ValidValue>(() => false, message || 'Should always fail');
 }

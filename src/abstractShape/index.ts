@@ -4,13 +4,13 @@ export interface AbstractShapeOptions {
 	onlyFirstError?: boolean;
 }
 
-export function abstractShape<Key>(
+export function abstractShape<Key, ValidValue = any>(
 	keys: Key[],
 	shape: (key: Key) => Validator,
 	options?: AbstractShapeOptions,
 	message?: string
 ): Validator {
-	return createValidator({
+	return createValidator<ValidValue>({
 		validate: (value, ctx) => {
 			if (options && options.onlyFirstError) {
 				const { error } = findFirstError(i => shape(keys[i]), i => value[keys[i]], keys.length, i => ({

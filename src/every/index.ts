@@ -4,8 +4,8 @@ import { createValidator, findFirstError, validationErrorToString, Validator } f
  * value should be an array
  * @param validator
  */
-export function every(validator: Validator, message?: string) {
-	return createValidator({
+export function every<ValidValue = any>(validator: Validator, message?: string) {
+	return createValidator<ValidValue>({
 		// here value should be an array
 		validate: (value, ctx) => {
 			if (!Array.isArray(value)) {

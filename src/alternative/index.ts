@@ -1,7 +1,7 @@
 import { createValidator, getFirstErrors, validationErrorToString, Validator } from '../core';
 
-export function alternative(validators: Validator[], message?: string) {
-	return createValidator({
+export function alternative<ValidValue = any>(validators: Validator[], message?: string) {
+	return createValidator<ValidValue>({
 		validate: (value, ctx) => {
 			if (validators.length === 0) {
 				return null;
