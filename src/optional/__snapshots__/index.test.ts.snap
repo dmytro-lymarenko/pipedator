@@ -4,12 +4,21 @@ exports[`optional() should fail 1`] = `
 Object {
   "errors": Array [
     Object {
-      "message": "At least one validator should succeed: [[Value should equal to undefined] OR [Value should be a string]]",
+      "errors": Array [],
+      "message": "Value should equal to undefined",
+      "path": Array [],
+      "value": 1,
+    },
+    Object {
+      "errors": Array [],
+      "message": "Value should be a string",
       "path": Array [],
       "value": 1,
     },
   ],
-  "rootValue": 1,
+  "message": "At least one validator should succeed: [Value should equal to undefined OR Value should be a string]",
+  "path": Array [],
+  "value": 1,
 }
 `;
 
@@ -17,11 +26,20 @@ exports[`optional() should support custom message 1`] = `
 Object {
   "errors": Array [
     Object {
-      "message": "Custom message",
+      "errors": Array [],
+      "message": "Value should equal to undefined",
+      "path": Array [],
+      "value": null,
+    },
+    Object {
+      "errors": Array [],
+      "message": "Value should be a string",
       "path": Array [],
       "value": null,
     },
   ],
-  "rootValue": null,
+  "message": "Custom message",
+  "path": Array [],
+  "value": null,
 }
 `;

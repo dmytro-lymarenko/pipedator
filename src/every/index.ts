@@ -1,4 +1,4 @@
-import { createValidator, findFirstError, validationErrorToString, Validator } from '../core';
+import { createValidator, findFirstError, Validator } from '../core';
 
 /**
  * value should be an array
@@ -13,13 +13,17 @@ export function every<ValidValue = any>(validator: Validator, message?: string) 
 			}
 
 			// find the first error among values
-			const { error } = findFirstError(() => validator, i => value[i], value.length, () => ctx);
+			const { error } = findFirstError(() => validator, i => value[i], value.length, i => ({
+				...ctx,
+				path: [...ctx.path, i.toString()],
+			}));
 
 			if (error) {
 				return ctx.generateError({
 					value,
-					message: message || `Every value should follow the rule: ${validationErrorToString(error)}`,
+					message: message || `Every value should follow the rule: ${error.message}`,
 					path: ctx.path,
+					errors: [error],
 				});
 			}
 

@@ -2,13 +2,9 @@
 
 exports[`empty() should support custom message 1`] = `
 Object {
-  "errors": Array [
-    Object {
-      "message": "Custom message",
-      "path": Array [],
-      "value": "not empty string",
-    },
-  ],
-  "rootValue": "not empty string",
+  "errors": Array [],
+  "message": "Custom message",
+  "path": Array [],
+  "value": "not empty string",
 }
 `;

@@ -4,6 +4,7 @@ exports[`tuple() should fail 1`] = `
 Object {
   "errors": Array [
     Object {
+      "errors": Array [],
       "message": "Value should be a number",
       "path": Array [
         "0",
@@ -11,7 +12,9 @@ Object {
       "value": "1",
     },
   ],
-  "rootValue": Array [
+  "message": "Value should have a valid shape",
+  "path": Array [],
+  "value": Array [
     "1",
     "text",
   ],
@@ -22,6 +25,7 @@ exports[`tuple() should fail 2`] = `
 Object {
   "errors": Array [
     Object {
+      "errors": Array [],
       "message": "Value should be a string",
       "path": Array [
         "1",
@@ -29,7 +33,9 @@ Object {
       "value": undefined,
     },
   ],
-  "rootValue": Array [
+  "message": "Value should have a valid shape",
+  "path": Array [],
+  "value": Array [
     1,
   ],
 }
@@ -39,6 +45,7 @@ exports[`tuple() should fail and return all errors 1`] = `
 Object {
   "errors": Array [
     Object {
+      "errors": Array [],
       "message": "Value should be a number",
       "path": Array [
         "0",
@@ -46,6 +53,7 @@ Object {
       "value": "1",
     },
     Object {
+      "errors": Array [],
       "message": "Value should be a string",
       "path": Array [
         "1",
@@ -53,7 +61,9 @@ Object {
       "value": undefined,
     },
   ],
-  "rootValue": Array [
+  "message": "Value should have a valid shape",
+  "path": Array [],
+  "value": Array [
     "1",
   ],
 }
@@ -63,6 +73,7 @@ exports[`tuple() should fail and return only the first error 1`] = `
 Object {
   "errors": Array [
     Object {
+      "errors": Array [],
       "message": "Value should be a number",
       "path": Array [
         "0",
@@ -70,7 +81,9 @@ Object {
       "value": "1",
     },
   ],
-  "rootValue": Array [
+  "message": "Value should have a valid shape",
+  "path": Array [],
+  "value": Array [
     "1",
   ],
 }
@@ -80,14 +93,17 @@ exports[`tuple() should support custom message 1`] = `
 Object {
   "errors": Array [
     Object {
-      "message": "Custom message",
-      "path": Array [],
-      "value": Array [
-        1,
+      "errors": Array [],
+      "message": "Value should be a string",
+      "path": Array [
+        "1",
       ],
+      "value": undefined,
     },
   ],
-  "rootValue": Array [
+  "message": "Custom message",
+  "path": Array [],
+  "value": Array [
     1,
   ],
 }

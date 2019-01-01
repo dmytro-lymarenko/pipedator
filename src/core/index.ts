@@ -1,20 +1,22 @@
-export interface ValidationErrorDetail {
-	message: string;
+export interface ValidationError {
 	path: string[]; // ['a', '0', 'test'] which is equivalent to 'a[0].test' of the value
+	message: string;
 	value: any; // the value at current path
+	errors: ValidationError[];
 }
 
-export interface ValidationError {
-	errors: ValidationErrorDetail[];
-	rootValue: any; // the root value
+export interface ValidationErrorOptions {
+	path: string[]; // ['a', '0', 'test'] which is equivalent to 'a[0].test' of the value
+	message: string;
+	value: any; // the value at current path
+	errors?: ValidationError[];
 }
 
 export interface ValidationContext {
 	value: any;
 	path: string[];
 	rootValue: any;
-	generateError: (error: ValidationErrorDetail) => ValidationError;
-	generateErrors: (errors: ValidationErrorDetail[]) => ValidationError;
+	generateError: (error: ValidationErrorOptions) => ValidationError;
 }
 
 export interface CreateValidatorOptions {
@@ -74,17 +76,15 @@ export function validationErrorToString(error: ValidationError): string {
  */
 export function createValidator<ValidValue = any>(options: CreateValidatorOptions): Validator<ValidValue> {
 	function validate(value: any, ctx?: ValidationContext) {
-		const context = ctx || {
+		const context: ValidationContext = ctx || {
 			value,
 			path: [],
 			rootValue: value,
-			generateError: error => ({
-				errors: [error],
-				rootValue: value,
-			}),
-			generateErrors: errors => ({
-				errors,
-				rootValue: value,
+			generateError: errorOptions => ({
+				path: errorOptions.path,
+				message: errorOptions.message,
+				value: errorOptions.value,
+				errors: errorOptions.errors || [],
 			}),
 		};
 
@@ -106,11 +106,7 @@ export function validate(validator: Validator, value: any) {
 		value,
 		path: [],
 		rootValue: value,
-		generateError: error => ctx.generateErrors([error]),
-		generateErrors: errors => ({
-			errors,
-			rootValue: value,
-		}),
+		generateError: errorOptions => ctx.generateError(errorOptions),
 	};
 
 	return validator.validate(value, ctx);

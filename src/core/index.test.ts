@@ -34,6 +34,13 @@ describe('createValidator()', () => {
 						value,
 						message: 'Test',
 						path: ctx.path,
+						errors: [
+							ctx.generateError({
+								value,
+								message: 'Inner error',
+								path: ctx.path,
+							}),
+						],
 					}),
 			}).validate(1)
 		).toMatchSnapshot();

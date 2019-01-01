@@ -1,4 +1,4 @@
-import { createValidator, getFirstErrors, validationErrorToString, Validator } from '../core';
+import { createValidator, getFirstErrors, Validator } from '../core';
 
 /**
  * value should be an array
@@ -15,13 +15,17 @@ export function some<ValidValue = any>(validator: Validator, message?: string) {
 				return null;
 			}
 			// find the first success validator
-			const errors = getFirstErrors(() => validator, i => value[i], value.length, () => ctx);
+			const errors = getFirstErrors(() => validator, i => value[i], value.length, i => ({
+				...ctx,
+				path: [...ctx.path, i.toString()],
+			}));
 
 			if (errors.length === value.length) {
 				// here all values failed
 				return ctx.generateError({
 					value,
-					message: message || `At least one value should follow the rule: ${validationErrorToString(errors[0])}`,
+					errors,
+					message: message || `At least one value should follow the rule: ${errors[0].message}`,
 					path: ctx.path,
 				});
 			}

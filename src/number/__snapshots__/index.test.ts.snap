@@ -2,91 +2,63 @@
 
 exports[`number() should return an error for non-number values 1`] = `
 Object {
-  "errors": Array [
-    Object {
-      "message": "Value should be a number",
-      "path": Array [],
-      "value": "5",
-    },
-  ],
-  "rootValue": "5",
+  "errors": Array [],
+  "message": "Value should be a number",
+  "path": Array [],
+  "value": "5",
 }
 `;
 
 exports[`number() should return an error for non-number values 2`] = `
 Object {
-  "errors": Array [
-    Object {
-      "message": "Value should be a number",
-      "path": Array [],
-      "value": Object {},
-    },
-  ],
-  "rootValue": Object {},
+  "errors": Array [],
+  "message": "Value should be a number",
+  "path": Array [],
+  "value": Object {},
 }
 `;
 
 exports[`number() should return an error for non-number values 3`] = `
 Object {
-  "errors": Array [
-    Object {
-      "message": "Value should be a number",
-      "path": Array [],
-      "value": Array [],
-    },
-  ],
-  "rootValue": Array [],
+  "errors": Array [],
+  "message": "Value should be a number",
+  "path": Array [],
+  "value": Array [],
 }
 `;
 
 exports[`number() should return an error for non-number values 4`] = `
 Object {
-  "errors": Array [
-    Object {
-      "message": "Value should be a number",
-      "path": Array [],
-      "value": [Function],
-    },
-  ],
-  "rootValue": [Function],
+  "errors": Array [],
+  "message": "Value should be a number",
+  "path": Array [],
+  "value": [Function],
 }
 `;
 
 exports[`number() should return an error for non-number values 5`] = `
 Object {
-  "errors": Array [
-    Object {
-      "message": "Value should be a number",
-      "path": Array [],
-      "value": null,
-    },
-  ],
-  "rootValue": null,
+  "errors": Array [],
+  "message": "Value should be a number",
+  "path": Array [],
+  "value": null,
 }
 `;
 
 exports[`number() should return an error for non-number values 6`] = `
 Object {
-  "errors": Array [
-    Object {
-      "message": "Value should be a number",
-      "path": Array [],
-      "value": undefined,
-    },
-  ],
-  "rootValue": undefined,
+  "errors": Array [],
+  "message": "Value should be a number",
+  "path": Array [],
+  "value": undefined,
 }
 `;
 
 exports[`number() should support custom message 1`] = `
 Object {
-  "errors": Array [
-    Object {
-      "message": "Custom message",
-      "path": Array [],
-      "value": "5",
-    },
-  ],
-  "rootValue": "5",
+  "errors": Array [],
+  "message": "Custom message",
+  "path": Array [],
+  "value": "5",
 }
 `;

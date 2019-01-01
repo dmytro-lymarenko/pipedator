@@ -1,4 +1,4 @@
-import { createValidator, findFirstError, isValidationError, Validator } from '../core';
+import { createValidator, findFirstError, isValidationError, Validator, ValidationError } from '../core';
 
 export interface AbstractShapeOptions {
 	onlyFirstError?: boolean;
@@ -12,43 +12,35 @@ export function abstractShape<Key, ValidValue = any>(
 ): Validator {
 	return createValidator<ValidValue>({
 		validate: (value, ctx) => {
+			let errors: ValidationError[] = [];
+
 			if (options && options.onlyFirstError) {
 				const { error } = findFirstError(i => shape(keys[i]), i => value[keys[i]], keys.length, i => ({
 					...ctx,
 					path: [...ctx.path, keys[i].toString()],
 				}));
 
-				if (error && message) {
-					return ctx.generateError({
-						value,
-						message,
-						path: ctx.path,
-					});
+				if (error) {
+					errors = [error];
 				}
-
-				return error;
+			} else {
+				errors = keys
+					.map(key =>
+						shape(key).validate(value[key], {
+							...ctx,
+							path: [...ctx.path, key.toString()],
+						})
+					)
+					.filter(isValidationError);
 			}
 
-			const errors = keys
-				.map(key =>
-					shape(key).validate(value[key], {
-						...ctx,
-						path: [...ctx.path, key.toString()],
-					})
-				)
-				.filter(isValidationError)
-				.reduce((res, err) => [...res, ...err.errors], []);
-
 			if (errors.length > 0) {
-				if (message) {
-					return ctx.generateError({
-						value,
-						message,
-						path: ctx.path,
-					});
-				}
-
-				return ctx.generateErrors(errors);
+				return ctx.generateError({
+					value,
+					errors,
+					message: message || 'Value should have a valid shape',
+					path: ctx.path,
+				});
 			}
 
 			return null;

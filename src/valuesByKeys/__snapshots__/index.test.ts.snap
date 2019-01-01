@@ -4,15 +4,27 @@ exports[`valuesByKeys() should fail 1`] = `
 Object {
   "errors": Array [
     Object {
-      "message": "Values should follow the rule: [Every value should follow the rule: [Value should match regexp: /^test/]]",
+      "errors": Array [
+        Object {
+          "errors": Array [],
+          "message": "Value should match regexp: /^test/",
+          "path": Array [
+            "1",
+          ],
+          "value": 5,
+        },
+      ],
+      "message": "Every value should follow the rule: Value should match regexp: /^test/",
       "path": Array [],
-      "value": Object {
-        "a": "testA",
-        "b": 5,
-      },
+      "value": Array [
+        "testA",
+        5,
+      ],
     },
   ],
-  "rootValue": Object {
+  "message": "Values should follow the rule: Every value should follow the rule: Value should match regexp: /^test/",
+  "path": Array [],
+  "value": Object {
     "a": "testA",
     "b": 5,
   },
@@ -23,15 +35,27 @@ exports[`valuesByKeys() should support custom message 1`] = `
 Object {
   "errors": Array [
     Object {
-      "message": "Custom message",
+      "errors": Array [
+        Object {
+          "errors": Array [],
+          "message": "Value should match regexp: /^test/",
+          "path": Array [
+            "1",
+          ],
+          "value": 5,
+        },
+      ],
+      "message": "Every value should follow the rule: Value should match regexp: /^test/",
       "path": Array [],
-      "value": Object {
-        "a": "testA",
-        "b": 5,
-      },
+      "value": Array [
+        "testA",
+        5,
+      ],
     },
   ],
-  "rootValue": Object {
+  "message": "Custom message",
+  "path": Array [],
+  "value": Object {
     "a": "testA",
     "b": 5,
   },

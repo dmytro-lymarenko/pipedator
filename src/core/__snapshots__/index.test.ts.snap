@@ -4,11 +4,14 @@ exports[`createValidator() should return what validate function returns 1`] = `
 Object {
   "errors": Array [
     Object {
-      "message": "Test",
+      "errors": Array [],
+      "message": "Inner error",
       "path": Array [],
       "value": 1,
     },
   ],
-  "rootValue": 1,
+  "message": "Test",
+  "path": Array [],
+  "value": 1,
 }
 `;

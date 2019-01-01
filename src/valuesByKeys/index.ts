@@ -1,4 +1,4 @@
-import { createValidator, validationErrorToString, Validator } from '../core';
+import { createValidator, Validator } from '../core';
 
 export function valuesByKeys<ValidValue = any>(keys: string[], validator: Validator, message?: string) {
 	return createValidator<ValidValue>({
@@ -12,8 +12,9 @@ export function valuesByKeys<ValidValue = any>(keys: string[], validator: Valida
 			if (error) {
 				return ctx.generateError({
 					value,
-					message: message || `Values should follow the rule: ${validationErrorToString(error)}`,
+					message: message || `Values should follow the rule: ${error.message}`,
 					path: ctx.path,
+					errors: [error],
 				});
 			}
 

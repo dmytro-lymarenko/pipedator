@@ -1,4 +1,4 @@
-import { createValidator, getFirstErrors, validationErrorToString, Validator } from '../core';
+import { createValidator, getFirstErrors, Validator } from '../core';
 
 export function alternative<ValidValue = any>(validators: Validator[], message?: string) {
 	return createValidator<ValidValue>({
@@ -13,9 +13,8 @@ export function alternative<ValidValue = any>(validators: Validator[], message?:
 				// here all validators returned an error
 				return ctx.generateError({
 					value,
-					message:
-						message ||
-						`At least one validator should succeed: [${errors.map(error => validationErrorToString(error)).join(' OR ')}]`,
+					errors,
+					message: message || `At least one validator should succeed: [${errors.map(error => error.message).join(' OR ')}]`,
 					path: ctx.path,
 				});
 			}

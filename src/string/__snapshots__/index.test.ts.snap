@@ -2,91 +2,63 @@
 
 exports[`string() should return an error for non-string values 1`] = `
 Object {
-  "errors": Array [
-    Object {
-      "message": "Value should be a string",
-      "path": Array [],
-      "value": 5,
-    },
-  ],
-  "rootValue": 5,
+  "errors": Array [],
+  "message": "Value should be a string",
+  "path": Array [],
+  "value": 5,
 }
 `;
 
 exports[`string() should return an error for non-string values 2`] = `
 Object {
-  "errors": Array [
-    Object {
-      "message": "Value should be a string",
-      "path": Array [],
-      "value": Object {},
-    },
-  ],
-  "rootValue": Object {},
+  "errors": Array [],
+  "message": "Value should be a string",
+  "path": Array [],
+  "value": Object {},
 }
 `;
 
 exports[`string() should return an error for non-string values 3`] = `
 Object {
-  "errors": Array [
-    Object {
-      "message": "Value should be a string",
-      "path": Array [],
-      "value": Array [],
-    },
-  ],
-  "rootValue": Array [],
+  "errors": Array [],
+  "message": "Value should be a string",
+  "path": Array [],
+  "value": Array [],
 }
 `;
 
 exports[`string() should return an error for non-string values 4`] = `
 Object {
-  "errors": Array [
-    Object {
-      "message": "Value should be a string",
-      "path": Array [],
-      "value": [Function],
-    },
-  ],
-  "rootValue": [Function],
+  "errors": Array [],
+  "message": "Value should be a string",
+  "path": Array [],
+  "value": [Function],
 }
 `;
 
 exports[`string() should return an error for non-string values 5`] = `
 Object {
-  "errors": Array [
-    Object {
-      "message": "Value should be a string",
-      "path": Array [],
-      "value": null,
-    },
-  ],
-  "rootValue": null,
+  "errors": Array [],
+  "message": "Value should be a string",
+  "path": Array [],
+  "value": null,
 }
 `;
 
 exports[`string() should return an error for non-string values 6`] = `
 Object {
-  "errors": Array [
-    Object {
-      "message": "Value should be a string",
-      "path": Array [],
-      "value": undefined,
-    },
-  ],
-  "rootValue": undefined,
+  "errors": Array [],
+  "message": "Value should be a string",
+  "path": Array [],
+  "value": undefined,
 }
 `;
 
 exports[`string() should support custom message 1`] = `
 Object {
-  "errors": Array [
-    Object {
-      "message": "Custom message",
-      "path": Array [],
-      "value": 5,
-    },
-  ],
-  "rootValue": 5,
+  "errors": Array [],
+  "message": "Custom message",
+  "path": Array [],
+  "value": 5,
 }
 `;
