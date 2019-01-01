@@ -2,6 +2,8 @@ import { createValidator, findFirstError, isValidationError, Validator, Validati
 
 export interface AbstractShapeOptions {
 	onlyFirstError?: boolean;
+	// wraps each validator provided in a shape
+	wrapValidators?: (validator: Validator) => Validator;
 }
 
 export function abstractShape<Key, ValidValue = any>(
@@ -14,8 +16,15 @@ export function abstractShape<Key, ValidValue = any>(
 		validate: (value, ctx) => {
 			let errors: ValidationError[] = [];
 
-			if (options && options.onlyFirstError) {
-				const { error } = findFirstError(i => shape(keys[i]), i => value[keys[i]], keys.length, i => ({
+			const onlyFirstError = Boolean(options && options.onlyFirstError);
+			const wrapValidators = (options && options.wrapValidators) || null;
+
+			function getValidatorAtKey(key: Key): Validator {
+				return wrapValidators ? wrapValidators(shape(key)) : shape(key);
+			}
+
+			if (onlyFirstError) {
+				const { error } = findFirstError(i => getValidatorAtKey(keys[i]), i => value[keys[i]], keys.length, i => ({
 					...ctx,
 					path: [...ctx.path, keys[i].toString()],
 				}));
@@ -26,7 +35,7 @@ export function abstractShape<Key, ValidValue = any>(
 			} else {
 				errors = keys
 					.map(key =>
-						shape(key).validate(value[key], {
+						getValidatorAtKey(key).validate(value[key], {
 							...ctx,
 							path: [...ctx.path, key.toString()],
 						})

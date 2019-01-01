@@ -1,6 +1,7 @@
 import { shape } from './index';
 import { number } from '../number';
 import { string } from '../string';
+import { nullable } from '../nullable';
 
 describe('shape()', () => {
 	it('should validate', () => {
@@ -23,5 +24,11 @@ describe('shape()', () => {
 
 	it('should support custom message', () => {
 		expect(shape({ a: number(), b: string() }, undefined, 'Custom message').validate({ a: 1 })).toMatchSnapshot();
+	});
+
+	it('should support wrapping validators', () => {
+		expect(
+			shape({ a: number(), b: string() }, { wrapValidators: validator => nullable(validator) }).validate({ a: null, b: 'text' })
+		).toBeNull();
 	});
 });
