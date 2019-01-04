@@ -14,6 +14,14 @@ export function abstractShape<Key, ValidValue = any>(
 ): Validator {
 	return createValidator<ValidValue>({
 		validate: (value, ctx) => {
+			if (value === undefined || value === null) {
+				return ctx.generateError({
+					value,
+					message: 'Value should be defined',
+					path: ctx.path,
+				});
+			}
+
 			let errors: ValidationError[] = [];
 
 			const onlyFirstError = Boolean(options && options.onlyFirstError);
