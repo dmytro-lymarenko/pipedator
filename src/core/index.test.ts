@@ -1,4 +1,9 @@
-import { createValidator, validate } from './index';
+import { createValidator, validate, groupErrors } from './index';
+import { shape } from '../shape';
+import { string } from '../string';
+import { number } from '../number';
+import { alternative } from '../alternative';
+import { singleRequirementFactory, dependenceRequirementFactory } from '../core/requirements';
 
 describe('createValidator()', () => {
 	it('should create validator', () => {
@@ -30,19 +35,72 @@ describe('createValidator()', () => {
 		expect(
 			createValidator({
 				validate: (value, ctx) =>
-					ctx.generateError({
-						value,
-						message: 'Test',
-						path: ctx.path,
-						errors: [
-							ctx.generateError({
-								value,
-								message: 'Inner error',
-								path: ctx.path,
-							}),
-						],
-					}),
+					dependenceRequirementFactory('Test', singleRequirementFactory('Inner requirement')(ctx.path, value))(ctx.path, value),
 			}).validate(1)
+		).toMatchSnapshot();
+	});
+});
+
+describe('groupErrors()', () => {
+	it('should return null when error is null', () => {
+		expect(groupErrors(null)).toBeNull();
+	});
+
+	it('should work for single error', () => {
+		expect(groupErrors(string().validate(1))).toMatchSnapshot();
+	});
+
+	it('should work for single-path errors', () => {
+		expect(groupErrors(alternative([string(), number()]).validate({}))).toMatchSnapshot();
+	});
+
+	it('should work for complex values', () => {
+		expect(
+			groupErrors(
+				shape({
+					email: string(),
+					number: number(),
+				}).validate(5)
+			)
+		).toMatchSnapshot();
+
+		expect(
+			groupErrors(
+				shape({
+					email: string(),
+					address: shape({
+						city: string(),
+						house: number(),
+					}),
+				}).validate(5)
+			)
+		).toMatchSnapshot();
+
+		expect(
+			groupErrors(
+				shape({
+					email: string(),
+					address: shape({
+						city: string(),
+						house: number(),
+					}),
+				}).validate({ address: {} })
+			)
+		).toMatchSnapshot();
+
+		expect(
+			groupErrors(
+				shape({
+					email: string(),
+					address: alternative([
+						shape({
+							city: string(),
+							house: alternative([string(), number()]),
+						}),
+						string(),
+					]),
+				}).validate({ address: {} })
+			)
 		).toMatchSnapshot();
 	});
 });

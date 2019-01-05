@@ -21,7 +21,7 @@ describe('tuple()', () => {
 	});
 
 	it('should fail and return only the first error', () => {
-		expect(tuple([number(), string()], { onlyFirstError: true }).validate(['1'])).toMatchSnapshot();
+		expect(tuple([number(), string()], { onlyFirstRequirement: true }).validate(['1'])).toMatchSnapshot();
 	});
 
 	it('should support custom message', () => {

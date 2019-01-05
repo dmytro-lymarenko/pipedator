@@ -2,18 +2,17 @@
 
 exports[`shape() should fail 1`] = `
 Object {
-  "errors": Array [
-    Object {
-      "errors": Array [],
-      "message": "Value should be a number",
-      "path": Array [
-        "a",
-      ],
-      "value": "1",
-    },
-  ],
   "message": "Value should have a valid shape",
   "path": Array [],
+  "requirement": Object {
+    "message": "Value should be a number",
+    "path": Array [
+      "a",
+    ],
+    "type": "single",
+    "value": "1",
+  },
+  "type": "dependence",
   "value": Object {
     "a": "1",
     "b": "text",
@@ -23,18 +22,17 @@ Object {
 
 exports[`shape() should fail 2`] = `
 Object {
-  "errors": Array [
-    Object {
-      "errors": Array [],
-      "message": "Value should be a string",
-      "path": Array [
-        "b",
-      ],
-      "value": undefined,
-    },
-  ],
   "message": "Value should have a valid shape",
   "path": Array [],
+  "requirement": Object {
+    "message": "Value should be a string",
+    "path": Array [
+      "b",
+    ],
+    "type": "single",
+    "value": undefined,
+  },
+  "type": "dependence",
   "value": Object {
     "a": 1,
   },
@@ -43,26 +41,27 @@ Object {
 
 exports[`shape() should fail and return all errors 1`] = `
 Object {
-  "errors": Array [
+  "message": "Value should have a valid shape",
+  "path": Array [],
+  "requirements": Array [
     Object {
-      "errors": Array [],
       "message": "Value should be a number",
       "path": Array [
         "a",
       ],
+      "type": "single",
       "value": "1",
     },
     Object {
-      "errors": Array [],
       "message": "Value should be a string",
       "path": Array [
         "b",
       ],
+      "type": "single",
       "value": undefined,
     },
   ],
-  "message": "Value should have a valid shape",
-  "path": Array [],
+  "type": "concatenation",
   "value": Object {
     "a": "1",
   },
@@ -71,18 +70,17 @@ Object {
 
 exports[`shape() should fail and return only the first error 1`] = `
 Object {
-  "errors": Array [
-    Object {
-      "errors": Array [],
-      "message": "Value should be a number",
-      "path": Array [
-        "a",
-      ],
-      "value": "1",
-    },
-  ],
   "message": "Value should have a valid shape",
   "path": Array [],
+  "requirement": Object {
+    "message": "Value should be a number",
+    "path": Array [
+      "a",
+    ],
+    "type": "single",
+    "value": "1",
+  },
+  "type": "dependence",
   "value": Object {
     "a": "1",
   },
@@ -91,18 +89,17 @@ Object {
 
 exports[`shape() should support custom message 1`] = `
 Object {
-  "errors": Array [
-    Object {
-      "errors": Array [],
-      "message": "Value should be a string",
-      "path": Array [
-        "b",
-      ],
-      "value": undefined,
-    },
-  ],
   "message": "Custom message",
   "path": Array [],
+  "requirement": Object {
+    "message": "Value should be a string",
+    "path": Array [
+      "b",
+    ],
+    "type": "single",
+    "value": undefined,
+  },
+  "type": "dependence",
   "value": Object {
     "a": 1,
   },

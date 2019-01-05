@@ -1,4 +1,5 @@
-import { createValidator, getFirstErrors, Validator } from '../core';
+import { createValidator, getFirstRequirements, Validator } from '../core';
+import { alternativeRequirementFactory } from '../core/requirements';
 
 /**
  * value should be an array
@@ -15,19 +16,24 @@ export function some<ValidValue = any>(validator: Validator, message?: string) {
 				return null;
 			}
 			// find the first success validator
-			const errors = getFirstErrors(() => validator, i => value[i], value.length, i => ({
-				...ctx,
-				path: [...ctx.path, i.toString()],
-			}));
+			const requirements = getFirstRequirements(
+				() => validator,
+				i => value[i],
+				i => ({
+					...ctx,
+					path: [...ctx.path, i.toString()],
+				}),
+				value.length
+			);
 
-			if (errors.length === value.length) {
+			if (requirements.length === value.length) {
 				// here all values failed
-				return ctx.generateError({
-					value,
-					errors,
-					message: message || `At least one value should follow the rule: ${errors[0].message}`,
-					path: ctx.path,
-				});
+				const requirement = requirements[0];
+
+				return alternativeRequirementFactory(
+					message || `At least one item should follow the rule: ${requirement.message}`,
+					requirements
+				)(ctx.path, value);
 			}
 
 			return null;

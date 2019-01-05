@@ -1,20 +1,17 @@
-import { createValidator, findFirstError, Validator } from '../core';
+import { createValidator, findFirstRequirement, Validator } from '../core';
+import { singleRequirementFactory } from '../core/requirements';
 
 export function pipe<ValidValue = any>(validators: Validator[], message?: string) {
 	return createValidator<ValidValue>({
 		validate: (value, ctx) => {
 			// find the first error in pipe
-			const { error } = findFirstError(i => validators[i], () => value, validators.length, () => ctx);
+			const { requirement } = findFirstRequirement(i => validators[i], () => value, () => ctx, validators.length);
 
-			if (error && message) {
-				return ctx.generateError({
-					value,
-					message,
-					path: ctx.path,
-				});
+			if (requirement && message) {
+				return singleRequirementFactory(message)(ctx.path, value);
 			}
 
-			return error;
+			return requirement;
 		},
 	});
 }

@@ -1,4 +1,5 @@
-import { createValidator, findFirstError, Validator } from '../core';
+import { createValidator, findFirstRequirement, Validator } from '../core';
+import { dependenceRequirementFactory } from '../core/requirements';
 
 /**
  * value should be an array
@@ -13,18 +14,21 @@ export function every<ValidValue = any>(validator: Validator, message?: string) 
 			}
 
 			// find the first error among values
-			const { error } = findFirstError(() => validator, i => value[i], value.length, i => ({
-				...ctx,
-				path: [...ctx.path, i.toString()],
-			}));
+			const { requirement } = findFirstRequirement(
+				() => validator,
+				i => value[i],
+				i => ({
+					...ctx,
+					path: [...ctx.path, i.toString()],
+				}),
+				value.length
+			);
 
-			if (error) {
-				return ctx.generateError({
-					value,
-					message: message || `Every value should follow the rule: ${error.message}`,
-					path: ctx.path,
-					errors: [error],
-				});
+			if (requirement) {
+				return dependenceRequirementFactory(
+					message || `Every value should follow the rule: ${requirement.message}`,
+					requirement
+				)(ctx.path, value);
 			}
 
 			return null;

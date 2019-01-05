@@ -2,44 +2,46 @@
 
 exports[`nullable() should fail 1`] = `
 Object {
-  "errors": Array [
+  "message": "Either Value should equal to null OR Value should be a string",
+  "path": Array [],
+  "requirements": Array [
     Object {
-      "errors": Array [],
       "message": "Value should equal to null",
       "path": Array [],
+      "type": "single",
       "value": 1,
     },
     Object {
-      "errors": Array [],
       "message": "Value should be a string",
       "path": Array [],
+      "type": "single",
       "value": 1,
     },
   ],
-  "message": "At least one validator should succeed: [Value should equal to null OR Value should be a string]",
-  "path": Array [],
+  "type": "alternative",
   "value": 1,
 }
 `;
 
 exports[`nullable() should support custom message 1`] = `
 Object {
-  "errors": Array [
+  "message": "Custom message",
+  "path": Array [],
+  "requirements": Array [
     Object {
-      "errors": Array [],
       "message": "Value should equal to null",
       "path": Array [],
+      "type": "single",
       "value": undefined,
     },
     Object {
-      "errors": Array [],
       "message": "Value should be a string",
       "path": Array [],
+      "type": "single",
       "value": undefined,
     },
   ],
-  "message": "Custom message",
-  "path": Array [],
+  "type": "alternative",
   "value": undefined,
 }
 `;

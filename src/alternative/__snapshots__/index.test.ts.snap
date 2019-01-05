@@ -1,23 +1,87 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`alternative() should generate correct message 1`] = `
+Object {
+  "message": "Value should be a string",
+  "path": Array [],
+  "type": "single",
+  "value": Object {},
+}
+`;
+
+exports[`alternative() should generate correct message 2`] = `
+Object {
+  "message": "Either Value should be a string OR Value should be a number",
+  "path": Array [],
+  "requirements": Array [
+    Object {
+      "message": "Value should be a string",
+      "path": Array [],
+      "type": "single",
+      "value": Object {},
+    },
+    Object {
+      "message": "Value should be a number",
+      "path": Array [],
+      "type": "single",
+      "value": Object {},
+    },
+  ],
+  "type": "alternative",
+  "value": Object {},
+}
+`;
+
+exports[`alternative() should generate correct message 3`] = `
+Object {
+  "message": "Either Value should be a string OR Value should have a valid shape",
+  "path": Array [],
+  "requirements": Array [
+    Object {
+      "message": "Value should be a string",
+      "path": Array [],
+      "type": "single",
+      "value": Object {},
+    },
+    Object {
+      "message": "Value should have a valid shape",
+      "path": Array [],
+      "requirement": Object {
+        "message": "Value should be a number",
+        "path": Array [
+          "foo",
+        ],
+        "type": "single",
+        "value": undefined,
+      },
+      "type": "dependence",
+      "value": Object {},
+    },
+  ],
+  "type": "alternative",
+  "value": Object {},
+}
+`;
+
 exports[`alternative() should support custom message 1`] = `
 Object {
-  "errors": Array [
+  "message": "Custom message",
+  "path": Array [],
+  "requirements": Array [
     Object {
-      "errors": Array [],
       "message": "Test",
       "path": Array [],
+      "type": "single",
       "value": 1,
     },
     Object {
-      "errors": Array [],
       "message": "Test",
       "path": Array [],
+      "type": "single",
       "value": 1,
     },
   ],
-  "message": "Custom message",
-  "path": Array [],
+  "type": "alternative",
   "value": 1,
 }
 `;

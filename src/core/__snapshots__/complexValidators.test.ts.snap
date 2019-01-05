@@ -1,0 +1,195 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`complex validators should work 1`] = `
+Object {
+  "message": "At least one item should follow the rule: Value should have a valid shape",
+  "path": Array [],
+  "requirement": Object {
+    "message": "Value should have a valid shape",
+    "path": Array [
+      "0",
+    ],
+    "requirement": Object {
+      "message": "Value should be a string",
+      "path": Array [
+        "0",
+        "foo",
+      ],
+      "type": "single",
+      "value": undefined,
+    },
+    "type": "dependence",
+    "value": 1,
+  },
+  "type": "dependence",
+  "value": Array [
+    1,
+  ],
+}
+`;
+
+exports[`complex validators should work 2`] = `
+Object {
+  "message": "At least one item should follow the rule: Value should have a valid shape",
+  "path": Array [],
+  "requirement": Object {
+    "message": "Value should have a valid shape",
+    "path": Array [
+      "0",
+    ],
+    "requirement": Object {
+      "message": "Value should have a valid shape",
+      "path": Array [
+        "0",
+        "foo",
+      ],
+      "requirement": Object {
+        "message": "Value should be a string",
+        "path": Array [
+          "0",
+          "foo",
+          "bar",
+        ],
+        "type": "single",
+        "value": undefined,
+      },
+      "type": "dependence",
+      "value": 1,
+    },
+    "type": "dependence",
+    "value": Object {
+      "foo": 1,
+      "valid": 1,
+    },
+  },
+  "type": "dependence",
+  "value": Array [
+    Object {
+      "foo": 1,
+      "valid": 1,
+    },
+  ],
+}
+`;
+
+exports[`complex validators should work 3`] = `
+Object {
+  "message": "At least one item should follow the rule: Value should have a valid shape",
+  "path": Array [],
+  "requirements": Array [
+    Object {
+      "message": "Value should have a valid shape",
+      "path": Array [
+        "0",
+      ],
+      "requirements": Array [
+        Object {
+          "message": "Value should be defined",
+          "path": Array [
+            "0",
+            "0",
+          ],
+          "type": "single",
+          "value": undefined,
+        },
+        Object {
+          "message": "Value should be a number",
+          "path": Array [
+            "0",
+            "1",
+          ],
+          "type": "single",
+          "value": undefined,
+        },
+      ],
+      "type": "concatenation",
+      "value": 1,
+    },
+    Object {
+      "message": "Value should have a valid shape",
+      "path": Array [
+        "1",
+      ],
+      "requirements": Array [
+        Object {
+          "message": "Value should be defined",
+          "path": Array [
+            "1",
+            "0",
+          ],
+          "type": "single",
+          "value": undefined,
+        },
+        Object {
+          "message": "Value should be a number",
+          "path": Array [
+            "1",
+            "1",
+          ],
+          "type": "single",
+          "value": undefined,
+        },
+      ],
+      "type": "concatenation",
+      "value": 1,
+    },
+  ],
+  "type": "alternative",
+  "value": Array [
+    1,
+    1,
+  ],
+}
+`;
+
+exports[`complex validators should work 4`] = `
+Object {
+  "message": "Either Value should be a string OR Either Value should be a number OR Value should be greater than 5",
+  "path": Array [],
+  "requirements": Array [
+    Object {
+      "message": "Value should be a string",
+      "path": Array [],
+      "type": "single",
+      "value": Object {},
+    },
+    Object {
+      "message": "Value should be a number",
+      "path": Array [],
+      "type": "single",
+      "value": Object {},
+    },
+    Object {
+      "message": "Value should be greater than 5",
+      "path": Array [],
+      "type": "single",
+      "value": Object {},
+    },
+  ],
+  "type": "alternative",
+  "value": Object {},
+}
+`;
+
+exports[`complex validators should work 5`] = `
+Object {
+  "message": "Either Value should be a string OR Value should be a number",
+  "path": Array [],
+  "requirements": Array [
+    Object {
+      "message": "Value should be a string",
+      "path": Array [],
+      "type": "single",
+      "value": Object {},
+    },
+    Object {
+      "message": "Value should be a number",
+      "path": Array [],
+      "type": "single",
+      "value": Object {},
+    },
+  ],
+  "type": "alternative",
+  "value": Object {},
+}
+`;

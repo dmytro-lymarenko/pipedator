@@ -2,18 +2,17 @@
 
 exports[`every() should fail when at least one item is not a string 1`] = `
 Object {
-  "errors": Array [
-    Object {
-      "errors": Array [],
-      "message": "Value should be a string",
-      "path": Array [
-        "1",
-      ],
-      "value": 1,
-    },
-  ],
   "message": "Every value should follow the rule: Value should be a string",
   "path": Array [],
+  "requirement": Object {
+    "message": "Value should be a string",
+    "path": Array [
+      "1",
+    ],
+    "type": "single",
+    "value": 1,
+  },
+  "type": "dependence",
   "value": Array [
     "first",
     1,
@@ -24,18 +23,17 @@ Object {
 
 exports[`every() should support custom message 1`] = `
 Object {
-  "errors": Array [
-    Object {
-      "errors": Array [],
-      "message": "Value should be a string",
-      "path": Array [
-        "0",
-      ],
-      "value": 1,
-    },
-  ],
   "message": "Custom message",
   "path": Array [],
+  "requirement": Object {
+    "message": "Value should be a string",
+    "path": Array [
+      "0",
+    ],
+    "type": "single",
+    "value": 1,
+  },
+  "type": "dependence",
   "value": Array [
     1,
     "test",

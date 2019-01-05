@@ -2,18 +2,17 @@
 
 exports[`tuple() should fail 1`] = `
 Object {
-  "errors": Array [
-    Object {
-      "errors": Array [],
-      "message": "Value should be a number",
-      "path": Array [
-        "0",
-      ],
-      "value": "1",
-    },
-  ],
   "message": "Value should have a valid shape",
   "path": Array [],
+  "requirement": Object {
+    "message": "Value should be a number",
+    "path": Array [
+      "0",
+    ],
+    "type": "single",
+    "value": "1",
+  },
+  "type": "dependence",
   "value": Array [
     "1",
     "text",
@@ -23,18 +22,17 @@ Object {
 
 exports[`tuple() should fail 2`] = `
 Object {
-  "errors": Array [
-    Object {
-      "errors": Array [],
-      "message": "Value should be a string",
-      "path": Array [
-        "1",
-      ],
-      "value": undefined,
-    },
-  ],
   "message": "Value should have a valid shape",
   "path": Array [],
+  "requirement": Object {
+    "message": "Value should be a string",
+    "path": Array [
+      "1",
+    ],
+    "type": "single",
+    "value": undefined,
+  },
+  "type": "dependence",
   "value": Array [
     1,
   ],
@@ -43,26 +41,27 @@ Object {
 
 exports[`tuple() should fail and return all errors 1`] = `
 Object {
-  "errors": Array [
+  "message": "Value should have a valid shape",
+  "path": Array [],
+  "requirements": Array [
     Object {
-      "errors": Array [],
       "message": "Value should be a number",
       "path": Array [
         "0",
       ],
+      "type": "single",
       "value": "1",
     },
     Object {
-      "errors": Array [],
       "message": "Value should be a string",
       "path": Array [
         "1",
       ],
+      "type": "single",
       "value": undefined,
     },
   ],
-  "message": "Value should have a valid shape",
-  "path": Array [],
+  "type": "concatenation",
   "value": Array [
     "1",
   ],
@@ -71,18 +70,17 @@ Object {
 
 exports[`tuple() should fail and return only the first error 1`] = `
 Object {
-  "errors": Array [
-    Object {
-      "errors": Array [],
-      "message": "Value should be a number",
-      "path": Array [
-        "0",
-      ],
-      "value": "1",
-    },
-  ],
   "message": "Value should have a valid shape",
   "path": Array [],
+  "requirement": Object {
+    "message": "Value should be a number",
+    "path": Array [
+      "0",
+    ],
+    "type": "single",
+    "value": "1",
+  },
+  "type": "dependence",
   "value": Array [
     "1",
   ],
@@ -91,18 +89,17 @@ Object {
 
 exports[`tuple() should support custom message 1`] = `
 Object {
-  "errors": Array [
-    Object {
-      "errors": Array [],
-      "message": "Value should be a string",
-      "path": Array [
-        "1",
-      ],
-      "value": undefined,
-    },
-  ],
   "message": "Custom message",
   "path": Array [],
+  "requirement": Object {
+    "message": "Value should be a string",
+    "path": Array [
+      "1",
+    ],
+    "type": "single",
+    "value": undefined,
+  },
+  "type": "dependence",
   "value": Array [
     1,
   ],

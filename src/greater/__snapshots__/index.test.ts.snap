@@ -2,36 +2,35 @@
 
 exports[`greater() should fail when value is not greater than limit 1`] = `
 Object {
-  "errors": Array [],
   "message": "Value should be greater than 5",
   "path": Array [],
+  "type": "single",
   "value": 1,
 }
 `;
 
 exports[`greater() should fail when value is not greater than limit 2`] = `
 Object {
-  "errors": Array [],
   "message": "Value should be greater than 5",
   "path": Array [],
+  "type": "single",
   "value": 5,
 }
 `;
 
 exports[`greater() should fail when value is not greater than limit which is a reference 1`] = `
 Object {
-  "errors": Array [
-    Object {
-      "errors": Array [],
-      "message": "Value should be greater than 5",
-      "path": Array [
-        "b",
-      ],
-      "value": 1,
-    },
-  ],
   "message": "Value should have a valid shape",
   "path": Array [],
+  "requirement": Object {
+    "message": "Value should be greater than 5",
+    "path": Array [
+      "b",
+    ],
+    "type": "single",
+    "value": 1,
+  },
+  "type": "dependence",
   "value": Object {
     "a": 5,
     "b": 1,
@@ -41,9 +40,9 @@ Object {
 
 exports[`greater() should support custom message 1`] = `
 Object {
-  "errors": Array [],
   "message": "Custom message",
   "path": Array [],
+  "type": "single",
   "value": 1,
 }
 `;

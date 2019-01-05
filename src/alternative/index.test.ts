@@ -1,5 +1,9 @@
 import { createValidator, ValidationContext } from '../core';
 import { alternative } from './index';
+import { string } from '../string';
+import { number } from '../number';
+import { shape } from '../shape';
+import { singleRequirementFactory } from '../core/requirements';
 
 describe('alternative()', () => {
 	it('should always succeed when validators are not passed down', () => {
@@ -16,12 +20,7 @@ describe('alternative()', () => {
 	});
 
 	it('should invoke all validators when they all fail', () => {
-		const mockCallback = (value: any, ctx: ValidationContext) =>
-			ctx.generateError({
-				value,
-				message: 'Test',
-				path: ctx.path,
-			});
+		const mockCallback = (value: any, ctx: ValidationContext) => singleRequirementFactory('Test')(ctx.path, value);
 
 		const callbacks = [jest.fn(mockCallback), jest.fn(mockCallback), jest.fn(mockCallback)];
 
@@ -33,12 +32,7 @@ describe('alternative()', () => {
 	});
 
 	it('should succeed when at least one validator succeed', () => {
-		const mockCallback = (value: any, ctx: ValidationContext) =>
-			ctx.generateError({
-				value,
-				message: 'Test',
-				path: ctx.path,
-			});
+		const mockCallback = (value: any, ctx: ValidationContext) => singleRequirementFactory('Test')(ctx.path, value);
 
 		const callbacks = [jest.fn(mockCallback), jest.fn(() => null), jest.fn(mockCallback)];
 
@@ -50,17 +44,20 @@ describe('alternative()', () => {
 	});
 
 	it('should support custom message', () => {
-		const mockCallback = (value: any, ctx: ValidationContext) =>
-			ctx.generateError({
-				value,
-				message: 'Test',
-				path: ctx.path,
-			});
+		const mockCallback = (value: any, ctx: ValidationContext) => singleRequirementFactory('Test')(ctx.path, value);
 
 		const callbacks = [jest.fn(mockCallback), jest.fn(mockCallback)];
 
 		expect(
 			alternative(callbacks.map(callback => createValidator({ validate: callback })), 'Custom message').validate(1)
 		).toMatchSnapshot();
+	});
+
+	it('should generate correct message', () => {
+		expect(alternative([string()]).validate({})).toMatchSnapshot();
+
+		expect(alternative([string(), number()]).validate({})).toMatchSnapshot();
+
+		expect(alternative([string(), shape({ foo: number() })]).validate({})).toMatchSnapshot();
 	});
 });

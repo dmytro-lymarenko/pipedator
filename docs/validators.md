@@ -60,14 +60,14 @@ function abstractShape<Key>(
   - `keys` - an array of keys. Usually they are numbers or strings.
   - `shape` - a function which returns a validator at `key` position in the `shape`.
   - `options` - (optional) options:
-    - `.onlyFirstError` - (optional) indicates whether to return all errors or only the first one.
+    - `.onlyFirstRequirement` - (optional) indicates whether to return all requirements or only the first one.
   - `message` - (optional) allows to set custom message when error occurs
 
 - **Interfaces**
 
 ```typescript
 interface AbstractShapeOptions {
-	onlyFirstError?: boolean;
+	onlyFirstRequirement?: boolean;
 }
 ```
 
@@ -919,7 +919,7 @@ tuple([number(), string()]).validate([1, 'text']); // valid
 tuple([number(), string()]).validate([1, 'text', {}]); // valid
 tuple([number(), string()]).validate(['1', 'text']); // invalid, value.a is not a number
 tuple([number(), string()]).validate([1]); // invalid, value.b is not a string
-tuple([number(), string()], { onlyFirstError: true }).validate(['1']); // invalid, returns only one error
+tuple([number(), string()], { onlyFirstRequirement: true }).validate(['1']); // invalid, returns only one error
 tuple([number(), string()], undefined, 'Custom message').validate([1]); // invalid with 'Custom message'
 
 // to test, for example, the second element and when we don't care about the first one we can ignore it:

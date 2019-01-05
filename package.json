@@ -1,6 +1,6 @@
 {
   "name": "pipedator",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Piped validators",
   "main": "lib/index.js",
   "author": "dmytro.lymarenko",

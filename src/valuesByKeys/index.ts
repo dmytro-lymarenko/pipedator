@@ -1,4 +1,5 @@
 import { createValidator, Validator } from '../core';
+import { dependenceRequirementFactory } from '../core/requirements';
 
 export function valuesByKeys<ValidValue = any>(keys: string[], validator: Validator, message?: string) {
 	return createValidator<ValidValue>({
@@ -7,15 +8,13 @@ export function valuesByKeys<ValidValue = any>(keys: string[], validator: Valida
 				return null;
 			}
 
-			const error = validator.validate(keys.map(key => value[key]), ctx);
+			const requirement = validator.validate(keys.map(key => value[key]), ctx);
 
-			if (error) {
-				return ctx.generateError({
-					value,
-					message: message || `Values should follow the rule: ${error.message}`,
-					path: ctx.path,
-					errors: [error],
-				});
+			if (requirement) {
+				return dependenceRequirementFactory(message || `Values should follow the rule: ${requirement.message}`, requirement)(
+					ctx.path,
+					value
+				);
 			}
 
 			return null;

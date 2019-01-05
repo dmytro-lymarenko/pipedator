@@ -2,34 +2,35 @@
 
 exports[`some() should fail when no strings among values 1`] = `
 Object {
-  "errors": Array [
+  "message": "At least one item should follow the rule: Value should be a string",
+  "path": Array [],
+  "requirements": Array [
     Object {
-      "errors": Array [],
       "message": "Value should be a string",
       "path": Array [
         "0",
       ],
+      "type": "single",
       "value": 1,
     },
     Object {
-      "errors": Array [],
       "message": "Value should be a string",
       "path": Array [
         "1",
       ],
+      "type": "single",
       "value": null,
     },
     Object {
-      "errors": Array [],
       "message": "Value should be a string",
       "path": Array [
         "2",
       ],
+      "type": "single",
       "value": Object {},
     },
   ],
-  "message": "At least one value should follow the rule: Value should be a string",
-  "path": Array [],
+  "type": "alternative",
   "value": Array [
     1,
     null,
@@ -40,34 +41,35 @@ Object {
 
 exports[`some() should support custom message 1`] = `
 Object {
-  "errors": Array [
+  "message": "Custom message",
+  "path": Array [],
+  "requirements": Array [
     Object {
-      "errors": Array [],
       "message": "Value should be a string",
       "path": Array [
         "0",
       ],
+      "type": "single",
       "value": 1,
     },
     Object {
-      "errors": Array [],
       "message": "Value should be a string",
       "path": Array [
         "1",
       ],
+      "type": "single",
       "value": null,
     },
     Object {
-      "errors": Array [],
       "message": "Value should be a string",
       "path": Array [
         "2",
       ],
+      "type": "single",
       "value": Object {},
     },
   ],
-  "message": "Custom message",
-  "path": Array [],
+  "type": "alternative",
   "value": Array [
     1,
     null,

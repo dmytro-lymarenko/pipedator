@@ -2,18 +2,18 @@
 
 exports[`match() should fail  1`] = `
 Object {
-  "errors": Array [],
   "message": "Value should match regexp: /test/",
   "path": Array [],
+  "type": "single",
   "value": "Some text have be read",
 }
 `;
 
 exports[`match() should support custom message 1`] = `
 Object {
-  "errors": Array [],
   "message": "Custom message",
   "path": Array [],
+  "type": "single",
   "value": "Some text have be read",
 }
 `;

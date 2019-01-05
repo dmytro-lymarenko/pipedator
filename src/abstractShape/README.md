@@ -25,14 +25,14 @@ function abstractShape<Key>(
   - `keys` - an array of keys. Usually they are numbers or strings.
   - `shape` - a function which returns a validator at `key` position in the `shape`.
   - `options` - (optional) options:
-    - `.onlyFirstError` - (optional) indicates whether to return all errors or only the first one.
+    - `.onlyFirstRequirement` - (optional) indicates whether to return all requirements or only the first one.
   - `message` - (optional) allows to set custom message when error occurs
 
 - **Interfaces**
 
 ```typescript
 interface AbstractShapeOptions {
-	onlyFirstError?: boolean;
+	onlyFirstRequirement?: boolean;
 }
 ```
 

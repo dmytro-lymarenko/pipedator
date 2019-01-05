@@ -1,17 +1,16 @@
 import { createValidator, Validator } from '../core';
+import { dependenceRequirementFactory } from '../core/requirements';
 
 export function keys<ValidValue = any>(validator: Validator, message?: string) {
 	return createValidator<ValidValue>({
 		validate: (value, ctx) => {
-			const error = validator.validate(Object.keys(value), ctx);
+			const requirement = validator.validate(Object.keys(value), ctx);
 
-			if (error) {
-				return ctx.generateError({
-					value,
-					message: message || `Keys should follow the rule: ${error.message}`,
-					path: ctx.path,
-					errors: [error],
-				});
+			if (requirement) {
+				return dependenceRequirementFactory(message || `Keys should follow the rule: ${requirement.message}`, requirement)(
+					ctx.path,
+					value
+				);
 			}
 
 			return null;

@@ -2,63 +2,63 @@
 
 exports[`string() should return an error for non-string values 1`] = `
 Object {
-  "errors": Array [],
   "message": "Value should be a string",
   "path": Array [],
+  "type": "single",
   "value": 5,
 }
 `;
 
 exports[`string() should return an error for non-string values 2`] = `
 Object {
-  "errors": Array [],
   "message": "Value should be a string",
   "path": Array [],
+  "type": "single",
   "value": Object {},
 }
 `;
 
 exports[`string() should return an error for non-string values 3`] = `
 Object {
-  "errors": Array [],
   "message": "Value should be a string",
   "path": Array [],
+  "type": "single",
   "value": Array [],
 }
 `;
 
 exports[`string() should return an error for non-string values 4`] = `
 Object {
-  "errors": Array [],
   "message": "Value should be a string",
   "path": Array [],
+  "type": "single",
   "value": [Function],
 }
 `;
 
 exports[`string() should return an error for non-string values 5`] = `
 Object {
-  "errors": Array [],
   "message": "Value should be a string",
   "path": Array [],
+  "type": "single",
   "value": null,
 }
 `;
 
 exports[`string() should return an error for non-string values 6`] = `
 Object {
-  "errors": Array [],
   "message": "Value should be a string",
   "path": Array [],
+  "type": "single",
   "value": undefined,
 }
 `;
 
 exports[`string() should support custom message 1`] = `
 Object {
-  "errors": Array [],
   "message": "Custom message",
   "path": Array [],
+  "type": "single",
   "value": 5,
 }
 `;
