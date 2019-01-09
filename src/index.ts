@@ -17,6 +17,7 @@ export * from './ignore';
 export * from './keys';
 export * from './less';
 export * from './match';
+export * from './nillable';
 export * from './nullable';
 export * from './number';
 export * from './optional';

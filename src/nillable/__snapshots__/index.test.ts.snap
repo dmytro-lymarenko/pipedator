@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`nillable() should fail 1`] = `
+Object {
+  "children": null,
+  "message": "Either Value should equal to undefined OR Value should equal to null OR Value should be a string",
+  "path": "",
+}
+`;
+
+exports[`nillable() should support custom message 1`] = `
+Object {
+  "children": null,
+  "message": "Custom message",
+  "path": "",
+}
+`;
