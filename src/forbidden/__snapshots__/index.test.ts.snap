@@ -2,7 +2,7 @@
 
 exports[`forbidden() should fail 1`] = `
 Object {
-  "children": Array [],
+  "children": null,
   "message": "Value should equal to undefined",
   "path": "",
 }
@@ -10,7 +10,7 @@ Object {
 
 exports[`forbidden() should fail 2`] = `
 Object {
-  "children": Array [],
+  "children": null,
   "message": "Value should equal to undefined",
   "path": "",
 }
@@ -18,7 +18,7 @@ Object {
 
 exports[`forbidden() should support custom message 1`] = `
 Object {
-  "children": Array [],
+  "children": null,
   "message": "Custom message",
   "path": "",
 }

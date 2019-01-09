@@ -10,7 +10,7 @@ export function equalTo<ValidValue = any>(validValue: any | ValidationRef, messa
 				: {
 						path: getCurrentPath(ctx),
 						message: message || `Value should equal to ${v}`,
-						children: [],
+						children: null,
 				  };
 		},
 	});
