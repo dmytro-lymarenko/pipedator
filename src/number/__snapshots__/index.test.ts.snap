@@ -2,63 +2,56 @@
 
 exports[`number() should return an error for non-number values 1`] = `
 Object {
+  "children": null,
   "message": "Value should be a number",
-  "path": Array [],
-  "type": "single",
-  "value": "5",
+  "path": "",
 }
 `;
 
 exports[`number() should return an error for non-number values 2`] = `
 Object {
+  "children": null,
   "message": "Value should be a number",
-  "path": Array [],
-  "type": "single",
-  "value": Object {},
+  "path": "",
 }
 `;
 
 exports[`number() should return an error for non-number values 3`] = `
 Object {
+  "children": null,
   "message": "Value should be a number",
-  "path": Array [],
-  "type": "single",
-  "value": Array [],
+  "path": "",
 }
 `;
 
 exports[`number() should return an error for non-number values 4`] = `
 Object {
+  "children": null,
   "message": "Value should be a number",
-  "path": Array [],
-  "type": "single",
-  "value": [Function],
+  "path": "",
 }
 `;
 
 exports[`number() should return an error for non-number values 5`] = `
 Object {
+  "children": null,
   "message": "Value should be a number",
-  "path": Array [],
-  "type": "single",
-  "value": null,
+  "path": "",
 }
 `;
 
 exports[`number() should return an error for non-number values 6`] = `
 Object {
+  "children": null,
   "message": "Value should be a number",
-  "path": Array [],
-  "type": "single",
-  "value": undefined,
+  "path": "",
 }
 `;
 
 exports[`number() should support custom message 1`] = `
 Object {
+  "children": null,
   "message": "Custom message",
-  "path": Array [],
-  "type": "single",
-  "value": "5",
+  "path": "",
 }
 `;

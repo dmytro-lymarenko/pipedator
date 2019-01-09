@@ -2,9 +2,8 @@
 
 exports[`empty() should support custom message 1`] = `
 Object {
+  "children": null,
   "message": "Custom message",
-  "path": Array [],
-  "type": "single",
-  "value": "not empty string",
+  "path": "",
 }
 `;

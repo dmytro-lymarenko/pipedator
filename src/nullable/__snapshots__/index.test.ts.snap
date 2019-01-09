@@ -2,46 +2,16 @@
 
 exports[`nullable() should fail 1`] = `
 Object {
+  "children": null,
   "message": "Either Value should equal to null OR Value should be a string",
-  "path": Array [],
-  "requirements": Array [
-    Object {
-      "message": "Value should equal to null",
-      "path": Array [],
-      "type": "single",
-      "value": 1,
-    },
-    Object {
-      "message": "Value should be a string",
-      "path": Array [],
-      "type": "single",
-      "value": 1,
-    },
-  ],
-  "type": "alternative",
-  "value": 1,
+  "path": "",
 }
 `;
 
 exports[`nullable() should support custom message 1`] = `
 Object {
+  "children": null,
   "message": "Custom message",
-  "path": Array [],
-  "requirements": Array [
-    Object {
-      "message": "Value should equal to null",
-      "path": Array [],
-      "type": "single",
-      "value": undefined,
-    },
-    Object {
-      "message": "Value should be a string",
-      "path": Array [],
-      "type": "single",
-      "value": undefined,
-    },
-  ],
-  "type": "alternative",
-  "value": undefined,
+  "path": "",
 }
 `;

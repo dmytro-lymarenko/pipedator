@@ -2,78 +2,40 @@
 
 exports[`some() should fail when no strings among values 1`] = `
 Object {
-  "message": "At least one item should follow the rule: Value should be a string",
-  "path": Array [],
-  "requirements": Array [
+  "children": Array [
     Object {
+      "children": null,
       "message": "Value should be a string",
-      "path": Array [
-        "0",
-      ],
-      "type": "single",
-      "value": 1,
+      "path": "0",
     },
     Object {
+      "children": null,
       "message": "Value should be a string",
-      "path": Array [
-        "1",
-      ],
-      "type": "single",
-      "value": null,
+      "path": "1",
     },
     Object {
+      "children": null,
       "message": "Value should be a string",
-      "path": Array [
-        "2",
-      ],
-      "type": "single",
-      "value": Object {},
+      "path": "2",
     },
   ],
-  "type": "alternative",
-  "value": Array [
-    1,
-    null,
-    Object {},
-  ],
+  "message": "At least one child should be valid",
+  "path": "",
 }
 `;
 
 exports[`some() should support custom message 1`] = `
 Object {
+  "children": null,
   "message": "Custom message",
-  "path": Array [],
-  "requirements": Array [
-    Object {
-      "message": "Value should be a string",
-      "path": Array [
-        "0",
-      ],
-      "type": "single",
-      "value": 1,
-    },
-    Object {
-      "message": "Value should be a string",
-      "path": Array [
-        "1",
-      ],
-      "type": "single",
-      "value": null,
-    },
-    Object {
-      "message": "Value should be a string",
-      "path": Array [
-        "2",
-      ],
-      "type": "single",
-      "value": Object {},
-    },
-  ],
-  "type": "alternative",
-  "value": Array [
-    1,
-    null,
-    Object {},
-  ],
+  "path": "",
+}
+`;
+
+exports[`some() should throw an error when a value is not an array 1`] = `
+Object {
+  "children": null,
+  "message": "Value should be an array",
+  "path": "",
 }
 `;

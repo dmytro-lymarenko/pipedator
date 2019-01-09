@@ -1,5 +1,4 @@
-import { createValidator, ValidationContext } from '../core';
-import { singleRequirementFactory } from '../core/requirements';
+import { createValidator, ValidationContext, getCurrentPath } from '../core';
 import { pipe } from './index';
 
 describe('pipe()', () => {
@@ -29,7 +28,11 @@ describe('pipe()', () => {
 	it('should return the first met error in pipe chain of validators', () => {
 		const callbacks = [
 			jest.fn(() => null),
-			jest.fn((value: any, ctx: ValidationContext) => singleRequirementFactory('Test')(ctx.path, value)),
+			jest.fn((_: any, ctx: ValidationContext) => ({
+				path: getCurrentPath(ctx),
+				message: 'Test',
+				children: null,
+			})),
 			jest.fn(() => null),
 		];
 
@@ -43,7 +46,11 @@ describe('pipe()', () => {
 	it('should support custom message', () => {
 		const callbacks = [
 			jest.fn(() => null),
-			jest.fn((value: any, ctx: ValidationContext) => singleRequirementFactory('Test')(ctx.path, value)),
+			jest.fn((_: any, ctx: ValidationContext) => ({
+				path: getCurrentPath(ctx),
+				message: 'Test',
+				children: null,
+			})),
 		];
 
 		expect(

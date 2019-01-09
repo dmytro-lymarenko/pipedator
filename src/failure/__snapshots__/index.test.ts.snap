@@ -2,18 +2,16 @@
 
 exports[`failure() should fail 1`] = `
 Object {
+  "children": null,
   "message": "Should always fail",
-  "path": Array [],
-  "type": "single",
-  "value": 1,
+  "path": "",
 }
 `;
 
 exports[`failure() should support custom message 1`] = `
 Object {
+  "children": null,
   "message": "Custom message",
-  "path": Array [],
-  "type": "single",
-  "value": null,
+  "path": "",
 }
 `;

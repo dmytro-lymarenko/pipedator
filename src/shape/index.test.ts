@@ -19,7 +19,7 @@ describe('shape()', () => {
 	});
 
 	it('should fail and return only the first error', () => {
-		expect(shape({ a: number(), b: string() }, { onlyFirstRequirement: true }).validate({ a: '1' })).toMatchSnapshot();
+		expect(shape({ a: number(), b: string() }, { onlyFirstError: true }).validate({ a: '1' })).toMatchSnapshot();
 	});
 
 	it('should support custom message', () => {

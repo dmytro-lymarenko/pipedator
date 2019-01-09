@@ -2,58 +2,28 @@
 
 exports[`valuesByKeys() should fail 1`] = `
 Object {
-  "message": "Values should follow the rule: Every value should follow the rule: Value should match regexp: /^test/",
-  "path": Array [],
-  "requirement": Object {
-    "message": "Every value should follow the rule: Value should match regexp: /^test/",
-    "path": Array [],
-    "requirement": Object {
+  "children": Array [
+    Object {
+      "children": null,
       "message": "Value should match regexp: /^test/",
-      "path": Array [
-        "1",
-      ],
-      "type": "single",
-      "value": 5,
+      "path": "b",
     },
-    "type": "dependence",
-    "value": Array [
-      "testA",
-      5,
-    ],
-  },
-  "type": "dependence",
-  "value": Object {
-    "a": "testA",
-    "b": 5,
-  },
+  ],
+  "message": "Values should be valid",
+  "path": "",
 }
 `;
 
 exports[`valuesByKeys() should support custom message 1`] = `
 Object {
-  "message": "Custom message",
-  "path": Array [],
-  "requirement": Object {
-    "message": "Every value should follow the rule: Value should match regexp: /^test/",
-    "path": Array [],
-    "requirement": Object {
+  "children": Array [
+    Object {
+      "children": null,
       "message": "Value should match regexp: /^test/",
-      "path": Array [
-        "1",
-      ],
-      "type": "single",
-      "value": 5,
+      "path": "b",
     },
-    "type": "dependence",
-    "value": Array [
-      "testA",
-      5,
-    ],
-  },
-  "type": "dependence",
-  "value": Object {
-    "a": "testA",
-    "b": 5,
-  },
+  ],
+  "message": "Custom message",
+  "path": "",
 }
 `;

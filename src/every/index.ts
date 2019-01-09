@@ -1,37 +1,41 @@
-import { createValidator, findFirstRequirement, Validator } from '../core';
-import { dependenceRequirementFactory } from '../core/requirements';
+import { createValidator, findFirstError, Validator, getCurrentPath } from '../core';
+import { pipe } from '../pipe';
+import { test } from '../test';
 
 /**
  * value should be an array
  * @param validator
  */
 export function every<ValidValue = any>(validator: Validator, message?: string) {
-	return createValidator<ValidValue>({
-		// here value should be an array
-		validate: (value, ctx) => {
-			if (!Array.isArray(value)) {
-				throw new Error('Value should be an array');
-			}
+	return pipe(
+		[
+			test(value => Array.isArray(value), 'Value should be an array'),
+			createValidator<ValidValue>({
+				// here value should be an array
+				validate: (value, ctx) => {
+					// find the first error among values
+					const { error } = findFirstError(
+						() => validator,
+						i => value[i],
+						i => ({
+							...ctx,
+							path: [...ctx.path, i.toString()],
+						}),
+						value.length
+					);
 
-			// find the first error among values
-			const { requirement } = findFirstRequirement(
-				() => validator,
-				i => value[i],
-				i => ({
-					...ctx,
-					path: [...ctx.path, i.toString()],
-				}),
-				value.length
-			);
+					if (error) {
+						return {
+							path: getCurrentPath(ctx),
+							message: 'All children should be valid',
+							children: [error],
+						};
+					}
 
-			if (requirement) {
-				return dependenceRequirementFactory(
-					message || `Every value should follow the rule: ${requirement.message}`,
-					requirement
-				)(ctx.path, value);
-			}
-
-			return null;
-		},
-	});
+					return null;
+				},
+			}),
+		],
+		message
+	);
 }

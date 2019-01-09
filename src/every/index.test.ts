@@ -19,6 +19,6 @@ describe('every()', () => {
 	});
 
 	it('should throw an error when a value is not an array', () => {
-		expect(() => every(string()).validate(1)).toThrow();
+		expect(every(string()).validate(1)).toMatchSnapshot();
 	});
 });

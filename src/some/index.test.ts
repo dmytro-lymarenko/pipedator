@@ -21,6 +21,6 @@ describe('some()', () => {
 	});
 
 	it('should throw an error when a value is not an array', () => {
-		expect(() => some(string()).validate(1)).toThrow();
+		expect(some(string()).validate(1)).toMatchSnapshot();
 	});
 });

@@ -2,36 +2,32 @@
 
 exports[`ternary() should fail with correct message when both condition and failure fail 1`] = `
 Object {
+  "children": null,
   "message": "Correct message",
-  "path": Array [],
-  "type": "single",
-  "value": 1,
+  "path": "",
 }
 `;
 
 exports[`ternary() should fail with correct message when both condition and failure fail 2`] = `
 Object {
+  "children": null,
   "message": "Correct message",
-  "path": Array [],
-  "type": "single",
-  "value": 1,
+  "path": "",
 }
 `;
 
 exports[`ternary() should fail with correct message when condition succeeds but success fails 1`] = `
 Object {
+  "children": null,
   "message": "Correct message",
-  "path": Array [],
-  "type": "single",
-  "value": 1,
+  "path": "",
 }
 `;
 
 exports[`ternary() should fail with correct message when condition succeeds but success fails 2`] = `
 Object {
+  "children": null,
   "message": "Correct message",
-  "path": Array [],
-  "type": "single",
-  "value": 1,
+  "path": "",
 }
 `;

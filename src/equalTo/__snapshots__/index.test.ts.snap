@@ -2,38 +2,30 @@
 
 exports[`equalTo() should fail when value is not equal to validValue 1`] = `
 Object {
+  "children": Array [],
   "message": "Value should equal to test",
-  "path": Array [],
-  "type": "single",
-  "value": "text",
+  "path": "",
 }
 `;
 
 exports[`equalTo() should fail when value is not equal to validValue which is a reference 1`] = `
 Object {
+  "children": Array [
+    Object {
+      "children": Array [],
+      "message": "Value should equal to test",
+      "path": "b",
+    },
+  ],
   "message": "Value should have a valid shape",
-  "path": Array [],
-  "requirement": Object {
-    "message": "Value should equal to test",
-    "path": Array [
-      "b",
-    ],
-    "type": "single",
-    "value": "text",
-  },
-  "type": "dependence",
-  "value": Object {
-    "a": "test",
-    "b": "text",
-  },
+  "path": "",
 }
 `;
 
 exports[`equalTo() should support custom message 1`] = `
 Object {
+  "children": Array [],
   "message": "Custom message",
-  "path": Array [],
-  "type": "single",
-  "value": "test",
+  "path": "",
 }
 `;

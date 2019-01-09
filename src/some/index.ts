@@ -1,42 +1,45 @@
-import { createValidator, getFirstRequirements, Validator } from '../core';
-import { alternativeRequirementFactory } from '../core/requirements';
+import { createValidator, getFirstErrors, Validator, getCurrentPath } from '../core';
+import { pipe } from '../pipe';
+import { test } from '../test';
 
 /**
  * value should be an array
  * @param validator
  */
 export function some<ValidValue = any>(validator: Validator, message?: string) {
-	return createValidator<ValidValue>({
-		validate: (value, ctx) => {
-			if (!Array.isArray(value)) {
-				throw new Error('Value should be an array');
-			}
+	return pipe(
+		[
+			test(value => Array.isArray(value), 'Value should be an array'),
+			createValidator<ValidValue>({
+				validate: (value, ctx) => {
+					if (value.length === 0) {
+						return null;
+					}
+					// find the first success validator
+					const children = getFirstErrors(
+						() => validator,
+						i => value[i],
+						i => ({
+							...ctx,
+							path: [...ctx.path, i.toString()],
+						}),
+						value.length
+					);
 
-			if (value.length === 0) {
-				return null;
-			}
-			// find the first success validator
-			const requirements = getFirstRequirements(
-				() => validator,
-				i => value[i],
-				i => ({
-					...ctx,
-					path: [...ctx.path, i.toString()],
-				}),
-				value.length
-			);
+					if (children.length === value.length) {
+						// here all values failed
 
-			if (requirements.length === value.length) {
-				// here all values failed
-				const requirement = requirements[0];
+						return {
+							children,
+							path: getCurrentPath(ctx),
+							message: 'At least one child should be valid',
+						};
+					}
 
-				return alternativeRequirementFactory(
-					message || `At least one item should follow the rule: ${requirement.message}`,
-					requirements
-				)(ctx.path, value);
-			}
-
-			return null;
-		},
-	});
+					return null;
+				},
+			}),
+		],
+		message
+	);
 }

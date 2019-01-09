@@ -2,18 +2,16 @@
 
 exports[`pipe() should return the first met error in pipe chain of validators 1`] = `
 Object {
+  "children": null,
   "message": "Test",
-  "path": Array [],
-  "type": "single",
-  "value": 1,
+  "path": "",
 }
 `;
 
 exports[`pipe() should support custom message 1`] = `
 Object {
+  "children": null,
   "message": "Custom message",
-  "path": Array [],
-  "type": "single",
-  "value": 1,
+  "path": "",
 }
 `;

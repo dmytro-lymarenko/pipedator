@@ -13,7 +13,7 @@ describe('complex validators', () => {
 				shape({
 					foo: string(),
 				})
-			).validate([1])
+			).validate([null, { foo: 2 }])
 		).toMatchSnapshot();
 
 		expect(

@@ -1,9 +1,8 @@
-import { createValidator, ValidationContext } from '../core';
+import { createValidator, ValidationContext, getCurrentPath } from '../core';
 import { alternative } from './index';
 import { string } from '../string';
 import { number } from '../number';
 import { shape } from '../shape';
-import { singleRequirementFactory } from '../core/requirements';
 
 describe('alternative()', () => {
 	it('should always succeed when validators are not passed down', () => {
@@ -20,7 +19,11 @@ describe('alternative()', () => {
 	});
 
 	it('should invoke all validators when they all fail', () => {
-		const mockCallback = (value: any, ctx: ValidationContext) => singleRequirementFactory('Test')(ctx.path, value);
+		const mockCallback = (_: any, ctx: ValidationContext) => ({
+			path: getCurrentPath(ctx),
+			message: 'Test',
+			children: null,
+		});
 
 		const callbacks = [jest.fn(mockCallback), jest.fn(mockCallback), jest.fn(mockCallback)];
 
@@ -32,7 +35,11 @@ describe('alternative()', () => {
 	});
 
 	it('should succeed when at least one validator succeed', () => {
-		const mockCallback = (value: any, ctx: ValidationContext) => singleRequirementFactory('Test')(ctx.path, value);
+		const mockCallback = (_: any, ctx: ValidationContext) => ({
+			path: getCurrentPath(ctx),
+			message: 'Test',
+			children: null,
+		});
 
 		const callbacks = [jest.fn(mockCallback), jest.fn(() => null), jest.fn(mockCallback)];
 
@@ -44,7 +51,11 @@ describe('alternative()', () => {
 	});
 
 	it('should support custom message', () => {
-		const mockCallback = (value: any, ctx: ValidationContext) => singleRequirementFactory('Test')(ctx.path, value);
+		const mockCallback = (_: any, ctx: ValidationContext) => ({
+			path: getCurrentPath(ctx),
+			message: 'Test',
+			children: null,
+		});
 
 		const callbacks = [jest.fn(mockCallback), jest.fn(mockCallback)];
 

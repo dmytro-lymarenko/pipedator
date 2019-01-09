@@ -2,106 +2,75 @@
 
 exports[`shape() should fail 1`] = `
 Object {
+  "children": Array [
+    Object {
+      "children": null,
+      "message": "Value should be a number",
+      "path": "a",
+    },
+  ],
   "message": "Value should have a valid shape",
-  "path": Array [],
-  "requirement": Object {
-    "message": "Value should be a number",
-    "path": Array [
-      "a",
-    ],
-    "type": "single",
-    "value": "1",
-  },
-  "type": "dependence",
-  "value": Object {
-    "a": "1",
-    "b": "text",
-  },
+  "path": "",
 }
 `;
 
 exports[`shape() should fail 2`] = `
 Object {
+  "children": Array [
+    Object {
+      "children": null,
+      "message": "Value should be a string",
+      "path": "b",
+    },
+  ],
   "message": "Value should have a valid shape",
-  "path": Array [],
-  "requirement": Object {
-    "message": "Value should be a string",
-    "path": Array [
-      "b",
-    ],
-    "type": "single",
-    "value": undefined,
-  },
-  "type": "dependence",
-  "value": Object {
-    "a": 1,
-  },
+  "path": "",
 }
 `;
 
 exports[`shape() should fail and return all errors 1`] = `
 Object {
-  "message": "Value should have a valid shape",
-  "path": Array [],
-  "requirements": Array [
+  "children": Array [
     Object {
+      "children": null,
       "message": "Value should be a number",
-      "path": Array [
-        "a",
-      ],
-      "type": "single",
-      "value": "1",
+      "path": "a",
     },
     Object {
+      "children": null,
       "message": "Value should be a string",
-      "path": Array [
-        "b",
-      ],
-      "type": "single",
-      "value": undefined,
+      "path": "b",
     },
   ],
-  "type": "concatenation",
-  "value": Object {
-    "a": "1",
-  },
+  "message": "Value should have a valid shape",
+  "path": "",
 }
 `;
 
 exports[`shape() should fail and return only the first error 1`] = `
 Object {
+  "children": Array [
+    Object {
+      "children": null,
+      "message": "Value should be a number",
+      "path": "a",
+    },
+  ],
   "message": "Value should have a valid shape",
-  "path": Array [],
-  "requirement": Object {
-    "message": "Value should be a number",
-    "path": Array [
-      "a",
-    ],
-    "type": "single",
-    "value": "1",
-  },
-  "type": "dependence",
-  "value": Object {
-    "a": "1",
-  },
+  "path": "",
 }
 `;
 
 exports[`shape() should support custom message 1`] = `
 Object {
+  "children": Array [
+    Object {
+      "children": null,
+      "message": "Value should be a string",
+      "path": "b",
+    },
+  ],
   "message": "Custom message",
-  "path": Array [],
-  "requirement": Object {
-    "message": "Value should be a string",
-    "path": Array [
-      "b",
-    ],
-    "type": "single",
-    "value": undefined,
-  },
-  "type": "dependence",
-  "value": Object {
-    "a": 1,
-  },
+  "path": "",
 }
 `;

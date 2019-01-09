@@ -1,8 +1,7 @@
-import { createValidator, findFirstRequirement, Validator } from '../core';
-import { singleRequirementFactory, concatenationRequirementFactory, Requirement, isRequirement } from '../core/requirements';
+import { createValidator, findFirstError, Validator, ValidationError, getCurrentPath } from '../core';
 
 export interface AbstractShapeOptions {
-	onlyFirstRequirement?: boolean;
+	onlyFirstError?: boolean;
 	// wraps each validator provided in a shape
 	wrapValidators?: (validator: Validator) => Validator;
 	openedBracket?: string;
@@ -18,20 +17,24 @@ export function abstractShape<Key, ValidValue = any>(
 	return createValidator<ValidValue>({
 		validate: (value, ctx) => {
 			if (value === undefined || value === null) {
-				return singleRequirementFactory('Value should be defined')(ctx.path, value);
+				return {
+					path: getCurrentPath(ctx),
+					message: message || 'Value should be defined',
+					children: null,
+				};
 			}
 
-			let requirements: Requirement[] = [];
+			let errors: ValidationError[] = [];
 
-			const onlyFirstRequirement = Boolean(options && options.onlyFirstRequirement);
+			const onlyFirstError = Boolean(options && options.onlyFirstError);
 			const wrapValidators = (options && options.wrapValidators) || null;
 
 			function getValidatorAtKey(key: Key): Validator {
 				return wrapValidators ? wrapValidators(shape(key)) : shape(key);
 			}
 
-			if (onlyFirstRequirement) {
-				const { requirement } = findFirstRequirement(
+			if (onlyFirstError) {
+				const { error } = findFirstError(
 					i => getValidatorAtKey(keys[i]),
 					i => value[keys[i]],
 					i => ({
@@ -41,22 +44,30 @@ export function abstractShape<Key, ValidValue = any>(
 					keys.length
 				);
 
-				if (requirement) {
-					requirements = [requirement];
+				if (error) {
+					errors = [error];
 				}
 			} else {
-				requirements = keys
+				function isNotNull(v: ValidationError | null): v is ValidationError {
+					return v !== null;
+				}
+
+				errors = keys
 					.map(key =>
 						getValidatorAtKey(key).validate(value[key], {
 							...ctx,
 							path: [...ctx.path, key.toString()],
 						})
 					)
-					.filter(isRequirement);
+					.filter(isNotNull);
 			}
 
-			if (requirements.length > 0) {
-				return concatenationRequirementFactory(message || 'Value should have a valid shape', requirements)(ctx.path, value);
+			if (errors.length > 0) {
+				return {
+					path: getCurrentPath(ctx),
+					message: message || 'Value should have a valid shape',
+					children: errors,
+				};
 			}
 
 			return null;

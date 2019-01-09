@@ -6,9 +6,9 @@ export function when<ValidValue = any>(path: string[], options: { is: Validator;
 		validate: (value, ctx) => {
 			const subValue = ref(path)(ctx);
 
-			const requirement = options.is.validate(subValue, ctx);
+			const error = options.is.validate(subValue, ctx);
 
-			if (requirement === null) {
+			if (error === null) {
 				return options.then.validate(value, ctx);
 			}
 

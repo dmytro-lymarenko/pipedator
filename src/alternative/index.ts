@@ -1,5 +1,4 @@
-import { createValidator, getFirstRequirements, Validator } from '../core';
-import { alternativeRequirementFactory } from '../core/requirements';
+import { createValidator, getFirstErrors, Validator, getCurrentPath } from '../core';
 
 export function alternative<ValidValue = any>(validators: Validator[], message?: string) {
 	return createValidator<ValidValue>({
@@ -8,18 +7,19 @@ export function alternative<ValidValue = any>(validators: Validator[], message?:
 				return null;
 			}
 			// find the first success validator
-			const requirements = getFirstRequirements(i => validators[i], () => value, () => ctx, validators.length);
+			const errors = getFirstErrors(i => validators[i], () => value, () => ctx, validators.length);
 
-			if (requirements.length === validators.length) {
+			if (errors.length === validators.length) {
 				// here all validators returned an error
-				if (requirements.length === 1) {
-					return requirements[0];
+				if (errors.length === 1) {
+					return errors[0];
 				}
 
-				return alternativeRequirementFactory(
-					message || `Either ${requirements.map(requirement => requirement.message).join(' OR ')}`,
-					requirements
-				)(ctx.path, value);
+				return {
+					path: getCurrentPath(ctx),
+					message: message || `Either ${errors.map(error => error.message).join(' OR ')}`,
+					children: null,
+				};
 			}
 
 			return null;

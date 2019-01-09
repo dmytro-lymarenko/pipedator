@@ -2,9 +2,8 @@
 
 exports[`test() should fail when provided predicate return false 1`] = `
 Object {
+  "children": null,
   "message": "Test",
-  "path": Array [],
-  "type": "single",
-  "value": 1,
+  "path": "",
 }
 `;

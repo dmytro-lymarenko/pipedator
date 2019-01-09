@@ -2,47 +2,38 @@
 
 exports[`less() should fail when value is not less than limit 1`] = `
 Object {
+  "children": null,
   "message": "Value should be less than 1",
-  "path": Array [],
-  "type": "single",
-  "value": 5,
+  "path": "",
 }
 `;
 
 exports[`less() should fail when value is not less than limit 2`] = `
 Object {
+  "children": null,
   "message": "Value should be less than 5",
-  "path": Array [],
-  "type": "single",
-  "value": 5,
+  "path": "",
 }
 `;
 
 exports[`less() should fail when value is not less than limit which is a reference 1`] = `
 Object {
+  "children": Array [
+    Object {
+      "children": null,
+      "message": "Value should be less than 1",
+      "path": "b",
+    },
+  ],
   "message": "Value should have a valid shape",
-  "path": Array [],
-  "requirement": Object {
-    "message": "Value should be less than 1",
-    "path": Array [
-      "b",
-    ],
-    "type": "single",
-    "value": 5,
-  },
-  "type": "dependence",
-  "value": Object {
-    "a": 1,
-    "b": 5,
-  },
+  "path": "",
 }
 `;
 
 exports[`less() should support custom message 1`] = `
 Object {
+  "children": null,
   "message": "Custom message",
-  "path": Array [],
-  "type": "single",
-  "value": 5,
+  "path": "",
 }
 `;
