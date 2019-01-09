@@ -6,7 +6,7 @@ describe('nullable()', () => {
 		expect(nullable(string()).validate('Some test have passed')).toBeNull();
 	});
 
-	it('should validate a string when it is actually undefined', () => {
+	it('should validate a string when it is actually null', () => {
 		expect(nullable(string()).validate(null)).toBeNull();
 	});
 
