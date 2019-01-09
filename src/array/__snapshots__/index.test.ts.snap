@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`array() should return an error for non-array values 1`] = `
+Object {
+  "children": null,
+  "message": "Value should be an array",
+  "path": "",
+}
+`;
+
+exports[`array() should return an error for non-array values 2`] = `
+Object {
+  "children": null,
+  "message": "Value should be an array",
+  "path": "",
+}
+`;
+
+exports[`array() should return an error for non-array values 3`] = `
+Object {
+  "children": null,
+  "message": "Value should be an array",
+  "path": "",
+}
+`;
+
+exports[`array() should return an error for non-array values 4`] = `
+Object {
+  "children": null,
+  "message": "Value should be an array",
+  "path": "",
+}
+`;
+
+exports[`array() should return an error for non-array values 5`] = `
+Object {
+  "children": null,
+  "message": "Value should be an array",
+  "path": "",
+}
+`;
+
+exports[`array() should return an error for non-array values 6`] = `
+Object {
+  "children": null,
+  "message": "Value should be an array",
+  "path": "",
+}
+`;
+
+exports[`array() should support custom message 1`] = `
+Object {
+  "children": null,
+  "message": "Custom message",
+  "path": "",
+}
+`;

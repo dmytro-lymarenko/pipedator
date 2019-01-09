@@ -1,6 +1,6 @@
 import { createValidator, findFirstError, Validator, getCurrentPath } from '../core';
 import { pipe } from '../pipe';
-import { test } from '../test';
+import { array } from '../array';
 
 /**
  * value should be an array
@@ -9,7 +9,7 @@ import { test } from '../test';
 export function every<ValidValue = any>(validator: Validator, message?: string) {
 	return pipe(
 		[
-			test(value => Array.isArray(value), 'Value should be an array'),
+			array(),
 			createValidator<ValidValue>({
 				// here value should be an array
 				validate: (value, ctx) => {

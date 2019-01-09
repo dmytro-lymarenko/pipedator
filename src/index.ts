@@ -3,6 +3,7 @@
 export * from './abstractShape';
 export * from './alt';
 export * from './alternative';
+export * from './array';
 export * from './both';
 export * from './core';
 export * from './either';
