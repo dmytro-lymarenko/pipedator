@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Address test should work 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "children": null,
+      "message": "Value should be a string",
+      "path": "email",
+    },
+    Object {
+      "children": null,
+      "message": "Value should be a string",
+      "path": "country",
+    },
+    Object {
+      "children": null,
+      "message": "Value should be a number",
+      "path": "ip",
+    },
+  ],
+  "message": "Value should have a valid shape",
+  "path": "",
+}
+`;
+
+exports[`Address test should work 2`] = `
+Object {
+  "children": Array [
+    Object {
+      "children": null,
+      "message": "Either Value should equal to undefined OR Value should be a string",
+      "path": "email",
+    },
+    Object {
+      "children": null,
+      "message": "Either Value should equal to undefined OR Value should be a string",
+      "path": "country",
+    },
+    Object {
+      "children": null,
+      "message": "Either Value should equal to undefined OR Value should be a number",
+      "path": "ip",
+    },
+  ],
+  "message": "Value should have a valid shape",
+  "path": "",
+}
+`;
+
+exports[`Address test should work 3`] = `null`;
+
+exports[`Address test should work 4`] = `
+Object {
+  "children": Array [
+    Object {
+      "children": null,
+      "message": "Either Value should equal to undefined OR Value should be a string",
+      "path": "country",
+    },
+  ],
+  "message": "Value should have a valid shape",
+  "path": "",
+}
+`;
+
+exports[`Address test should work 5`] = `
+Object {
+  "children": Array [
+    Object {
+      "children": null,
+      "message": "Either Value should equal to undefined OR Value should be a string",
+      "path": "country",
+    },
+    Object {
+      "children": null,
+      "message": "Either Value should equal to undefined OR Value should be a number",
+      "path": "ip",
+    },
+  ],
+  "message": "Value should have a valid shape",
+  "path": "",
+}
+`;
