@@ -23,7 +23,7 @@ function forbidden(message?: string): Validator;
 - **Usage**
 
 ```typescript
-const forbiddenNumber = forbidden(number());
+const forbiddenNumber = forbidden();
 forbiddenNumber.validate(undefined); // valid
 forbiddenNumber.validate(4); // invalid
 forbiddenNumber.validate(null); // invalid
