@@ -5,6 +5,7 @@
 - [`alt`](#alt)
 - [`alternative`](#alternative)
 - [`array`](#array)
+- [`arrayOf`](#arrayof)
 - [`both`](#both)
 - [`either`](#either)
 - [`empty`](#empty)
@@ -187,6 +188,22 @@ array().validate([1, 2, 'string']); // valid
 array().validate(5); // invalid
 array('Custom message').validate(null); // invalid with 'Custom message'
 ```
+
+
+## `arrayOf`
+
+- **Description**
+
+An alias for [`every`](#every)
+
+- **How to import**
+
+```typescript
+import { arrayOf } from 'pipedator';
+// or
+import { arrayOf } from 'pipedator/lib/arrayOf';
+```
+
 
 
 ## `both`
