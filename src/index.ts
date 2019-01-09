@@ -12,6 +12,7 @@ export * from './empty';
 export * from './equalTo';
 export * from './every';
 export * from './failure';
+export * from './forbidden';
 export * from './greater';
 export * from './ignore';
 export * from './keys';

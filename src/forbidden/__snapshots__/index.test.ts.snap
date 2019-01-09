@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`forbidden() should fail 1`] = `
+Object {
+  "children": Array [],
+  "message": "Value should equal to undefined",
+  "path": "",
+}
+`;
+
+exports[`forbidden() should fail 2`] = `
+Object {
+  "children": Array [],
+  "message": "Value should equal to undefined",
+  "path": "",
+}
+`;
+
+exports[`forbidden() should support custom message 1`] = `
+Object {
+  "children": Array [],
+  "message": "Custom message",
+  "path": "",
+}
+`;

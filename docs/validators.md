@@ -12,6 +12,7 @@
 - [`equalTo`](#equalto)
 - [`every`](#every)
 - [`failure`](#failure)
+- [`forbidden`](#forbidden)
 - [`greater`](#greater)
 - [`ignore`](#ignore)
 - [`keys`](#keys)
@@ -389,6 +390,40 @@ function failure(message?: string): Validator;
 ```typescript
 failure().validate(1 /* or any other value */); // invalid
 failure('Custom message').validate(1 /* or any other value */); // invalid with 'Custom message'
+```
+
+
+## `forbidden`
+
+- **Description**
+
+Creates a validator which requires value to be undefined.
+
+- **How to import**
+
+```typescript
+import { forbidden } from 'pipedator';
+// or
+import { forbidden } from 'pipedator/lib/forbidden';
+
+```
+- **Signature**
+
+```typescript
+function forbidden(message?: string): Validator;
+```
+- **Parameters**
+
+  - `message` - (optional) custom message.
+
+
+- **Usage**
+
+```typescript
+const forbiddenNumber = forbidden(number());
+forbiddenNumber.validate(undefined); // valid
+forbiddenNumber.validate(4); // invalid
+forbiddenNumber.validate(null); // invalid
 ```
 
 
