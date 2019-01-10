@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`sorted() should fail when array is not sorted asc 1`] = `
+Object {
+  "children": null,
+  "message": "Array should be sorted",
+  "path": "",
+}
+`;
+
+exports[`sorted() should fail when array is not sorted asc 2`] = `
+Object {
+  "children": null,
+  "message": "Array should be sorted",
+  "path": "",
+}
+`;
+
+exports[`sorted() should fail when array is not sorted asc 3`] = `
+Object {
+  "children": null,
+  "message": "Array should be sorted",
+  "path": "",
+}
+`;
+
+exports[`sorted() should fail when array is not sorted desc 1`] = `
+Object {
+  "children": null,
+  "message": "Array should be sorted",
+  "path": "",
+}
+`;
+
+exports[`sorted() should fail when array is not sorted desc 2`] = `
+Object {
+  "children": null,
+  "message": "Array should be sorted",
+  "path": "",
+}
+`;
+
+exports[`sorted() should fail when array is not sorted desc 3`] = `
+Object {
+  "children": null,
+  "message": "Array should be sorted",
+  "path": "",
+}
+`;
+
+exports[`sorted() should support custom message 1`] = `
+Object {
+  "children": null,
+  "message": "Custom message",
+  "path": "",
+}
+`;

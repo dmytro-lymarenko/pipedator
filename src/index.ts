@@ -25,6 +25,7 @@ export * from './optional';
 export * from './pipe';
 export * from './shape';
 export * from './some';
+export * from './sorted';
 export * from './string';
 export * from './success';
 export * from './ternary';
