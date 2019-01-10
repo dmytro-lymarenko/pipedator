@@ -23,6 +23,7 @@
 - [`number`](#number)
 - [`optional`](#optional)
 - [`pipe`](#pipe)
+- [`positive`](#positive)
 - [`shape`](#shape)
 - [`some`](#some)
 - [`sorted`](#sorted)
@@ -780,6 +781,39 @@ const numberAndGreaterThanFive = pipe([number(), greater(5)]);
 numberAndGreaterThanFive.validate(6) // valid
 numberAndGreaterThanFive.validate(3) // invalid, less than 5
 numberAndGreaterThanFive.validate({}) // invalid, is not a number
+```
+
+
+## `positive`
+
+- **Description**
+
+Creates a validator which succeedes when value is positive (0 is not positive for this validator).
+
+- **How to import**
+
+```typescript
+import { positive } from 'pipedator';
+// or
+import { positive } from 'pipedator/lib/positive';
+
+```
+- **Signature**
+
+```typescript
+function positive(message?: string): Validator;
+```
+- **Parameters**
+  - `message` - (optional) custom message.
+
+
+- **Usage**
+
+```typescript
+positive().validate(1); // valid
+positive().validate(10); // valid
+positive().validate(0); // invalid
+positive().validate(-1); // invalid
 ```
 
 

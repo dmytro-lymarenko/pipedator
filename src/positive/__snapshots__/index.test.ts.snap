@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`positive() should fail 1`] = `
+Object {
+  "children": null,
+  "message": "Value should be positive",
+  "path": "",
+}
+`;
+
+exports[`positive() should fail 2`] = `
+Object {
+  "children": null,
+  "message": "Value should be positive",
+  "path": "",
+}
+`;
+
+exports[`positive() should support custom message 1`] = `
+Object {
+  "children": null,
+  "message": "Custom message",
+  "path": "",
+}
+`;

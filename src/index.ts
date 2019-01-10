@@ -23,6 +23,7 @@ export * from './nullable';
 export * from './number';
 export * from './optional';
 export * from './pipe';
+export * from './positive';
 export * from './shape';
 export * from './some';
 export * from './sorted';
