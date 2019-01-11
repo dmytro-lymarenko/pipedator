@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`oneOf() should fail when value is not one of allowedValues 1`] = `
+Object {
+  "children": null,
+  "message": "Value should be one of [\\"ts\\",\\"js\\"]",
+  "path": "",
+}
+`;
+
+exports[`oneOf() should fail when value is not one of allowedValues which is a reference 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "children": null,
+      "message": "Value should be one of [\\"ts\\",\\"test\\"]",
+      "path": "b",
+    },
+  ],
+  "message": "Value should have a valid shape",
+  "path": "",
+}
+`;
+
+exports[`oneOf() should support custom message 1`] = `
+Object {
+  "children": null,
+  "message": "Custom message",
+  "path": "",
+}
+`;

@@ -22,6 +22,7 @@ export * from './negative';
 export * from './nillable';
 export * from './nullable';
 export * from './number';
+export * from './oneOf';
 export * from './optional';
 export * from './pipe';
 export * from './positive';
