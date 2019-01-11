@@ -17,7 +17,7 @@
     "generateDocs": "ts-node -T scripts/buildDocs.ts",
     "run-all": "yarn build && yarn test && yarn generateDocs"
   },
-  "keywords": ["validator", "validation", "pipe", "schema"],
+  "keywords": ["validator", "validation", "pipe", "pipeline", "schema", "functional"],
   "devDependencies": {
     "@types/jest": "^23.3.9",
     "@types/node": "^10.12.10",
