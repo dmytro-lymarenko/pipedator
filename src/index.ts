@@ -7,6 +7,7 @@ export * from './array';
 export * from './arrayOf';
 export * from './both';
 export * from './core';
+export * from './defined';
 export * from './either';
 export * from './empty';
 export * from './equalTo';

@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`defined() should fail when value either undefined or null 1`] = `
+Object {
+  "children": null,
+  "message": "Value should be defined",
+  "path": "",
+}
+`;
+
+exports[`defined() should fail when value either undefined or null 2`] = `
+Object {
+  "children": null,
+  "message": "Value should be defined",
+  "path": "",
+}
+`;
+
+exports[`defined() should support custom message 1`] = `
+Object {
+  "children": null,
+  "message": "Custom message",
+  "path": "",
+}
+`;
