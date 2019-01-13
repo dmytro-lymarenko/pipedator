@@ -35,6 +35,7 @@ export * from './success';
 export * from './ternary';
 export * from './test';
 export * from './tuple';
+export * from './uniq';
 export * from './upperCase';
 export * from './valid';
 export * from './values';

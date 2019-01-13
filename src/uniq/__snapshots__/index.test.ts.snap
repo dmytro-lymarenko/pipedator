@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`uniq() should fail when array is not uniq 1`] = `
+Object {
+  "children": null,
+  "message": "Array should contain uniq items",
+  "path": "",
+}
+`;
+
+exports[`uniq() should fail when array is not uniq 2`] = `
+Object {
+  "children": null,
+  "message": "Array should contain uniq items",
+  "path": "",
+}
+`;
+
+exports[`uniq() should fail when array is not uniq 3`] = `
+Object {
+  "children": null,
+  "message": "Array should contain uniq items",
+  "path": "",
+}
+`;
+
+exports[`uniq() should fail when array is not uniq with custom comparator 1`] = `
+Object {
+  "children": null,
+  "message": "Array should contain uniq items",
+  "path": "",
+}
+`;
+
+exports[`uniq() should support both custom comparator and custom message 1`] = `
+Object {
+  "children": null,
+  "message": "Custom message",
+  "path": "",
+}
+`;
+
+exports[`uniq() should support custom message as first arg 1`] = `
+Object {
+  "children": null,
+  "message": "Custom message",
+  "path": "",
+}
+`;
