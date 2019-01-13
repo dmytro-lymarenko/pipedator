@@ -4,7 +4,13 @@
 
 ## All versions
 
+[Draft (Current work)](https://github.com/dmytro-lymarenko/pipedator/tree/master/docs)
+
+---
+
 [v0.4.1 (Unstable)](https://github.com/dmytro-lymarenko/pipedator/tree/v0.4.1/docs)
+
+---
 
 [v0.4.0 (Unstable)](https://github.com/dmytro-lymarenko/pipedator/tree/v0.4.0/docs)
 
