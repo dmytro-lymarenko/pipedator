@@ -17,6 +17,7 @@ export * from './greater';
 export * from './ignore';
 export * from './keys';
 export * from './less';
+export * from './lowerCase';
 export * from './match';
 export * from './negative';
 export * from './nillable';
