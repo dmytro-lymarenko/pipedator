@@ -44,3 +44,15 @@ describe('createValidator()', () => {
 		).toMatchSnapshot();
 	});
 });
+
+describe('getCurrentPath()', () => {
+	it('should return empty string when path is empty array', () => {
+		expect(getCurrentPath({ path: [], rootValue: 1, value: 1 })).toBe('');
+	});
+
+	it('should return the last item from path array from context', () => {
+		expect(getCurrentPath({ path: ['a'], rootValue: 1, value: 1 })).toBe('a');
+		expect(getCurrentPath({ path: ['a', 'b'], rootValue: 1, value: 1 })).toBe('b');
+		expect(getCurrentPath({ path: ['a', 'b', 'c'], rootValue: 1, value: 1 })).toBe('c');
+	});
+});
