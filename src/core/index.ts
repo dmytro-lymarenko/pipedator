@@ -101,5 +101,6 @@ export interface ValidationRef {
 }
 
 export function ref(path: string[]): ValidationRef {
-	return (ctx: ValidationContext) => path.reduce((v, key) => v && v[key], ctx.rootValue);
+	return (ctx: ValidationContext) =>
+		path.reduce((v, key) => (v === undefined || v === null ? undefined : v[key]), ctx.rootValue);
 }
