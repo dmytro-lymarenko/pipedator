@@ -13,7 +13,7 @@ import { less } from 'pipedator/lib/less';
 - **Signature**
 
 ```typescript
-function less(limit: number | ValidationRef, message?: string): Validator;
+function less<ValidValue = any>(limit: number | ValidationRef, message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
 

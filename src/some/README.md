@@ -15,7 +15,7 @@ import { some } from 'pipedator/lib/some';
 - **Signature**
 
 ```typescript
-function some(validator: Validator, message?: string): Validator;
+function some<ValidValue = any>(validator: Validator, message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
 

@@ -14,7 +14,7 @@ import { alternative } from 'pipedator/lib/alternative';
 - **Signature**
 
 ```typescript
-function alternative(validators: Validator[], message?: string): Validator;
+function alternative<ValidValue = any>(validators: Validator[], message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
 

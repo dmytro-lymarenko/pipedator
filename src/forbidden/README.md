@@ -13,7 +13,7 @@ import { forbidden } from 'pipedator/lib/forbidden';
 - **Signature**
 
 ```typescript
-function forbidden(message?: string): Validator;
+function forbidden<ValidValue = any>(message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
 

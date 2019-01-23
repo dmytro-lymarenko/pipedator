@@ -13,7 +13,7 @@ import { number } from 'pipedator/lib/number';
 - **Signature**
 
 ```typescript
-function number(message?: string): Validator;
+function number<ValidValue = any>(message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
 

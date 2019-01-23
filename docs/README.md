@@ -1,4 +1,4 @@
-# 0.4.x API Reference (UNSTABLE)
+# 0.4.x API Reference (Pre-release)
 
 
 - [Pipedator](#pipedator)

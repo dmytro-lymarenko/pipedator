@@ -13,7 +13,7 @@ import { negative } from 'pipedator/lib/negative';
 - **Signature**
 
 ```typescript
-function negative(message?: string): Validator;
+function negative<ValidValue = any>(message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
   - `message` - (optional) custom message.

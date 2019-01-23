@@ -17,7 +17,7 @@ import { empty } from 'pipedator/lib/empty';
 - **Signature**
 
 ```typescript
-function empty(message?: string): Validator;
+function empty<ValidValue = any>(message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
   - `message` - (optional) custom message.

@@ -16,7 +16,7 @@ import { lowerCase } from 'pipedator/lib/lowerCase';
 - **Signature**
 
 ```typescript
-function lowerCase(message?: string): Validator;
+function lowerCase<ValidValue = any>(message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
   - `message` - (optional) custom message.

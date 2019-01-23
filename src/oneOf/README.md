@@ -13,7 +13,7 @@ import { oneOf } from 'pipedator/lib/oneOf';
 - **Signature**
 
 ```typescript
-function oneOf(allowedValues: (any | ValidationRef)[], message?: string): Validator;
+function oneOf<ValidValue = any>(allowedValues: (any | ValidationRef)[], message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
 

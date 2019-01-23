@@ -13,7 +13,7 @@ import { nullable } from 'pipedator/lib/nullable';
 - **Signature**
 
 ```typescript
-function nullable(validator: Validator, message?: string): Validator;
+function nullable<ValidValue = any>(validator: Validator, message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
 

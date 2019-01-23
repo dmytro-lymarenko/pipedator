@@ -13,12 +13,12 @@ import { abstractShape } from 'pipedator/lib/abstractShape';
 - **Signature**
 
 ```typescript
-function abstractShape<Key>(
+function abstractShape<Key, ValidValue = any>(
 	keys: Key[],
 	shape: (key: Key) => Validator,
 	options?: AbstractShapeOptions,
 	message?: string
-): Validator;
+): Validator<ValidValue>;
 ```
 - **Parameters**
 

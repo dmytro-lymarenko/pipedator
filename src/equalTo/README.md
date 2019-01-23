@@ -13,7 +13,7 @@ import { equalTo } from 'pipedator/lib/equalTo';
 - **Signature**
 
 ```typescript
-function equalTo(validValue: any | ValidationRef, message?: string): Validator;
+function equalTo<ValidValue = any>(validValue: any | ValidationRef, message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
 

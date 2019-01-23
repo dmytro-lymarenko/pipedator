@@ -15,7 +15,7 @@ import { pipe } from 'pipedator/lib/pipe';
 - **Signature**
 
 ```typescript
-function pipe(validators: Validator[], message?: string): Validator;
+function pipe<ValidValue = any>(validators: Validator[], message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
 

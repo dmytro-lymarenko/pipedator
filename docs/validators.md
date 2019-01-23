@@ -60,12 +60,12 @@ import { abstractShape } from 'pipedator/lib/abstractShape';
 - **Signature**
 
 ```typescript
-function abstractShape<Key>(
+function abstractShape<Key, ValidValue = any>(
 	keys: Key[],
 	shape: (key: Key) => Validator,
 	options?: AbstractShapeOptions,
 	message?: string
-): Validator;
+): Validator<ValidValue>;
 ```
 - **Parameters**
 
@@ -149,7 +149,7 @@ import { alternative } from 'pipedator/lib/alternative';
 - **Signature**
 
 ```typescript
-function alternative(validators: Validator[], message?: string): Validator;
+function alternative<ValidValue = any>(validators: Validator[], message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
 
@@ -184,7 +184,7 @@ import { array } from 'pipedator/lib/array';
 - **Signature**
 
 ```typescript
-function array(message?: string): Validator;
+function array<ValidValue = any>(message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
 
@@ -249,7 +249,7 @@ import { defined } from 'pipedator/lib/defined';
 - **Signature**
 
 ```typescript
-function defined(message?: string): Validator;
+function defined<ValidValue = any>(message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
 
@@ -303,7 +303,7 @@ import { empty } from 'pipedator/lib/empty';
 - **Signature**
 
 ```typescript
-function empty(message?: string): Validator;
+function empty<ValidValue = any>(message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
   - `message` - (optional) custom message.
@@ -341,7 +341,7 @@ import { equalTo } from 'pipedator/lib/equalTo';
 - **Signature**
 
 ```typescript
-function equalTo(validValue: any | ValidationRef, message?: string): Validator;
+function equalTo<ValidValue = any>(validValue: any | ValidationRef, message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
 
@@ -383,7 +383,7 @@ import { every } from 'pipedator/lib/every';
 - **Signature**
 
 ```typescript
-function every(validator: Validator, message?: string): Validator;
+function every<ValidValue = any>(validator: Validator, message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
 
@@ -420,7 +420,7 @@ import { failure } from 'pipedator/lib/failure';
 - **Signature**
 
 ```typescript
-function failure(message?: string): Validator;
+function failure<ValidValue = any>(message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
 
@@ -452,7 +452,7 @@ import { forbidden } from 'pipedator/lib/forbidden';
 - **Signature**
 
 ```typescript
-function forbidden(message?: string): Validator;
+function forbidden<ValidValue = any>(message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
 
@@ -486,7 +486,7 @@ import { greater } from 'pipedator/lib/greater';
 - **Signature**
 
 ```typescript
-function greater(limit: number | ValidationRef, message?: string): Validator;
+function greater<ValidValue = any>(limit: number | ValidationRef, message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
 
@@ -552,7 +552,7 @@ import { keys } from 'pipedator/lib/keys';
 - **Signature**
 
 ```typescript
-function keys(validator: Validator, message?: string): Validator;
+function keys<ValidValue = any>(validator: Validator, message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
 
@@ -587,7 +587,7 @@ import { less } from 'pipedator/lib/less';
 - **Signature**
 
 ```typescript
-function less(limit: number | ValidationRef, message?: string): Validator;
+function less<ValidValue = any>(limit: number | ValidationRef, message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
 
@@ -632,7 +632,7 @@ import { lowerCase } from 'pipedator/lib/lowerCase';
 - **Signature**
 
 ```typescript
-function lowerCase(message?: string): Validator;
+function lowerCase<ValidValue = any>(message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
   - `message` - (optional) custom message.
@@ -665,7 +665,7 @@ import { match } from 'pipedator/lib/match';
 - **Signature**
 
 ```typescript
-function match(regexp: RegExp, message?: string): Validator;
+function match<ValidValue = any>(regexp: RegExp, message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
 
@@ -698,7 +698,7 @@ import { negative } from 'pipedator/lib/negative';
 - **Signature**
 
 ```typescript
-function negative(message?: string): Validator;
+function negative<ValidValue = any>(message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
   - `message` - (optional) custom message.
@@ -731,7 +731,7 @@ import { nillable } from 'pipedator/lib/nillable';
 - **Signature**
 
 ```typescript
-function nillable(validator: Validator, message?: string): Validator;
+function nillable<ValidValue = any>(validator: Validator, message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
 
@@ -767,7 +767,7 @@ import { nullable } from 'pipedator/lib/nullable';
 - **Signature**
 
 ```typescript
-function nullable(validator: Validator, message?: string): Validator;
+function nullable<ValidValue = any>(validator: Validator, message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
 
@@ -802,7 +802,7 @@ import { number } from 'pipedator/lib/number';
 - **Signature**
 
 ```typescript
-function number(message?: string): Validator;
+function number<ValidValue = any>(message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
 
@@ -836,7 +836,7 @@ import { oneOf } from 'pipedator/lib/oneOf';
 - **Signature**
 
 ```typescript
-function oneOf(allowedValues: (any | ValidationRef)[], message?: string): Validator;
+function oneOf<ValidValue = any>(allowedValues: (any | ValidationRef)[], message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
 
@@ -878,7 +878,7 @@ import { optional } from 'pipedator/lib/optional';
 - **Signature**
 
 ```typescript
-function optional(validator: Validator, message?: string): Validator;
+function optional<ValidValue = any>(validator: Validator, message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
 
@@ -915,7 +915,7 @@ import { pipe } from 'pipedator/lib/pipe';
 - **Signature**
 
 ```typescript
-function pipe(validators: Validator[], message?: string): Validator;
+function pipe<ValidValue = any>(validators: Validator[], message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
 
@@ -952,7 +952,7 @@ import { positive } from 'pipedator/lib/positive';
 - **Signature**
 
 ```typescript
-function positive(message?: string): Validator;
+function positive<ValidValue = any>(message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
   - `message` - (optional) custom message.
@@ -985,7 +985,7 @@ import { shape } from 'pipedator/lib/shape';
 - **Signature**
 
 ```typescript
-function shape(shape: { [key: string]: Validator }, options?: AbstractShapeOptions, message?: string): Validator;
+function shape<ValidValue = any>(shape: { [key: string]: Validator }, options?: AbstractShapeOptions, message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
 
@@ -1026,7 +1026,7 @@ import { some } from 'pipedator/lib/some';
 - **Signature**
 
 ```typescript
-function some(validator: Validator, message?: string): Validator;
+function some<ValidValue = any>(validator: Validator, message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
 
@@ -1063,7 +1063,7 @@ import { sorted } from 'pipedator/lib/sorted';
 - **Signature**
 
 ```typescript
-function sorted(direction: SortedDirection | SortedComparator, message?: string): Validator;
+function sorted<ValidValue = any>(direction: SortedDirection | SortedComparator, message?: string): Validator<ValidValue>;
 ```
 where
 ```typescript
@@ -1112,7 +1112,7 @@ import { string } from 'pipedator/lib/string';
 - **Signature**
 
 ```typescript
-function string(message?: string): Validator;
+function string<ValidValue = any>(message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
 
@@ -1145,7 +1145,7 @@ import { success } from 'pipedator/lib/success';
 - **Signature**
 
 ```typescript
-function success(): Validator;
+function success<ValidValue = any>(): Validator<ValidValue>;
 ```
 
 - **Usage**
@@ -1173,7 +1173,7 @@ import { ternary } from 'pipedator/lib/ternary';
 - **Signature**
 
 ```typescript
-function ternary(condition: Validator, success: Validator, failure: Validator): Validator;
+function ternary<ValidValue = any>(condition: Validator, success: Validator, failure: Validator): Validator<ValidValue>;
 ```
 - **Parameters**
 
@@ -1228,7 +1228,7 @@ import { test } from 'pipedator/lib/test';
 - **Signature**
 
 ```typescript
-function test(isValid: (value: any) => boolean, message: string): Validator;
+function test<ValidValue = any>(isValid: (value: any) => boolean, message: string): Validator<ValidValue>;
 ```
 - **Parameters**
 
@@ -1260,7 +1260,7 @@ import { tuple } from 'pipedator/lib/tuple';
 - **Signature**
 
 ```typescript
-function tuple(tuple: Validator[], options?: AbstractShapeOptions, message?: string): Validator;
+function tuple<ValidValue = any>(tuple: Validator[], options?: AbstractShapeOptions, message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
 
@@ -1356,7 +1356,7 @@ import { upperCase } from 'pipedator/lib/upperCase';
 - **Signature**
 
 ```typescript
-function upperCase(message?: string): Validator;
+function upperCase<ValidValue = any>(message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
   - `message` - (optional) custom message.
@@ -1405,7 +1405,7 @@ import { values } from 'pipedator/lib/values';
 - **Signature**
 
 ```typescript
-function values(validator: Validator, message?: string): Validator;
+function values<ValidValue = any>(validator: Validator, message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
 
@@ -1441,7 +1441,7 @@ import { valuesByKeys } from 'pipedator/lib/valuesByKeys';
 - **Signature**
 
 ```typescript
-function valuesByKeys(keys: string[], validator: Validator, message?: string): Validator;
+function valuesByKeys<ValidValue = any>(keys: string[], validator: Validator, message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
 

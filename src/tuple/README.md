@@ -13,7 +13,7 @@ import { tuple } from 'pipedator/lib/tuple';
 - **Signature**
 
 ```typescript
-function tuple(tuple: Validator[], options?: AbstractShapeOptions, message?: string): Validator;
+function tuple<ValidValue = any>(tuple: Validator[], options?: AbstractShapeOptions, message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
 

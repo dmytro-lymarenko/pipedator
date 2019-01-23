@@ -14,7 +14,7 @@ import { keys } from 'pipedator/lib/keys';
 - **Signature**
 
 ```typescript
-function keys(validator: Validator, message?: string): Validator;
+function keys<ValidValue = any>(validator: Validator, message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
 

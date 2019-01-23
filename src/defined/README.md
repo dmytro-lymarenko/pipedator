@@ -13,7 +13,7 @@ import { defined } from 'pipedator/lib/defined';
 - **Signature**
 
 ```typescript
-function defined(message?: string): Validator;
+function defined<ValidValue = any>(message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
 

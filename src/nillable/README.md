@@ -13,7 +13,7 @@ import { nillable } from 'pipedator/lib/nillable';
 - **Signature**
 
 ```typescript
-function nillable(validator: Validator, message?: string): Validator;
+function nillable<ValidValue = any>(validator: Validator, message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
 

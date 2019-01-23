@@ -13,7 +13,7 @@ import { match } from 'pipedator/lib/match';
 - **Signature**
 
 ```typescript
-function match(regexp: RegExp, message?: string): Validator;
+function match<ValidValue = any>(regexp: RegExp, message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
 

@@ -14,7 +14,7 @@ import { ternary } from 'pipedator/lib/ternary';
 - **Signature**
 
 ```typescript
-function ternary(condition: Validator, success: Validator, failure: Validator): Validator;
+function ternary<ValidValue = any>(condition: Validator, success: Validator, failure: Validator): Validator<ValidValue>;
 ```
 - **Parameters**
 

@@ -13,7 +13,7 @@ import { optional } from 'pipedator/lib/optional';
 - **Signature**
 
 ```typescript
-function optional(validator: Validator, message?: string): Validator;
+function optional<ValidValue = any>(validator: Validator, message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
 

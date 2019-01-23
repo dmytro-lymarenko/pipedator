@@ -16,7 +16,7 @@ import { upperCase } from 'pipedator/lib/upperCase';
 - **Signature**
 
 ```typescript
-function upperCase(message?: string): Validator;
+function upperCase<ValidValue = any>(message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
   - `message` - (optional) custom message.

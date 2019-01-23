@@ -13,7 +13,7 @@ import { sorted } from 'pipedator/lib/sorted';
 - **Signature**
 
 ```typescript
-function sorted(direction: SortedDirection | SortedComparator, message?: string): Validator;
+function sorted<ValidValue = any>(direction: SortedDirection | SortedComparator, message?: string): Validator<ValidValue>;
 ```
 where
 ```typescript

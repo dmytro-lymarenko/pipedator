@@ -13,7 +13,7 @@ import { shape } from 'pipedator/lib/shape';
 - **Signature**
 
 ```typescript
-function shape(shape: { [key: string]: Validator }, options?: AbstractShapeOptions, message?: string): Validator;
+function shape<ValidValue = any>(shape: { [key: string]: Validator }, options?: AbstractShapeOptions, message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
 

@@ -13,7 +13,7 @@ import { success } from 'pipedator/lib/success';
 - **Signature**
 
 ```typescript
-function success(): Validator;
+function success<ValidValue = any>(): Validator<ValidValue>;
 ```
 
 - **Usage**

@@ -13,7 +13,7 @@ import { failure } from 'pipedator/lib/failure';
 - **Signature**
 
 ```typescript
-function failure(message?: string): Validator;
+function failure<ValidValue = any>(message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
 

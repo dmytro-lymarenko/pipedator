@@ -13,9 +13,7 @@ import { validator_name } from 'pipedator/lib/validator_name';
 - **Signature**
 
 ```typescript
-function validator_name(
-	...args: any[]
-): Validator;
+function validator_name<ValidValue = any>(...args: any[]): Validator<ValidValue>;
 ```
 - **Parameters**
 

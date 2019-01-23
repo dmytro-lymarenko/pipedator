@@ -14,7 +14,7 @@ import { every } from 'pipedator/lib/every';
 - **Signature**
 
 ```typescript
-function every(validator: Validator, message?: string): Validator;
+function every<ValidValue = any>(validator: Validator, message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
 

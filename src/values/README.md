@@ -13,7 +13,7 @@ import { values } from 'pipedator/lib/values';
 - **Signature**
 
 ```typescript
-function values(validator: Validator, message?: string): Validator;
+function values<ValidValue = any>(validator: Validator, message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
 

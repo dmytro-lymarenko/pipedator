@@ -13,7 +13,7 @@ import { positive } from 'pipedator/lib/positive';
 - **Signature**
 
 ```typescript
-function positive(message?: string): Validator;
+function positive<ValidValue = any>(message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
   - `message` - (optional) custom message.

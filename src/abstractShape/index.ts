@@ -15,9 +15,9 @@ export function abstractShape<Key, ValidValue = any>(
 	shape: (key: Key) => Validator,
 	options?: AbstractShapeOptions,
 	message?: string
-): Validator {
-	return pipe([
-		defined(message),
+): Validator<ValidValue> {
+	return pipe<ValidValue>([
+		defined<ValidValue>(message),
 		createValidator<ValidValue>({
 			validate: (value, ctx) => {
 				let errors: ValidationError[] = [];

@@ -13,7 +13,7 @@ import { greater } from 'pipedator/lib/greater';
 - **Signature**
 
 ```typescript
-function greater(limit: number | ValidationRef, message?: string): Validator;
+function greater<ValidValue = any>(limit: number | ValidationRef, message?: string): Validator<ValidValue>;
 ```
 - **Parameters**
 

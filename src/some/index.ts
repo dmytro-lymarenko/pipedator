@@ -7,7 +7,7 @@ import { array } from '../array';
  * @param validator
  */
 export function some<ValidValue = any>(validator: Validator, message?: string) {
-	return pipe(
+	return pipe<ValidValue>(
 		[
 			array(),
 			createValidator<ValidValue>({
