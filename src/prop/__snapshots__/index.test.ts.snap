@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`prop() should return an error for non-prop values 1`] = `
+Object {
+  "children": null,
+  "message": "Value should be a number",
+  "path": "length",
+}
+`;

@@ -28,6 +28,7 @@ export * from './oneOf';
 export * from './optional';
 export * from './pipe';
 export * from './positive';
+export * from './prop';
 export * from './shape';
 export * from './some';
 export * from './sorted';
