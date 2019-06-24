@@ -5,16 +5,11 @@ import { Validator, createValidator, getCurrentPath } from '../core';
 // 	return prop('length', validator);
 // }
 
-function string(validator?: Validator<string> | Validator<string>[]): Validator<string> {
+function string(...validators: Validator<string>[]): Validator<string> {
 	return createValidator({
 		validate: (value, ctx) => {
 			if (typeof value === 'string') {
 				return null;
-			}
-
-			if (validator) {
-				if (Array.isArray(validator)) {
-				}
 			}
 
 			return {
@@ -26,16 +21,11 @@ function string(validator?: Validator<string> | Validator<string>[]): Validator<
 	});
 }
 
-function alphanum(validator?: Validator<string> | Validator<string>[]): Validator<string> {
+function alphanum(...validators: Validator<string>[]): Validator<string> {
 	return createValidator({
 		validate: (value, ctx) => {
 			if (typeof value === 'string') {
 				return null;
-			}
-
-			if (validator) {
-				if (Array.isArray(validator)) {
-				}
 			}
 
 			return {
@@ -55,7 +45,7 @@ function shape<S>(validatorMapObject: { [K in keyof S]: Validator<S[K]> }): Vali
 	});
 }
 
-function length<L extends { length: number }>(validator?: Validator<number> | Validator<number>[]): Validator<L> {
+function length<L extends { length: number }>(...validator: Validator<number>[]): Validator<L> {
 	return createValidator({
 		validate: (value, ctx) => {
 			return null;
@@ -63,7 +53,7 @@ function length<L extends { length: number }>(validator?: Validator<number> | Va
 	});
 }
 
-function min(value: number, validator?: Validator<number> | Validator<number>[]): Validator<number> {
+function min(value: number, ...validator: Validator<number>[]): Validator<number> {
 	return createValidator({
 		validate: (value, ctx) => {
 			return null;
@@ -71,7 +61,7 @@ function min(value: number, validator?: Validator<number> | Validator<number>[])
 	});
 }
 
-function max(value: number, validator?: Validator<number> | Validator<number>[]): Validator<number> {
+function max(value: number, ...validator: Validator<number>[]): Validator<number> {
 	return createValidator({
 		validate: (value, ctx) => {
 			return null;
@@ -79,7 +69,7 @@ function max(value: number, validator?: Validator<number> | Validator<number>[])
 	});
 }
 
-function optional<T>(validator?: Validator<T> | Validator<T>[]): Validator<T | undefined> {
+function optional<T>(...validator: Validator<T>[]): Validator<T | undefined> {
 	return createValidator({
 		validate: (value, ctx) => {
 			return null;
@@ -87,7 +77,23 @@ function optional<T>(validator?: Validator<T> | Validator<T>[]): Validator<T | u
 	});
 }
 
-function number(validator?: Validator<number> | Validator<number>[]): Validator<number> {
+function number(...validator: Validator<number>[]): Validator<number> {
+	return createValidator({
+		validate: (value, ctx) => {
+			return null;
+		},
+	});
+}
+
+function and<V>(...validator: Validator<V>[]): Validator<V> {
+	return createValidator({
+		validate: (value, ctx) => {
+			return null;
+		},
+	});
+}
+
+function or<V>(...validator: Validator<V>[]): Validator<V> {
 	return createValidator({
 		validate: (value, ctx) => {
 			return null;
@@ -102,7 +108,7 @@ interface LoginForm {
 }
 
 shape<LoginForm>({
-	login: string([alphanum(), length([min(3), max(30)])]),
+	login: string(alphanum(), length(min(3), max(30))),
 	password: string(),
 	age: optional(number(min(18))),
 });
