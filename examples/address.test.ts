@@ -1,7 +1,7 @@
 import { shape, string, number, values, empty, ternary, optional } from '../src';
 
 /*
-This example dedonstrates how to build address validator with the next requirements:
+This example demonstrates how to build address validator with the next requirements:
   - it must be an object with a set of properties (email, country, ip)
   - at least one field is required
 */
