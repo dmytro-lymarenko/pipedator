@@ -93,7 +93,23 @@ function and<V>(...validator: Validator<V>[]): Validator<V> {
 	});
 }
 
-function or<V>(...validator: Validator<V>[]): Validator<V> {
+function or<V1>(v1: Validator<V1>): Validator<V1>;
+function or<V1, V2>(v1: Validator<V1>, v2: Validator<V2>): Validator<V1 | V2>;
+function or<V1, V2, V3>(v1: Validator<V1>, v2: Validator<V2>, v3: Validator<V3>): Validator<V1 | V2 | V3>;
+function or<V1, V2, V3, V4>(
+	v1: Validator<V1>,
+	v2: Validator<V2>,
+	v3: Validator<V3>,
+	v4: Validator<V4>
+): Validator<V1 | V2 | V3 | V4>;
+function or<V1, V2, V3, V4, V5>(
+	v1: Validator<V1>,
+	v2: Validator<V2>,
+	v3: Validator<V3>,
+	v4: Validator<V4>,
+	v5: Validator<V5>
+): Validator<V1 | V2 | V3 | V4 | V5>;
+function or(...validators: Validator<any>[]) {
 	return createValidator({
 		validate: (value, ctx) => {
 			return null;
@@ -103,12 +119,12 @@ function or<V>(...validator: Validator<V>[]): Validator<V> {
 
 interface LoginForm {
 	login: string;
-	password: string;
+	password: string | number;
 	age?: number;
 }
 
 shape<LoginForm>({
 	login: string(alphanum(), length(min(3), max(30))),
-	password: string(),
+	password: or(string(), number()),
 	age: optional(number(min(18))),
 });
