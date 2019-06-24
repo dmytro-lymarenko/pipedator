@@ -10,7 +10,7 @@ export interface AbstractShapeOptions {
 	closedBracket?: string;
 }
 
-export function abstractShape<Key, ValidValue = any>(
+export function abstractShape<Key extends number | string, ValidValue = any>(
 	keys: Key[],
 	shape: (key: Key) => Validator,
 	options?: AbstractShapeOptions,
