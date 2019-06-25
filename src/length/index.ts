@@ -1,4 +1,3 @@
-import { prop } from '../prop';
 import { Validator, createValidator, getCurrentPath } from '../core';
 
 // export function length<ValidValue = any>(validator: Validator<ValidValue>) {
@@ -37,7 +36,7 @@ function alphanum(...validators: Validator<string>[]): Validator<string> {
 	});
 }
 
-function shape<S>(validatorMapObject: { [K in keyof S]: Validator<S[K]> }): Validator<S> {
+function shape<S>(validatorMapObject: { [K in keyof S]-?: Validator<S[K]> }): Validator<S> {
 	return createValidator({
 		validate: (value, ctx) => {
 			return null;
@@ -45,12 +44,16 @@ function shape<S>(validatorMapObject: { [K in keyof S]: Validator<S[K]> }): Vali
 	});
 }
 
-function length<L extends { length: number }>(...validator: Validator<number>[]): Validator<L> {
+function prop<V, K extends keyof V>(propName: K, ...validators: Validator<V[K]>[]): Validator<V> {
 	return createValidator({
 		validate: (value, ctx) => {
 			return null;
 		},
 	});
+}
+
+function length<V extends { length: number }>(...validator: Validator<number>[]): Validator<V> {
+	return prop('length', ...validator);
 }
 
 function min(value: number, ...validator: Validator<number>[]): Validator<number> {
@@ -117,14 +120,24 @@ function or(...validators: Validator<any>[]) {
 	});
 }
 
+function array<V>(itemValidator: Validator<V>, ...arrayValidators: Validator<V[]>[]): Validator<V[]> {
+	return createValidator({
+		validate: (value, ctx) => {
+			return null;
+		},
+	});
+}
+
 interface LoginForm {
 	login: string;
 	password: string | number;
 	age?: number;
+	favoriteMovies?: string[];
 }
 
 shape<LoginForm>({
-	login: string(alphanum(), length(min(3), max(30))),
+	login: string(alphanum(), length(min(3), max(30)), prop('length', min(3))),
 	password: or(string(), number()),
 	age: optional(number(min(18))),
+	favoriteMovies: optional(array(string(), length(min(2)))),
 });
