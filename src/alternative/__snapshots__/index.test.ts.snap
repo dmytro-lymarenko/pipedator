@@ -3,7 +3,7 @@
 exports[`alternative() should generate correct message 1`] = `
 Object {
   "children": null,
-  "message": "Value should be a string",
+  "message": "Either Value should be a string OR Value should be a number",
   "path": "",
 }
 `;
@@ -11,23 +11,7 @@ Object {
 exports[`alternative() should generate correct message 2`] = `
 Object {
   "children": null,
-  "message": "Either Value should be a string OR Value should be a number",
-  "path": "",
-}
-`;
-
-exports[`alternative() should generate correct message 3`] = `
-Object {
-  "children": null,
   "message": "Either Value should be a string OR Value should have a valid shape",
-  "path": "",
-}
-`;
-
-exports[`alternative() should support custom message 1`] = `
-Object {
-  "children": null,
-  "message": "Custom message",
   "path": "",
 }
 `;

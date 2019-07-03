@@ -38,8 +38,8 @@ describe('complex validators', () => {
 			).validate([1, 1])
 		).toMatchSnapshot();
 
-		expect(alternative([string(), alternative([number(), greater(5)])]).validate({})).toMatchSnapshot();
+		expect(alternative(string(), alternative(number(), greater(5))).validate({})).toMatchSnapshot();
 
-		expect(alternative([string(), alternative([number()])]).validate({})).toMatchSnapshot();
+		expect(alternative(string(), number()).validate({})).toMatchSnapshot();
 	});
 });

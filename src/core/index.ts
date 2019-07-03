@@ -96,11 +96,11 @@ export function getCurrentPath(ctx: ValidationContext): string {
 	return ctx.path.length === 0 ? '' : ctx.path[ctx.path.length - 1];
 }
 
-export interface ValidationRef {
-	(ctx: ValidationContext): any;
+export interface ValidationRef<V = any> {
+	(ctx: ValidationContext): V;
 }
 
-export function ref(path: string[]): ValidationRef {
+export function ref<V = any>(path: string[]): ValidationRef<V> {
 	return (ctx: ValidationContext) =>
 		path.reduce((v, key) => (v === undefined || v === null ? undefined : v[key]), ctx.rootValue);
 }

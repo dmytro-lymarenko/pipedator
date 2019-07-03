@@ -16,9 +16,9 @@ export function abstractShape<Key extends number | string, ValidValue = any>(
 	options?: AbstractShapeOptions,
 	message?: string
 ): Validator<ValidValue> {
-	return pipe<ValidValue>([
-		defined<ValidValue>(message),
-		createValidator<ValidValue>({
+	return pipe(
+		defined(message),
+		createValidator({
 			validate: (value, ctx) => {
 				let errors: ValidationError[] = [];
 
@@ -68,6 +68,6 @@ export function abstractShape<Key extends number | string, ValidValue = any>(
 
 				return null;
 			},
-		}),
-	]);
+		})
+	);
 }

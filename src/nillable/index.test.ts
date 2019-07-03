@@ -17,8 +17,4 @@ describe('nillable()', () => {
 	it('should fail', () => {
 		expect(nillable(string()).validate(1)).toMatchSnapshot();
 	});
-
-	it('should support custom message', () => {
-		expect(nillable(string(), 'Custom message').validate(1)).toMatchSnapshot();
-	});
 });

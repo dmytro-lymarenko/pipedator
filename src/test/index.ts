@@ -1,7 +1,7 @@
 import { createValidator, getCurrentPath } from '../core';
 
-export function test<ValidValue = any>(isValid: (value: any) => boolean, message: string) {
-	return createValidator<ValidValue>({
+export function test<V>(isValid: (value: any) => value is V, message: string) {
+	return createValidator<V>({
 		validate: (value, ctx) => (isValid(value) ? null : { message, path: getCurrentPath(ctx), children: null }),
 	});
 }

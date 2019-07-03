@@ -1,5 +1,10 @@
+import { Validator } from '../core';
 import { test } from '../test';
 
-export function string<ValidValue = any>(message?: string) {
-	return test<ValidValue>(value => typeof value === 'string', message || 'Value should be a string');
+function isString(value: any): value is string {
+	return typeof value === 'string';
+}
+
+export function string(/* ...validators: Validator<string>[] */): Validator<string> {
+	return test<string>(isString, 'Value should be a string');
 }

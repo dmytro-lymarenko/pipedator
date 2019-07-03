@@ -16,10 +16,6 @@ describe('some()', () => {
 		expect(some(string()).validate([1, null, {}])).toMatchSnapshot();
 	});
 
-	it('should support custom message', () => {
-		expect(some(string(), 'Custom message').validate([1, null, {}])).toMatchSnapshot();
-	});
-
 	it('should throw an error when a value is not an array', () => {
 		expect(some(string()).validate(1)).toMatchSnapshot();
 	});

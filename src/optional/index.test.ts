@@ -13,8 +13,4 @@ describe('optional()', () => {
 	it('should fail', () => {
 		expect(optional(string()).validate(1)).toMatchSnapshot();
 	});
-
-	it('should support custom message', () => {
-		expect(optional(string(), 'Custom message').validate(null)).toMatchSnapshot();
-	});
 });

@@ -13,8 +13,4 @@ describe('nullable()', () => {
 	it('should fail', () => {
 		expect(nullable(string()).validate(1)).toMatchSnapshot();
 	});
-
-	it('should support custom message', () => {
-		expect(nullable(string(), 'Custom message').validate(undefined)).toMatchSnapshot();
-	});
 });

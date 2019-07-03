@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Register form test should pass the validation 1`] = `
+Object {
+  "children": Array [
+    Object {
+      "children": null,
+      "message": "Value should be greater than 3",
+      "path": "username",
+    },
+  ],
+  "message": "Value should have a valid shape",
+  "path": "",
+}
+`;

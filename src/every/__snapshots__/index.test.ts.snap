@@ -14,14 +14,6 @@ Object {
 }
 `;
 
-exports[`every() should support custom message 1`] = `
-Object {
-  "children": null,
-  "message": "Custom message",
-  "path": "",
-}
-`;
-
 exports[`every() should throw an error when a value is not an array 1`] = `
 Object {
   "children": null,

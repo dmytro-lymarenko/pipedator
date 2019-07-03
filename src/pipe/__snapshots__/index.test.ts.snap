@@ -7,11 +7,3 @@ Object {
   "path": "",
 }
 `;
-
-exports[`pipe() should support custom message 1`] = `
-Object {
-  "children": null,
-  "message": "Custom message",
-  "path": "",
-}
-`;

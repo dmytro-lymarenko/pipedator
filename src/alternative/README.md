@@ -9,24 +9,24 @@ It means when we have provided `a` and `b` validators in `[a, b]` order then val
 import { alternative } from 'pipedator';
 // or
 import { alternative } from 'pipedator/lib/alternative';
-
 ```
+
 - **Signature**
 
 ```typescript
-function alternative<ValidValue = any>(validators: Validator[], message?: string): Validator<ValidValue>;
+function alternative<V1, V2, ...>(v1: Validator<V1>, v2: Validator<V2>, ...): Validator<V1 | V2 | ...>;
 ```
+
 - **Parameters**
 
-  - `validators` - an array of validators to test a value.
-  - `message` - (optional) custom message.
+  - `v1`, `v2`, ... - validators to test a value.
 
 - **Usage**
 
 ```typescript
 const numberOrString = alternative([string(), number()]);
 // numberOrString will succeed when provided value is either string or number:
-numberOrString.validate(4) // valid
-numberOrString.validate('text') // valid
-numberOrString.validate({}) // invalid
+numberOrString.validate(4); // valid
+numberOrString.validate('text'); // valid
+numberOrString.validate({}); // invalid
 ```

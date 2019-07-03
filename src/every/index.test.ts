@@ -14,10 +14,6 @@ describe('every()', () => {
 		expect(every(string()).validate(['first', 1, 'last'])).toMatchSnapshot();
 	});
 
-	it('should support custom message', () => {
-		expect(every(string(), 'Custom message').validate([1, 'test'])).toMatchSnapshot();
-	});
-
 	it('should throw an error when a value is not an array', () => {
 		expect(every(string()).validate(1)).toMatchSnapshot();
 	});

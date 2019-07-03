@@ -51,7 +51,7 @@ Object {
 exports[`string() should support custom message 1`] = `
 Object {
   "children": null,
-  "message": "Custom message",
+  "message": "Value should be a string",
   "path": "",
 }
 `;

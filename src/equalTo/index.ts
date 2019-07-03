@@ -1,9 +1,9 @@
 import { createValidator, ValidationRef, getCurrentPath } from '../core';
 
-export function equalTo<ValidValue = any>(validValue: any | ValidationRef, message?: string) {
-	return createValidator<ValidValue>({
+export function equalTo<V>(validValue: V | ValidationRef<V>, message?: string) {
+	return createValidator<V>({
 		validate: (value, ctx) => {
-			const v = typeof validValue === 'function' ? validValue(ctx) : validValue;
+			const v = typeof validValue === 'function' ? (validValue as any)(ctx) : validValue;
 
 			return value === v
 				? null
