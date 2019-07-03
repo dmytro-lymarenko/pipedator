@@ -1,34 +1,41 @@
 {
-  "name": "pipedator",
-  "version": "0.4.2",
-  "description": "Piped validators",
-  "main": "lib/index.js",
-  "author": "dmytro.lymarenko",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/dmytro-lymarenko/pipedator.git"
-  },
-  "scripts": {
-    "build": "yarn groupValidators && yarn compile",
-    "compile": "tsc",
-    "test": "jest",
-    "groupValidators": "ts-node -T scripts/buildIndex.ts",
-    "generateDocs": "ts-node -T scripts/buildDocs.ts",
-    "run-all": "yarn build && yarn test && yarn generateDocs"
-  },
-  "keywords": ["validator", "validation", "pipe", "pipeline", "schema", "functional"],
-  "devDependencies": {
-    "@types/jest": "^23.3.9",
-    "@types/node": "^10.12.10",
-    "jest": "^23.6.0",
-    "prettier": "^1.15.2",
-    "ts-jest": "^23.10.4",
-    "ts-node": "^7.0.1",
-    "tslint": "^5.11.0",
-    "tslint-config-airbnb": "^5.11.1",
-    "tslint-config-prettier": "^1.16.0",
-    "tslint-plugin-prettier": "^2.0.1",
-    "typescript": "^3.2.2"
-  }
+	"name": "pipedator",
+	"version": "0.4.2",
+	"description": "Piped validators",
+	"main": "lib/index.js",
+	"author": "dmytro.lymarenko",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/dmytro-lymarenko/pipedator.git"
+	},
+	"scripts": {
+		"build": "yarn groupValidators && yarn compile",
+		"compile": "tsc",
+		"test": "jest",
+		"groupValidators": "ts-node -T scripts/buildIndex.ts",
+		"generateDocs": "ts-node -T scripts/buildDocs.ts",
+		"run-all": "yarn build && yarn test && yarn generateDocs"
+	},
+	"keywords": [
+		"validator",
+		"validation",
+		"pipe",
+		"pipeline",
+		"schema",
+		"functional"
+	],
+	"devDependencies": {
+		"@types/jest": "^23.3.9",
+		"@types/node": "^10.12.10",
+		"jest": "^23.6.0",
+		"prettier": "^1.15.2",
+		"ts-jest": "^23.10.4",
+		"ts-node": "^7.0.1",
+		"tslint": "^5.11.0",
+		"tslint-config-airbnb": "^5.11.1",
+		"tslint-config-prettier": "^1.16.0",
+		"tslint-plugin-prettier": "^2.0.1",
+		"typescript": "^3.5.2"
+	}
 }
